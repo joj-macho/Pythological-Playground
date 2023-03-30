@@ -11,6 +11,7 @@ os.chdir(path)
 def main():
     '''This is the main function of the program'''
     
+    
     print('\nWelcome to Address Book.\n')
 
     # Store Contacts in a dictionary
@@ -58,7 +59,8 @@ def main():
 
 # Add New Contact
 def addContact(contacts):
-    ''''''
+    '''This function adds a new contact to the given dictionary contacts.'''
+
     name = input('Enter the Name:\n> ').title()
     phone = input('Enter the Phone Number:\n> ')
     email = input('Enter the email:\n> ')
@@ -69,7 +71,7 @@ def addContact(contacts):
 
 # Update Contact Information
 def updateContact(contacts):
-    ''''''
+    '''This function updates the phone number and email of an existing contact in the given dictionary contacts.'''
 
     name = input('Enter the name of the contact you want to update:\n> ')
     if name in contacts:
@@ -84,7 +86,8 @@ def updateContact(contacts):
 
 # Delete Contact
 def deleteContact(contacts):
-    ''''''
+    '''This function deletes an existing contact from the given dictioncontacts.'''
+
     name = input('Enter the name of the contact to delete:\n> ').title()
     if name in contacts:
         del contacts[name]
@@ -94,7 +97,7 @@ def deleteContact(contacts):
 
 # Search for contact
 def searchContact(contacts):
-    ''''''
+    '''This function searches for an existing contact in the given dictionary contacts.'''
     name = input('Enter the name of the contact you are searching for:\n> ').title()
     # Search for name in a dictionary
     if name in contacts:
@@ -105,7 +108,7 @@ def searchContact(contacts):
 
 # View Contact
 def viewContact(contacts):
-    ''''''
+    '''This function prints all contacts in the given dictionary contacts.'''
     if len(contacts) == 0:
         print('Address Book is Empty!\n')
     else:
@@ -114,13 +117,13 @@ def viewContact(contacts):
 
 
 def saveContacts(contacts):
-    ''''''
+    '''This function saves the given dictionary contacts to a file called contacts.json.'''
     with open('contacts.json', 'w') as f:
         json.dump(contacts, f)
     print('Your Contacts have been saved to contacts.json')
 
 def loadContacts():
-    ''''''
+    '''This function loads the contents of the file 'contacts.json' into a dictionary and returns it.'''
     global contacts
 
     try:

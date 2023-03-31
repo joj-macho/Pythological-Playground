@@ -18,5 +18,32 @@
 When you run the program `finding_anagrams.py`, the output will look like this;
 
 ```
+Welcome to Finding Anagrams.
 
+Enter a word or name to find its anagrams:
+> python
+The anagrams for the word python are:
+phyton
+typhon
+
+...
+
+Welcome to Finding Anagrams.
+
+Enter a word or name to find its anagrams:
+> lives
+The anagrams for the word lives are:
+elvis
+evils
+levis
+slive
+veils
+
+...
+
+Welcome to Finding Anagrams.
+
+Enter a word or name to find its anagrams:
+> yelp
+No anagrams found for the word yelp
 ```

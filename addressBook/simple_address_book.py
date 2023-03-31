@@ -1,4 +1,3 @@
-'''A Simple Address Book'''
 # Import Modules
 import os
 import json
@@ -7,7 +6,6 @@ import json
 path = os.path.dirname(os.path.realpath(__file__))
 os.chdir(path)
 
-# Main Function
 def main():
     '''This is the main function of the program'''
     
@@ -57,7 +55,6 @@ def main():
         else:
             print('Enter a valid number choice between 1 and 8!')
 
-# Add New Contact
 def addContact(contacts):
     '''This function adds a new contact to the given dictionary contacts.'''
 
@@ -69,7 +66,6 @@ def addContact(contacts):
     print(f'The name {name} has been added to your contacts.')
 
 
-# Update Contact Information
 def updateContact(contacts):
     '''This function updates the phone number and email of an existing contact in the given dictionary contacts.'''
 
@@ -84,7 +80,6 @@ def updateContact(contacts):
         print(f'The name {name} is not in your contacts!')
 
 
-# Delete Contact
 def deleteContact(contacts):
     '''This function deletes an existing contact from the given dictioncontacts.'''
 
@@ -95,7 +90,6 @@ def deleteContact(contacts):
     else:
         print(f'The name {name} is not in your contacts')
 
-# Search for contact
 def searchContact(contacts):
     '''This function searches for an existing contact in the given dictionary contacts.'''
     name = input('Enter the name of the contact you are searching for:\n> ').title()
@@ -106,7 +100,6 @@ def searchContact(contacts):
     else:
         print(f'The name {name} is not in your contacts\n')
 
-# View Contact
 def viewContact(contacts):
     '''This function prints all contacts in the given dictionary contacts.'''
     if len(contacts) == 0:

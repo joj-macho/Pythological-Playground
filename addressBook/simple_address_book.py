@@ -55,7 +55,7 @@ def main():
             print('Bye!')
             break
         else:
-            print('Enter a valid number choice between 1 and 5!')
+            print('Enter a valid number choice between 1 and 8!')
 
 # Add New Contact
 def addContact(contacts):

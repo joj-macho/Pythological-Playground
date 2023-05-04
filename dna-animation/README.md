@@ -41,51 +41,6 @@ This program provides a fun and educational tool for visualizing the structure o
 
 ## Program Output
 
-When you run `dna.py`, the output will look like this;
+When you run `dna_animation.py`, the output will look like this;
 
-```
-DNA Animation
-
-Press Enter To Continue...
-        #A-T#
-       #G---C#
-      #G-----C#
-     #C------G#
-    #G------C#
-    #A-----T#
-     #G---C#
-     #A-T#
-      ##
-     #T-A#
-     #A---T#
-    #T-----A#
-    #T------A#
-     #A------T#
-      #A-----T#
-       #G---C#
-        #C-G#
-         ##
-        #A-T#
-       #A---T#
-      #A-----T#
-     #T------A#
-    #C------G#
-    #C-----G#
-     #G---C#
-     #G-C#
-      ##
-     #C-G#
-     #T---A#
-    #G-----C#
-    #T------A#
-     #C------G#
-      #T-----A#
-       #C---G#
-        #C-G#
-         ##
-        #T-A#
-       #T---A#
-      #G-----C#
-     #A------T#
-^CGoodbye
-```
+![DNA Animation Result](output/dna-animation-result.gif)

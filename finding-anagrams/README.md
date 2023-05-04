@@ -2,6 +2,10 @@
 
 ## Description
 
+An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. For example, the word "listen" is an anagram of the word "silent".
+
+This Python program reads words from a dictionary file called `words_dictionary.json` and generates a list of anagrams for a given input word.
+
 ## How it Works
 
 - The program begins by importing neccessary modules, including <code>os</code>, <code>sys</code>, and <code>json</code>. The <code>os</code> and <code>sys</code> modules are used to set the working directory to the directory where the script is located, and <code>json</code> is used to load the dictionary of words from the JSON file.

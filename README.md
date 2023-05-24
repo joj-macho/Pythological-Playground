@@ -22,7 +22,7 @@ This directory is a collection of Python programs.
 - [**seven-segment-display**](seven-segment-display/): A Python cli program that displays numbers using the seven-segments display.
 
 
-Each program is contained in its own directory with its own README.md file that explains how the program works and the output of the program. 
+Feel free to explore the programs in this repository and utilize them for your learning, experimentation, or integration into your own projects. Each program is contained in its own directory with its own README.md file that explains how the program works and the output of the program. 
 
 
 

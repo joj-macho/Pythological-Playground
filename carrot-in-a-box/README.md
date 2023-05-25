@@ -8,13 +8,22 @@ This program is an implementation of the game Carrot in a Box
 
 ## How it Works
 
-- Each player has a box, and only one box has a carrot in it. 
+- The program begins by importing the `random` module which it then uses to randomly determine the location of the carrot in the boxes.
 
-- Player A starts, he may look into his box. The other player (B) may not look into the box and does not know what is in his box (or the other).
+- The `main()` function is defined. It starts by printing the rules of the game and prompts the players to enter their names.
 
-- Player A can now either keep his own Box, or swap it with B's box. In addition, he may speak about his motives, why he keep the box or switched it.
+- The program enters a loop that allows multiple rounds of the game to be played. Inside the loop, the `play_game()` function is called to play a single round.
 
-- Once A is ready and happy, B's turn starts. He now may take the ultimate decision: does he keep his current box, or does he switch it with the current box of A? His decision is final - whichever box he chooses, is his.
+- In the `play_game()` function, the boxes (Box A and Box B) are displayed using ASCII art. The names of the players are printed, and the first player (`player_1`) is instructed to look into their box while the second player (`player_2`) closes their eyes. The program waits for the second player to close their eyes by prompting the first player to press Enter. Randomly, either Box A or Box B is selected to contain the carrot. The result is stored in the `carrot_in_box_1` variable.
+
+- The contents of the first player's box are displayed based on whether the carrot is in Box A or not. The program waits for the first player to press Enter, and then clears the screen. The first player is instructed to tell the second player to open their eyes, and the program waits for the first player to press Enter. The program prompts the second player to decide whether they want to swap boxes with the first player or not. The input is validated to ensure it's either 'y' or 'n'.
+
+- If the second player chooses to swap boxes (responds with 'y'), the `carrot_in_box_1` variable is inverted, and the boxes (Box A and Box B) are swapped. The updated boxes are displayed, and the program prompts the user to press Enter to show the winner. The program displays the final state of the boxes based on the location of the carrot and prints the names of the players.
+
+- Finally, the program declares the winner based on the location of the carrot and prints their name.
+
+- After the round is complete, the program prompts the players if they want to play again. If the response doesn't start with 'y', the loop ends, and the program exits.
+
 
 ## Program Input & Output
 

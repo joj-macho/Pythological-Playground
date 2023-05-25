@@ -5,6 +5,9 @@ MONTHS = ('Janaury', 'February', 'March', 'April', 'May', 'June', 'July', 'Augus
 DAYS = ('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')
 
 def main():
+    '''This is the main function. It prompts the user to enter a year and a month, then generates and displays a text-based calendar.'''
+
+
     print('''
 Text-based Calendar Maker.
     ''')

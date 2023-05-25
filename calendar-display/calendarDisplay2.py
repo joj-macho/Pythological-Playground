@@ -2,6 +2,8 @@ import calendar
 
 
 def main():
+    '''This is the main function. It displays a calendar based on user input, either showing the entire year or a specific month.'''
+
     print('\nCalendar Display\n')
 
     # Prompt the user to display yearly calendar, or monthly calendar

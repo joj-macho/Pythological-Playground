@@ -1,19 +1,24 @@
 import random
 
 def main():
-    '''
-    
-    '''
+    '''This is the main function that runs the Carrot in the Box Game. It prompts players for their names, displays the boxes, and determines the winner.'''
     
     print('''
-Carrot in the Box Game. The rules are simple; To win, bluff until you have a box with a carrot in it.
+Carrot in the Box Game. The rules are simple: To win, bluff until you have a box with a carrot in it.
     ''')
 
-    player1 = input('Enter the name of player 1:\n> ')
-    player2 = input('Enter the name of player 2:\n> ')
-    # Display players
-    players = player1[:11].center(11) + '    ' + player2[:11].center(11)
-    # print(players)
+    player_1 = input('Enter the name of player 1:\n> ')
+    player_2 = input('Enter the name of player 2:\n> ')
+
+    while True:
+        play_game(player_1, player_2)
+
+        response = input('Do you want to play again? (y)es or (n)o\n> ')
+        if not response.startswith('y'):
+            break
+
+def play_game(player_1, player_2):
+    '''This function handles the logic for a single round of the game.'''
 
     print()
     print('''HERE ARE TWO BOXES:
@@ -24,19 +29,19 @@ Carrot in the Box Game. The rules are simple; To win, bluff until you have a box
 |    A    | /  |    B    | /
 +---------+/   +---------+/''')
 
+    players = player_1[:11].center(11) + '    ' + player_2[:11].center(11)
     print(players)
-    print(f'\n{player1} you have BOX A in front of you.\n{player2} you have BOX B in front of you.\nREADY...?\n')
-    print(f'{player1} look into your BOX.\n{player2} close your eyes.')
-    print(f'Press Enter when {player2} closes their eyes.\n')
-    input()
-    print(f'Inside the BOX of {player1}:')
+    print(f'\n{player_1}, you have BOX A in front of you.\n{player_2}, you have BOX B in front of you.\nREADY...?\n')
+    print(f'{player_1}, look into your BOX.\n{player_2}, close your eyes.')
+    input(f'Press Enter when {player_2} closes their eyes.\n')
+    print(f'Inside the BOX of {player_1}:')
 
     if random.randint(1, 2) == 1:
-        carrot_in_box1 = True
+        carrot_in_box_1 = True
     else:
-        carrot_in_box1 = False
+        carrot_in_box_1 = False
 
-    if carrot_in_box1:
+    if carrot_in_box_1:
         print('''
    ___VV____
   |   VV    |
@@ -66,25 +71,24 @@ Carrot in the Box Game. The rules are simple; To win, bluff until you have a box
     input('Press Enter to Continue...')
     # Clear screen
     print('\n'*100)
-    print(f'{player1} tell {player2} to open their eyes.')
+    print(f'{player_1}, tell {player_2} to open their eyes.')
     input('Press Enter to Continue...')
 
     print()
-    print(f'{player2} do you want to swap boxes with {player1}, (y)es or (n)o?')
-    # Enter valid yes or no
+    print(f'{player_2}, do you want to swap boxes with {player_1}? (y)es or (n)o')
     while True:
         response = input('> ').lower()
         if not (response.startswith('y') or response.startswith('n')):
-            print(f'Please Enter a Valid (y)es or (n)o.')
+            print('Please enter a valid (y)es or (n)o.')
         else:
             break
 
-    box1 = 'A '
-    box2 = 'B'
+    box_1 = 'A '
+    box_2 = 'B'
 
     if response.startswith('y'):
-        carrot_in_box1 = not carrot_in_box1
-        box1, box2 = box2, box1
+        carrot_in_box_1 = not carrot_in_box_1
+        box_1, box_2 = box_2, box_1
 
     print('''HERE ARE THE TWO BOXES:
   __________     __________
@@ -92,13 +96,13 @@ Carrot in the Box Game. The rules are simple; To win, bluff until you have a box
 +---------+ |  +---------+ |
 |   BOX   | |  |   BOX   | |
 |    {}    | /  |  {}    | /
-+---------+/   +---------+/'''.format(box1, box2))
++---------+/   +---------+/'''.format(box_1, box_2))
 
     print(players)
     input('Press Enter to Show the Winner.')
     print()
 
-    if carrot_in_box1:
+    if carrot_in_box_1:
         print('''
    ___VV____      _________
   |   VV    |    |         |
@@ -108,8 +112,7 @@ Carrot in the Box Game. The rules are simple; To win, bluff until you have a box
 +---------+ |  +---------+ |
 |   BOX   | |  |   BOX   | |
 |    {}    | /  |  {}      | /
-+---------+/   +---------+/'''.format(box1, box2))
-
++---------+/   +---------+/'''.format(box_1, box_2))
     else:
         print('''
    _________      ___VV____
@@ -120,14 +123,14 @@ Carrot in the Box Game. The rules are simple; To win, bluff until you have a box
 +---------+ |  +---------+ |
 |   BOX   | |  |   BOX   | |
 |   {}     | /  |  {}      | /
-+---------+/   +---------+/'''.format(box1, box2))
++---------+/   +---------+/'''.format(box_1, box_2))
 
     print(players)
 
-    if carrot_in_box1:
-        print(f'{player1} is the winner.')
+    if carrot_in_box_1:
+        print(f'{player_1} is the winner.')
     else:
-        print(f'{player2} is the winner.')
+        print(f'{player_2} is the winner.')
 
 if __name__ == '__main__':
     main()

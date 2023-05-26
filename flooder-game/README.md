@@ -1,4 +1,4 @@
-# 
+# Flooder Game
 
 ## Description
 
@@ -6,7 +6,7 @@
 
 ## Program Input & Output
 
-When you run the program `.py`, the output will look like this;
+When you run the program `flooder.py`, the output will look like this;
 
 ```
 ```

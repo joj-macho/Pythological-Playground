@@ -1,4 +1,4 @@
-# 
+# Hacker Game
 
 ## Description
 
@@ -6,7 +6,7 @@
 
 ## Program Input & Output
 
-When you run the program `.py`, the output will look like this;
+When you run the program `hacker.py`, the output will look like this;
 
 ```
 ```

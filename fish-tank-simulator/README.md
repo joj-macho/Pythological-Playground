@@ -1,4 +1,4 @@
-# 
+# Fish Tank Simulator 
 
 ## Description
 
@@ -6,7 +6,7 @@
 
 ## Program Input & Output
 
-When you run the program `.py`, the output will look like this;
+When you run the program `fish_tank_sim.py`, the output will look like this;
 
 ```
 ```

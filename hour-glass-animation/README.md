@@ -1,4 +1,4 @@
-# 
+# Hour Glass Animation Program
 
 ## Description
 
@@ -6,7 +6,7 @@
 
 ## Program Input & Output
 
-When you run the program `.py`, the output will look like this;
+When you run the program `hour_glass.py`, the output will look like this;
 
 ```
 ```

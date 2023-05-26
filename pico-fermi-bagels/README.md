@@ -34,7 +34,7 @@ The program is a number guessing game called "Pico Fermi Bagels" or simply "Bage
 
 ## Program Input & Output
 
-When you run `picoFermiBagels.py`, the output will look like this:
+When you run `pico_fermi_bagels.py`, the output will look like this:
 
 ```
 Pico Fermi Bagels!

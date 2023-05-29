@@ -2,6 +2,8 @@
 
 ## Description
 
+This program is a simple art generator that creates random patterns on the screen using ASCII characters.
+
 ## How it Works
 
 ## Program Input & Output

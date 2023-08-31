@@ -8,7 +8,7 @@ This program, Clickbait Headline Generator, is a simple demonstration of how to 
 
 - The program starts by defining several lists of words and phrases, including personal pronouns, possessive pronouns, states, nouns, adjectives, verbs, places, and time phrases. It also defines a dictionary of clickbait types, each with a pre-defined headline format that includes one or more of the lists.
 
-- The `main()` function starts by displaying an introductory message and prompts the user to enter a number of clickbait headlines to generate. If the user enters a valid integer, the program enters a loop that runs the specified number of times. Inside the loop, the program generates a random integer to select one of the pre-defined clickbait types. It then generates a number of random selections from the various lists, and uses string formatting to insert those selections into the selected clickbait type to create a complete headline.
+- The `main()` function begins by displaying an introductory message and prompts the user to enter a number of clickbait headlines to generate. If the user enters a valid integer, the program enters a loop that runs the specified number of times. Inside the loop, the program generates a random integer to select one of the pre-defined clickbait types. It then generates a number of random selections from the various lists, and uses string formatting to insert those selections into the selected clickbait type to create a complete headline.
 
 
 ## Program Input & Output

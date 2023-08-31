@@ -1,6 +1,7 @@
 import random
 
 # Constants
+# Lists of words to be used in generating clickbait headlines
 OBJECT_PRONOUNS = ['her', 'him', 'them', 'it', 'us', 'me']
 POSSESSIVE_PRONOUNS = ['her', 'his', 'their', 'my', 'our', 'its']
 PERSONAL_PRONOUNS = ['she', 'he', 'they', 'we', 'you', 'I']
@@ -13,6 +14,7 @@ WHEN = ['soon', 'this year', 'later today', 'right now', 'next week', 'tomorrow'
 
 # Click bait types
 CLICKBAIT_TYPES = {
+    # Different templates for clickbait headlines
     1: 'Are {} Killing the {} Industry?',
     2: 'Without This {}, {} Could Kill You {}',
     3: 'Big Companies Hate {}! See How This {} {} Invented a Cheaper {}',
@@ -41,11 +43,14 @@ CLICKBAIT_TYPES = {
 }
 
 def main():
+    '''Main function for the Clickbait Headline Generator.'''
+
     print('''
 Clickbait Headline Generator!
 
 This program will trick people into looking at ads.
     ''')
+
     # Enter number of articles to produce
     while True:
         response = input(
@@ -56,8 +61,11 @@ This program will trick people into looking at ads.
             numHeadlines = int(response)
             break
 
+    # Generate and print the specified number of clickbait headlines
     for i in range(numHeadlines):
+        # Choose a random clickbait template
         clickbaitType = random.randint(1, len(CLICKBAIT_TYPES))
+        # Randomly select words from different lists
         pronoun1 = random.choice(PERSONAL_PRONOUNS)
         pronoun2 = random.choice(OBJECT_PRONOUNS)
         possessivePronoun = random.choice(POSSESSIVE_PRONOUNS)
@@ -72,9 +80,10 @@ This program will trick people into looking at ads.
         num2 = random.randint(1, 100)
         verb = random.choice(VERBS)
 
-
+        # Generate the clickbait headline based on the chosen template
         if clickbaitType == 1:
             headline = CLICKBAIT_TYPES[1].format(noun1, noun2)
+        # More cases for different clickbait templates
         elif clickbaitType == 2:
             headline = CLICKBAIT_TYPES[2].format(noun1, noun2, noun2, when)
         elif clickbaitType == 3:
@@ -123,7 +132,8 @@ This program will trick people into looking at ads.
             headline = CLICKBAIT_TYPES[24].format(adj1, verb, num1)
         elif clickbaitType == 25:
             headline = CLICKBAIT_TYPES[25].format(adj1, noun1, verb, num1)
-        
+
+        # Print the generated clickbait headline
         print()
         print(headline.title())
 

@@ -3,6 +3,8 @@ import sys
 
 
 def main():
+    '''Main function for the countdown timer.'''
+
     print('\nCountdown Timer.\n')
 
     # Enter a valid number of seconds to countdown.
@@ -19,7 +21,8 @@ def main():
 
 
 def count_down(start_time):
-    '''This function returns a preceding countdown of input seconds'''
+    '''This function performs the countdown and displays the time.'''
+    
     try:
         while start_time:
             # Get minutes and seconds using divmod() function

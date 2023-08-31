@@ -8,11 +8,11 @@ The program creates an animated representation of a deep cave tunnel using ASCII
 
 - The program begins by importing the `random`, `sys`, and `time` modules.
 
-- The `main()` function is defined. It starts by displaying a welcome message and a brief pause to give the user time to read it.
+- The `main()` function starts by displaying a welcome message and a brief pause to give the user time to read it.
 
 - The `left_width` and `gap_width` variables are initialized to control the width of the left side of the tunnel and the gap in the middle, respectively. These values determine the initial appearance of the tunnel.
 
-- The program enters a while loop, which continues indefinitely until interrupted by the user pressing Ctrl-C. Within the loop, the `display_tunnel_segment()` function is called, passing the current `left_width` and `gap_width` as arguments. This function prints a segment of the tunnel using # characters, creating the appearance of the tunnel with the specified dimensions.
+- The program then enters a while loop, which continues indefinitely until interrupted by the user pressing Ctrl-C. Within the loop, the `display_tunnel_segment()` function is called, passing the current `left_width` and `gap_width` as arguments. This function prints a segment of the tunnel using # characters, creating the appearance of the tunnel with the specified dimensions.
 
 - After displaying the tunnel segment, the program waits for a short duration using `time.sleep(0.05)`. This pause creates the illusion of animation by giving the appearance of movement.
 

@@ -7,6 +7,8 @@ def main():
     '''This is the main function. It displays an animated deep cave tunnel.'''
     
     print('\nDeep Cave Tunnel Animation. \nPress Ctrl-C to stop.\n')
+
+    # # Pause for 2 seconds before starting animation.
     time.sleep(2)
 
     left_width = 20
@@ -15,7 +17,7 @@ def main():
     try:
         while True:
             display_tunnel_segment(left_width, gap_width)
-            time.sleep(0.05)
+            time.sleep(0.05)  # Pause for a short time (0.05 seconds) to create animation effect.
 
             dice_roll = random.randint(1, 6)
             if dice_roll == 1 and left_width > 1:

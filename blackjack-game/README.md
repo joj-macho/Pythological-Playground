@@ -9,13 +9,13 @@ This program is a Python implementation of a Blackjack Card Game where players t
 
 - The program begins by importing the <code>random</code> and <code>sys</code> modules. Then, it defines four variables that represent the four suits in a deck of playing cards: <code>HEARTS, DIAMONDS, SPADES, and CLUBS</code>. The four different suits of cards are represented using their Unicode character codes, i.e. <code>HEARTS = chr(9829), DIAMONDS = chr(9830), SPADES = chr(9824), CLUBS = chr(9827)</code>.
 
-- The <code>main()</code> function begins by printing rules of the game. The game runs in a while loop, where the player is first checked if they can afford to play. The game loops until the player runs out of funds or chooses to quit the game. Inside the <code>main()</code> function, there are a series of functions that handle different aspects of the game.
+- The <code>main()</code> function starts by printing rules of the game. The game runs in a while loop, where the player is first checked if they can afford to play. The game loops until the player runs out of funds or chooses to quit the game. Inside the <code>main()</code> function, there are a series of functions that handle different aspects of the game.
 
-- The first function to be called is <code>generateBet()</code>, which prompts the player for a bet and returns the <code>bet</code> amount. The function ensures that the <code>bet</code> amount is valid and within the player's available funds.
+- The first function to be called is <code>generate_bet()</code>, which prompts the player for a bet and returns the <code>bet</code> amount. The function ensures that the <code>bet</code> amount is valid and within the player's available funds.
 
-- The next function is <code>generateCardDeck()</code>, which returns a list of tuples representing a standard deck of 52 playing cards. The deck is shuffled using the <code>random.shuffle()</code> function from the <code>random</code> module.
+- The next function is <code>generate_card_deck()</code>, which returns a list of tuples representing a standard deck of 52 playing cards. The deck is shuffled using the <code>random.shuffle()</code> function from the <code>random</code> module.
 
-- After the deck is generated, the player and dealer cards are dealt. Each player is given two cards from the deck. The player's cards are stored in the <code>playerHand</code> list, while the dealer's cards are stored in the <code>dealerHand</code> list.
+- After the deck is generated, the player and dealer cards are dealt. Each player is given two cards from the deck. The player's cards are stored in the <code>player_hand</code> list, while the dealer's cards are stored in the <code>dealer_hand</code> list.
 
 - The player then decides on their next move. They can choose to "hit", "stand", or "double down". If the player chooses to "hit", they are dealt another card from the deck. The goal is to get as close to 21 as possible without going over. If the player goes over 21, they lose the game.
 
@@ -38,10 +38,14 @@ This game follows these simple rules:
     - Cards 2 through 10 are worth their face value.
     - The bet is returned to the player in case of a tie.
     - The dealer stops hitting at 17.
+
+How to Play:
     - Enter (h)it to take another card.
     - Enter (s)tand to stop taking cards.
     - You can (d)ouble down on your first play to increase your bet + will hit one more time.
     
+Now... Let's get our gambling freak on!
+
 Available Funds: $5000
 Enter bet amount between $1 - $5000. Enter (q)uit to exit.
 > 200

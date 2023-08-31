@@ -9,10 +9,10 @@ CLUBS = chr(9827)
 
 def main():
     '''
-    This function is the entry point of the game.
-    It starts the game with $5000 and runs in a while loop until the player cannot afford to continue playing or decides to exit.
+    Start the game with $5000 and run a while loop until the player cannot afford to continue playing or decides to exit.
     '''
-    # The rules of the game
+
+    # Display game rules and instructions
     print('''
 Blackjack Card Game.
 
@@ -23,20 +23,25 @@ This game follows these simple rules:
     - Cards 2 through 10 are worth their face value.
     - The bet is returned to the player in case of a tie.
     - The dealer stops hitting at 17.
+
+How to Play:
     - Enter (h)it to take another card.
     - Enter (s)tand to stop taking cards.
     - You can (d)ouble down on your first play to increase your bet + will hit one more time.
     ''')
+    print('Now... Let\'s get our gambling freak on!\n')
+
     # The initial funds
     money = 5000
-    # The Game loop
+
+    # Main Game loop
     while True:
         # Can you afford to play??
         if money <= 0:
             print('No funds to Continue Game.\nBye!')
             sys.exit()
 
-        # The available funds
+        # Available funds
         print(f'Available Funds: ${money}')
         
         # Generate bet
@@ -56,6 +61,8 @@ This game follows these simple rules:
                 break
 
             move = generate_move(player_hand, money - bet)
+
+            # Doubling down
             if move == 'd':
                 additional_bet = generate_bet(min(bet, (money - bet)))
                 bet += additional_bet
@@ -105,7 +112,8 @@ This game follows these simple rules:
 
 
 def generate_bet(betAmount):
-    '''This function prompts the player for a bet and returns the bet,'''
+    '''Prompts the player for a bet and returns the bet.'''
+
     while True:
         bet = input(f'Enter bet amount between $1 - ${betAmount}. Enter (q)uit to exit.\n> ').lower()
 
@@ -120,7 +128,8 @@ def generate_bet(betAmount):
             return bet
 
 def generate_card_deck():
-    '''This function returns a list of tuples (rank, suit) for all 52 playing cards.'''
+    '''Generate card deck and return a list of tuples (rank, suit) for all 52 playing cards.'''
+
     deck = []
     for suit in (HEARTS, DIAMONDS, SPADES, CLUBS):
         for rank in range(2, 11):
@@ -133,7 +142,8 @@ def generate_card_deck():
     return deck
 
 def show_hands(player_hand, dealer_hand, show_dealer_hand):
-    '''This function shows the player's and dealer's cards'''
+    '''Show the player's and dealer's cards.'''
+
     if show_dealer_hand:
         print('Dealer:', generate_hand(dealer_hand))
         show_cards(dealer_hand)
@@ -146,7 +156,8 @@ def show_hands(player_hand, dealer_hand, show_dealer_hand):
     show_cards(player_hand)
 
 def generate_hand(cards):
-    '''This function adds the cards and returns the value of the cards.'''
+    '''Generate card hand value by adding the cards.'''
+
     value = 0
     num_of_aces = 0
 
@@ -169,7 +180,8 @@ def generate_hand(cards):
     return value
         
 def show_cards(cards):
-    '''This function displays all the cards on hand'''
+    '''Display all the cards on hand.'''
+
     rows = ['', '', '', '', '']
 
     # draw cards
@@ -191,7 +203,8 @@ def show_cards(cards):
 
 
 def generate_move(player_hand, money):
-    '''This function asks for player's move and returns 'h' for hit, 's' for stand, and 'd' for double down.'''
+    '''Generate player's move and returns possible moves.'''
+
     # Player must enter correct move
     while True:
         moves = ['(h)it', '(s)tand']

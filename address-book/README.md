@@ -2,31 +2,30 @@
 
 ## Description
 
-The Simple Address Address Book is a simple Python program that allows users to manage a list of contacts, including adding new contacts, searching for existing contacts by name, and deleting contacts from the list using a simple command-line interface.
+The Simple Address Address Book is a simple Python program that allows users to manage a dictionary of contacts, including adding new contacts, updating contacts, searching and displaying existing contacts by name, deleting contacts, saving contacts to json file, and loading contacts from json file, all done using a simple command-line interface.
 
 
 ## How it Works
 
 - The program begins by importing required modules, setting the working directory and creates an empty dictionary called <code>contacts</code>. This dictionary will be used to store the contact information for each person.
 
-- The <code>main()</code> function runs the main loop of the program. The function begins by displaying a menu of options to the user and prompts them to select one. Based on the user's input, it calls the appropriate function to perform the selected task. The program runs until the user chooses to quit the program.
+- The <code>main()</code> function begins by displaying a menu of options to the user and prompts them to select one. Based on the user's input, it calls the appropriate function to perform the selected task. The program runs until the user chooses to quit the program.
 
-- When the user selects the "Add New Contact" option, the <code>addContact()</code> function is called. This function allows the user to add a new contact to the address book by entering the contact's name, phone number, and email address. It then adds this information to the <code>contacts</code> dictionary.
+- Response 1 - "Add New Contact": The <code>add_contact()</code> function allows the user to add a new contact to the address book by entering the contact's name, phone number, and email address. It then adds this information to the <code>contacts</code> dictionary.
 
-- When the user selects the "Update Contact Information" option, the <code>updateContact()</code> function is called. The <code>updateContact()</code> function allows the user to update the phone number and email address of an existing contact in the address book.
+- Response 2 - "Update Contact Information": The <code>update_contact()</code> function allows the user to update the phone number and email address of an existing contact in the address book.
 
-- When the user selects the "Delete Contact" option, the <code>deleteContact()</code> function is called. This function allows the user to delete an existing contact from the address book.
+- Response 3 - "Delete Contact": The <code>delete_contact()</code> allows the user to delete an EXISTING contact from the address book.
 
-- When the user selects the "Search Contact" option, the <code>searchContact()</code> function is called. The <code>searchContact()</code> function allows the user to search for an existing contact in the address book by entering their name. If the contact exists, the program displays their name, phone number, and email address.
+- Response 4 - "Search Contact": The <code>search_contact()</code> function allows the user to search for an existing contact in the address book by entering their name. If the contact exists, the program displays their name, phone number, and email address. If contact name not in <code>contacts</code>, a response message is displayed.
 
-- When the user selects the "View All Contact" option, the <code>viewContact()</code> function is called and then looks up the contact in the <code>contacts</code> dictionary and displays their phone number and email address.
+- Response 5 - "View All Contact": The <code>view_contact()</code> function allows the user to look up the contact in the <code>contacts</code> dictionary and displays their phone number and email address if the name is found.
 
-- When the user selects the "Save Contacts" option, the <code>saveContacts()</code> function is called. The <code>saveContacts()</code> function saves the current contents of the contacts dictionary to a JSON file called "contacts.json".
+- Response 6 - "Save Contacts" option: The <code>save_contact()</code> function saves the current contents of the contacts dictionary to a JSON file called "contacts.json", which is found in the current working directory.
 
+- Response 7 - "Load Contacts": The <code>load_contacts()</code> function loads the contacts from the "contacts.json" file into the program's contacts dictionary. If the file does not exist, it creates an empty dictionary.
 
-- When the user selects the "Load Contacts" option, the <code>loadContacts()</code> function loads the contacts from the "contacts.json" file into the program's contacts dictionary. If the file does not exist, it creates an empty dictionary.
-
-- When the user selects the "Exit Contacts" option, the program exits.
+- Response 8 - "Exit Contacts": The program exits when the user selects this option
 
 
 ## Program Input & Output
@@ -51,12 +50,12 @@ Enter your Choice:
 Add New Contact:
 
 Enter the Name:
-> adam
+> Alice
 Enter the Phone Number:
 > 123456789
 Enter the email:
-> adam@email.com
-The name Adam has been added to your contacts.
+> alice@email.com
+The name Alice has been added to your contacts.
 Select a what you want to do between 1 and 8:
 1. Add New Contact
 2. Update Contact Information
@@ -67,15 +66,15 @@ Select a what you want to do between 1 and 8:
 7. Load Contacts
 8. Exit Contacts
 Enter your Choice:
-> 1
+> 1  
 Add New Contact:
 
 Enter the Name:
-> bob
+> Bob
 Enter the Phone Number:
-> 987654213
+> 987654321
 Enter the email:
-> bob@ddmail.com
+> bob@email.com
 The name Bob has been added to your contacts.
 Select a what you want to do between 1 and 8:
 1. Add New Contact
@@ -90,13 +89,13 @@ Enter your Choice:
 > 5
 View All Contacts:
 
-Name: Adam
+Name: Alice
 Phone: 123456789
-Email: adam@email.com
+Email: alice@email.com
 
 Name: Bob
-Phone: 987654213
-Email: bob@ddmail.com
+Phone: 987654321
+Email: bob@email.com
 
 Select a what you want to do between 1 and 8:
 1. Add New Contact
@@ -113,10 +112,10 @@ Update Contact Information:
 
 Enter the name of the contact you want to update:
 > Bob
-Enter the New Phone Number:
-> 0001112223
-Enter the New Email Address:
-> bob@fmail.com
+Enter the updated Phone Number:
+> 741852963
+Enter the updated Email Address:
+> bobby@email.com
 Contact information of Bob has been updated!
 Select a what you want to do between 1 and 8:
 1. Add New Contact
@@ -128,17 +127,12 @@ Select a what you want to do between 1 and 8:
 7. Load Contacts
 8. Exit Contacts
 Enter your Choice:
-> 5
-View All Contacts:
+> 3
+Delete Contact:
 
-Name: Adam
-Phone: 123456789
-Email: adam@email.com
-
-Name: Bob
-Phone: 0001112223
-Email: bob@fmail.com
-
+Enter the name of the contact to delete:
+> Alise
+The name Alise is not in your contacts
 Select a what you want to do between 1 and 8:
 1. Add New Contact
 2. Update Contact Information
@@ -153,6 +147,27 @@ Enter your Choice:
 Save All Contacts:
 
 Your Contacts have been saved to contacts.json
+Select a what you want to do between 1 and 8:
+1. Add New Contact
+2. Update Contact Information
+3. Delete Contact
+4. Search Contact
+5. View All Contact
+6. Save Contacts
+7. Load Contacts
+8. Exit Contacts
+Enter your Choice:
+> 5
+View All Contacts:
+
+Name: Alice
+Phone: 123456789
+Email: alice@email.com
+
+Name: Bob
+Phone: 741852963
+Email: bobby@email.com
+
 Select a what you want to do between 1 and 8:
 1. Add New Contact
 2. Update Contact Information

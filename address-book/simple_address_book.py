@@ -30,68 +30,72 @@ def main():
         response = input('Enter your Choice:\n> ')
         if response == '1':
             print('Add New Contact:\n')
-            addContact(contacts)
+            add_contact(contacts)
         elif response == '2':
             print('Update Contact Information:\n')
-            updateContact(contacts)
+            update_contact(contacts)
         elif response == '3':
             print('Delete Contact:\n')
-            deleteContact(contacts)
+            delete_contact(contacts)
         elif response == '4':
             print('Search for Contact:\n')
-            searchContact(contacts)
+            search_contact(contacts)
         elif response == '5':
             print('View All Contacts:\n')
-            viewContact(contacts)
+            view_contact(contacts)
         elif response == '6':
             print('Save All Contacts:\n')
-            saveContacts(contacts)
+            save_contact(contacts)
         elif response == '7':
             print('Load All Contacts:\n')
-            contacts = loadContacts()
+            contacts = load_contacts()
         elif response == '8':
             print('Bye!')
             break
         else:
             print('Enter a valid number choice between 1 and 8!')
 
-def addContact(contacts):
+def add_contact(contacts):
     '''This function adds a new contact to the given dictionary contacts.'''
 
     name = input('Enter the Name:\n> ').title()
     phone = input('Enter the Phone Number:\n> ')
     email = input('Enter the email:\n> ')
-    # Add the above to the contacts dict
+
+    # Add the above inputs to the contacts dictionary
     contacts[name] = {'phone': phone, 'email': email}
     print(f'The name {name} has been added to your contacts.')
 
 
-def updateContact(contacts):
+def update_contact(contacts):
     '''This function updates the phone number and email of an existing contact in the given dictionary contacts.'''
 
     name = input('Enter the name of the contact you want to update:\n> ')
+    # Update the contact dictionary, if selected name in dictionary
     if name in contacts:
-        newPhone = input('Enter the New Phone Number:\n> ')
-        newEmail = input('Enter the New Email Address:\n> ')
-        contacts[name]['phone'] = newPhone
-        contacts[name]['email'] = newEmail
+        new_phone_num = input('Enter the updated Phone Number:\n> ')
+        new_email = input('Enter the updated Email Address:\n> ')
+        contacts[name]['phone'] = new_phone_num
+        contacts[name]['email'] = new_email
         print(f'Contact information of {name} has been updated!')
     else:
         print(f'The name {name} is not in your contacts!')
 
 
-def deleteContact(contacts):
-    '''This function deletes an existing contact from the given dictioncontacts.'''
+def delete_contact(contacts):
+    '''This function deletes an existing contact from the contact dictionary.'''
 
     name = input('Enter the name of the contact to delete:\n> ').title()
+    # Delete contact, if name is in contacts
     if name in contacts:
         del contacts[name]
         print(f'Contact for {name} has been deleted!')
     else:
         print(f'The name {name} is not in your contacts')
 
-def searchContact(contacts):
+def search_contact(contacts):
     '''This function searches for an existing contact in the given dictionary contacts.'''
+
     name = input('Enter the name of the contact you are searching for:\n> ').title()
     # Search for name in a dictionary
     if name in contacts:
@@ -100,7 +104,7 @@ def searchContact(contacts):
     else:
         print(f'The name {name} is not in your contacts\n')
 
-def viewContact(contacts):
+def view_contact(contacts):
     '''This function prints all contacts in the given dictionary contacts.'''
     if len(contacts) == 0:
         print('Address Book is Empty!\n')
@@ -109,13 +113,14 @@ def viewContact(contacts):
             print(f"Name: {name}\nPhone: {contact['phone']}\nEmail: {contact['email']}\n")
 
 
-def saveContacts(contacts):
+def save_contact(contacts):
     '''This function saves the given dictionary contacts to a file called contacts.json.'''
+
     with open('contacts.json', 'w') as f:
         json.dump(contacts, f)
     print('Your Contacts have been saved to contacts.json')
 
-def loadContacts():
+def load_contacts():
     '''This function loads the contents of the file 'contacts.json' into a dictionary and returns it.'''
     global contacts
 
@@ -129,7 +134,6 @@ def loadContacts():
 
     return contacts
     
-
 
 # Run Program
 if __name__ == '__main__':

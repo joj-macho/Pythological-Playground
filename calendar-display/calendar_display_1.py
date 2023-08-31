@@ -1,21 +1,18 @@
 import datetime
 
-# Calendar day and month constant
+# List of month and day names
 MONTHS = ('Janaury', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December')
 DAYS = ('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')
 
 def main():
-    '''This is the main function. It prompts the user to enter a year and a month, then generates and displays a text-based calendar.'''
+    '''Main function for generating and displaying a text-based calendar.'''
 
 
-    print('''
-Text-based Calendar Maker.
-    ''')
+    print('\nText-based Calendar Maker.\n')
 
-    # prompt user for month and year to display
+    # Prompt user for year and month
     while True:
         response = input('Enter a Calendar Year:\n> ')
-        # year must be decimal, > 0, and contain 4 digits??
         if response.isdecimal() and int(response) > 0:
             year = int(response)
             break
@@ -32,12 +29,12 @@ Text-based Calendar Maker.
             break
         print('Please enter a valid number representing Calendar Month')
 
-    # Generate Text Calendar and show it
+    # Generate and display the text calendar
     display_calendar = generate_calendar(year, month)
     print(display_calendar)
 
 def generate_calendar(year, month):
-    '''This function takes in the year and month and returns a printable text calendar.'''
+    '''Generate a printable text calendar based on year and month.'''
     
     calendar_text = ''
     # Calendar Title
@@ -50,9 +47,12 @@ def generate_calendar(year, month):
     blank_row = ('|          ' * 7) + '|\n'
     # date
     current_date = datetime.date(year, month, 1)
+
+    # Adjust current_date to start with Sunday of the week
     while current_date.weekday() != 6:
         current_date -= datetime.timedelta(days=1)
-    # for each week of the month
+
+    # For each week of the month...
     while True:
         calendar_text += separate_weeks
         day_row = ''

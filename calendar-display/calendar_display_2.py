@@ -2,11 +2,11 @@ import calendar
 
 
 def main():
-    '''This is the main function. It displays a calendar based on user input, either showing the entire year or a specific month.'''
+    '''Main function for displaying a calendar based on user input.'''
 
-    print('\nCalendar Display\n')
+    print('\nText-based Calendar Maker - Version 2.\n')
 
-    # Prompt the user to display yearly calendar, or monthly calendar
+    # Prompt user to choose between yearly or monthly calendar
     while True:
         response = input(
             'Select option to display:\nEnter 1 to show year only.\nEnter 2 to show year and month.\n> ')
@@ -19,13 +19,14 @@ def main():
     if opt == 1:
         print('Yearly Calendar Display.')
         year_input = int(input('Enter the Calendar Year to Display.\n> '))
+        # Print the entire calendar for the given year
         print(calendar.calendar(year_input))
 
     elif opt == 2:
         print('Monthly Calendar Display.')
         year_input = int(input('Enter the Calendar Year to Display.\n> '))
-        month_input = int(
-            input('Enter the Calendar Month (1-12) to Display.\n> '))
+        month_input = int(input('Enter the Calendar Month (1-12) to Display.\n> '))
+        # Print the calendar for the given month and year
         print(calendar.month(year_input, month_input))
 
 

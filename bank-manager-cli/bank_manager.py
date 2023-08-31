@@ -1,133 +1,148 @@
-accounts_list = []
+import time
+
+class BankAccount:
+    '''Represents a bank account with the ability to perform transactions like deposit, withdraw, and transfer.'''
+
+    def __init__(self, name, password, initial_balance):
+        '''Initializes a BankAccount instance.'''
+
+        self.name = name
+        self.password = password
+        self.balance = initial_balance
+
+    def deposit(self, amount):
+        '''Deposits a specified amount into the account.'''
+
+        self.balance += amount
+        return f'Deposited ${amount}.\nCurrent balance: ${self.balance}\n'
+
+    def withdraw(self, amount):
+        '''Withdraws a specified amount from the account.'''
+
+        if self.balance >= amount:
+            self.balance -= amount
+            return f'Withdrew ${amount}.\nCurrent balance: ${self.balance}\n'
+        else:
+            return f'Insufficient balance! Enter amount ${self.balance} or lower to withdraw.\n'
+
+    def transfer(self, amount, target_account):
+        '''Transfers a specified amount from the account to a target account.'''
+
+        if self.balance >= amount:
+            self.balance -= amount
+            target_account.balance += amount
+            return f'Transferred ${amount} to {target_account.name}.\nCurrent balance: ${self.balance}'
+        else:
+            return f'Insufficient balance for transfer! Enter amount ${self.balance} or lower to withdraw.\n'
+
+
+def display_centered(message):
+    '''Displays a message centered on the screen.'''
+
+    print('\n' + ' ' * ((40 - len(message)) // 2) + message + '\n' + ' ' * ((40 - len(message)) // 2))
+
+
+def validate_amount(amount_str):
+    '''Validates if the given input can be converted to a positive float.'''
+    
+    try:
+        amount = float(amount_str)
+        if amount <= 0:
+            return False
+        return True
+    except ValueError:
+        return False
+
 
 def main():
-    '''This is the main function'''
+    print('\n' + '*' * 40)
+    display_centered('ATM SIMULATOR')
+    print('*' * 40)
 
-    print('\nWelcome to the Bank Account Manager.\n')
+    print('Intitializing ATM ...')
+    time.sleep(1)  # Introduce a delay of 1 second
 
-    # Create two sample accounts
-    new_account("Joe", 500, '1234')
-    new_account("Mary", 10, 'marry')
+    name = input('\nEnter your name: ')
+    password = input('Enter your password: ')
+    initial_balance = float(input('Enter your initial balance: '))
+
+    user_account = BankAccount(name, password, initial_balance)
 
     while True:
-        print('Press b to get the balance')
-        print('Press d to make a deposit')
-        print('Press n to create a new account')
-        print('Press w to make a withdrawal')
-        print('Press s to show all accounts')
-        print('Press q to quit')
-        print()
+        print('\n' + '*' * 40)
+        display_centered('MENU')
+        print('*' * 40)
+        print('1. Balance Inquiry')
+        print('2. Withdrawal')
+        print('3. Deposit')
+        print('4. Transfer')
+        print('5. Exit')
 
-        response = input('What do you want to do?\n> ').lower()
-        print()
-        
-        if response.startswith('b'):
-            print('Get Balance:')
-            account_number = int(input('Please enter your account number:\n> '))
-            password = input('Please enter the password:\n> ')
-            balance = get_balance(account_number, password)
-            if balance is not None:
-                print('Your balance is:', balance)
+        choice = input('\nEnter your choice: ')
 
-        elif response.startswith('d'):
-            print('Deposit:')
-            account_number = int(input('Please enter the account number:\n> '))
-            deposit_amount = int(input('Please enter amount to deposit:\n> '))
-            password = input('Please enter the password:\n> ')
+        if choice == '1':
+            print('\n' + '*' * 40)
+            display_centered('BALANCE INQUIRY')
+            print('*' * 40)
+            print('Processing ...')
+            time.sleep(0.5)
+            print(f'Your current balance is: ${user_account.balance} \n')
 
-            new_balance = deposit(account_number, deposit_amount, password)
-            if new_balance is not None:
-                print('Your new balance is:', new_balance)
 
-        elif response.startswith('n'):
-            print('New Account:')
-            name = input('What is your name?\n> ')
-            starting_amount = int(input('What is the amount of your initial deposit?\n> '))
-            password = input('What password would you like to use for this account?\n> ')
+        elif choice == '2':
+            print('\n' + '*' * 40)
+            display_centered('WITHDRAWAL')
+            print('*' * 40)
+            amount_str = input('Enter withdrawal amount: ')
+            if not validate_amount(amount_str):
+                print('Invalid amount. Please enter a valid positive number.')
+                continue
+            amount = float(amount_str)
+            print('Processing ...')
+            time.sleep(0.5)
+            print(user_account.withdraw(amount))
 
-            account_number = len(accounts_list)
-            new_account(name, starting_amount, password)
-            print('Your new account number is:', account_number)
 
-        elif response.startswith('s'):   #show all
-            print('Show:')
-            n_accounts = len(accounts_list)
-            for account_number in range(0, n_accounts):
-                show_accounts(account_number)
+        elif choice == '3':
+            print('\n' + '*' * 40)
+            display_centered('DEPOSIT')
+            print('*' * 40)
+            amount_str = input('Enter deposit amount: ')
+            if not validate_amount(amount_str):
+                print('Invalid amount. Please enter a valid positive number.')
+                continue
+            amount = float(amount_str)
+            print('Processing ...')
+            time.sleep(0.5)
+            print(user_account.deposit(amount))
 
-        elif response.startswith('w'):
-            print('Withdraw:')
-            account_number = int(input('Please enter your account number:\n> '))
-            withdraw_amount = int(input('Please enter the amount to withdraw:\n> '))
-            password = input('Please enter the password:\n> ')
+            
 
-            new_balance = withdraw(account_number, withdraw_amount, password)
-            if new_balance is not None:
-                print('Your new balance is:', new_balance)
+        elif choice == '4':
+            print('\n' + '*' * 40)
+            display_centered('TRANSFER')
+            print('*' * 40)
+            target_name = input('Enter recipient\'s name: ')
+            amount_str = input('Enter transfer amount: ')
+            if not validate_amount(amount_str):
+                print('Invalid amount. Please enter a valid positive number.')
+                continue
+            amount = float(amount_str)
+            target_account = BankAccount(target_name, '', 0)
+            print('Processing ...')
+            time.sleep(0.5)
+            print(user_account.transfer(amount, target_account))
 
-        elif response.startswith('q'):
-            print('Bye!')
+            
+
+        elif choice == '5':
+            print('\nThank you for using the ATM. Goodbye!')
             break
 
+        else:
+            print('\nInvalid choice. Please select a valid option.')
 
-def new_account(name, balance, password):
-    '''This function adds a new account to the accounts_list'''
-
-    new_account_dict = {'name':name, 'balance':balance, 'password':password}
-    accounts_list.append(new_account_dict)
-   
-def show_accounts(account_number):
-    '''This function displays the details of a particular account.'''
-
-    print('Account', account_number)
-    this_account_dict = accounts_list[account_number]
-    print('       Name', this_account_dict['name'])
-    print('       Balance:', this_account_dict['balance'])
-    print('       Password:', this_account_dict['password'])
-    print()
-
-def get_balance(account_number, password):
-    '''This function returns the balance of a particular account.'''
-
-    this_account_dict = accounts_list[account_number]
-    if password != this_account_dict['password']:
-        print('Incorrect password')
-        return None
-    return this_account_dict['balance']
-
-def deposit(account_number, amountToDeposit, password):
-    '''This function deposits the specified amount into the specified account and returns the new balance of the account.'''
-
-    this_account_dict = accounts_list[account_number]
-    if amountToDeposit < 0:
-        print('You cannot deposit a negative amount!')
-        return None
-        
-    if password != this_account_dict['password']:
-        print('Incorrect password')
-        return None
-    
-    this_account_dict['balance'] = this_account_dict['balance'] + amountToDeposit
-    return this_account_dict['balance']
-    
-def withdraw(account_number, amountToWithdraw, password):
-    '''This function withdraws the specified amount from the specified account and returns the new balance of the account.'''
-
-    this_account_dict = accounts_list[account_number]
-    if amountToWithdraw < 0:
-        print('You cannot withdraw a negative amount')
-        return None
-
-    if password != this_account_dict['password']:
-        print('Incorrect password for this account')
-        return None
-
-    if amountToWithdraw > this_account_dict['balance']:
-        print('You cannot withdraw more than you have in your account')
-        return None
-
-    this_account_dict['balance'] = this_account_dict['balance'] - amountToWithdraw
-    return this_account_dict['balance']
+        time.sleep(1)  # Introduce a delay of 1 second
 
 
 if __name__ == '__main__':

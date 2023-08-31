@@ -1,19 +1,25 @@
-# Bank Account Manager
+# Bank Account Manager / ATM Simulator
 
 ## Description
 
-The Bank Account Manager program is a simple Python program that simulates the banking system that allows users to create and manage bank accounts. The program maintains a list of accounts and provides various functions such as creating a new account, depositing money, withdrawing money, checking balance, and displaying all accounts.
+The Bank Account Manager program is a Python program that emulates an Automated Teller Machine (ATM) experience. This program provides users with a convenient way to interact with their bank accounts by offering functionalities such as balance inquiries, withdrawals, deposits, and transfers.
 
 
 ## How it Works
 
-- The program starts by creating two sample accounts for Joe and Mary using the <code>new_account</code> function. 
+- The program employs a class-based approach with the <code>BankAccount</code> class serving as the core structure to manage user accounts. Each <code>BankAccount</code> instance represents a distinct user account and encapsulates attributes like the account holder's name, password, and account balance.
 
-- The program then enters into a while loop that continues to execute until the user chooses to quit. Within the loop, the program displays a menu of options to the user, which the user can choose from by entering the corresponding letter. The program then prompts the user for input depending on the option chosen. For example, if the user chooses to deposit money, the program prompts the user for the account number, the amount to deposit, and the account password.
+- The program initiates by displaying a welcome screen using the <code>display_centered</code> function and introducing a brief delay using the <code>time.sleep</code> function for a more engaging user experience.
 
-- The program then calls the corresponding function to perform the user's selected operation. For instance, the <code>deposit()</code> function updates the account balance after validating the password and the deposit amount is positive. The <code>withdraw()</code> function updates the account balance after validating the password and checking that the requested withdrawal amount is less than the account balance. The <code>get_balance()</code> function retrieves the balance for the given account number, provided the password matches. The <code>show_accounts()</code> function is used to display details of all accounts or a particular account number.
+- On startup, the user is prompted to enter their name, password, and initial balance to create their account. These details are used to initialize an instance of the <code>BankAccount</code> class.
 
-- The program exits the while loop when the user chooses to quit by entering 'q'.
+- The main loop presents users with a menu containing five options: Balance Inquiry, Withdrawal, Deposit, Transfer, and Exit. Users select an option by entering the corresponding number. The program processes the chosen operation by calling the appropriate methods on the user's account instance.
+
+- During interactions, the program provides informative messages to guide users through each step of the operation. It also introduces a short delay using <code>time.sleep</code> to simulate processing time, enhancing the realism of the ATM experience. For instance, when performing a balance inquiry, the program displays a "Processing..." message and a brief delay before revealing the user's account balance.
+
+- In case of withdrawals, deposits, and transfers, the program validates user inputs, ensuring that the provided amounts are valid positive numbers. If invalid inputs are detected, the program notifies the user accordingly.
+
+- The program exits the while loop when the user chooses to quit by entering '5'.
 
 
 ## Program Input & Output
@@ -21,119 +27,124 @@ The Bank Account Manager program is a simple Python program that simulates the b
 When you run the program `bank_manager.py`, the output will look like this;
 
 ```
- 
-Welcome to the Bank Account Manager.
 
-Press b to get the balance
-Press d to make a deposit
-Press n to create a new account
-Press w to make a withdrawal
-Press s to show all accounts
-Press q to quit
+****************************************
 
-What do you want to do?
-> s
+             ATM SIMULATOR
+             
+****************************************
+Intitializing ATM ...
 
-Show:
-Account 0
-       Name Joe
-       Balance: 500
-       Password: 1234
+Enter your name: Joj
+Enter your password: 1234
+Enter your initial balance: 100
 
-Account 1
-       Name Mary
-       Balance: 10
-       Password: marry
+****************************************
 
-Press b to get the balance
-Press d to make a deposit
-Press n to create a new account
-Press w to make a withdrawal
-Press s to show all accounts
-Press q to quit
+                  MENU
+                  
+****************************************
+1. Balance Inquiry
+2. Withdrawal
+3. Deposit
+4. Transfer
+5. Exit
 
-What do you want to do?
-> n
+Enter your choice: 1
 
-New Account:
-What is your name?
-> Mike
-What is the amount of your initial deposit?
-> 0
-What password would you like to use for this account?
-> mike
-Your new account number is: 2
-Press b to get the balance
-Press d to make a deposit
-Press n to create a new account
-Press w to make a withdrawal
-Press s to show all accounts
-Press q to quit
+****************************************
 
-What do you want to do?
-> d
+            BALANCE INQUIRY
+            
+****************************************
+Processing ...
+Your current balance is: $100.0 
 
-Deposit:
-Please enter the account number:
-> 2
-Please enter amount to deposit:
-> 100
-Please enter the password:
-> mike
-Your new balance is: 100
-Press b to get the balance
-Press d to make a deposit
-Press n to create a new account
-Press w to make a withdrawal
-Press s to show all accounts
-Press q to quit
 
-What do you want to do?
-> w
+****************************************
 
-Withdraw:
-Please enter your account number:
-> 1
-Please enter the amount to withdraw:
-> 200
-Please enter the password:
-> marry
-You cannot withdraw more than you have in your account
-Press b to get the balance
-Press d to make a deposit
-Press n to create a new account
-Press w to make a withdrawal
-Press s to show all accounts
-Press q to quit
+                  MENU
+                  
+****************************************
+1. Balance Inquiry
+2. Withdrawal
+3. Deposit
+4. Transfer
+5. Exit
 
-What do you want to do?
-> s
+Enter your choice: 2
 
-Show:
-Account 0
-       Name Joe
-       Balance: 500
-       Password: 1234
+****************************************
 
-Account 1
-       Name Mary
-       Balance: 10
-       Password: marry
+               WITHDRAWAL
+               
+****************************************
+Enter withdrawal amount: 75
+Processing ...
+Withdrew $75.0.
+Current balance: $25.0
 
-Account 2
-       Name Mike
-       Balance: 100
-       Password: mike
 
-Press b to get the balance
-Press d to make a deposit
-Press n to create a new account
-Press w to make a withdrawal
-Press s to show all accounts
-Press q to quit
+****************************************
 
-What do you want to do?
-> q
+                  MENU
+                  
+****************************************
+1. Balance Inquiry
+2. Withdrawal
+3. Deposit
+4. Transfer
+5. Exit
 
-Bye!
+Enter your choice: 3
+
+****************************************
+
+                DEPOSIT
+                
+****************************************
+Enter deposit amount: 200
+Processing ...
+Deposited $200.0.
+Current balance: $225.0
+
+
+****************************************
+
+                  MENU
+                  
+****************************************
+1. Balance Inquiry
+2. Withdrawal
+3. Deposit
+4. Transfer
+5. Exit
+
+Enter your choice: 4
+
+****************************************
+
+                TRANSFER
+                
+****************************************
+Enter recipient's name: Ana
+Enter transfer amount: 220
+Processing ...
+Transferred $220.0 to Ana.
+Current balance: $5.0
+
+****************************************
+
+                  MENU
+                  
+****************************************
+1. Balance Inquiry
+2. Withdrawal
+3. Deposit
+4. Transfer
+5. Exit
+
+Enter your choice: 5
+
+Thank you for using the ATM. Goodbye!
 ```

@@ -1,8 +1,8 @@
 import random
 
 def main():
-    '''This is the main function that runs the Carrot in the Box Game. It prompts players for their names, displays the boxes, and determines the winner.'''
-    
+    '''Main function for the Carrot in the Box game.'''
+
     print('''
 Carrot in the Box Game. The rules are simple: To win, bluff until you have a box with a carrot in it.
     ''')
@@ -20,6 +20,7 @@ Carrot in the Box Game. The rules are simple: To win, bluff until you have a box
 def play_game(player_1, player_2):
     '''This function handles the logic for a single round of the game.'''
 
+    # Display initial boxes setup
     print()
     print('''HERE ARE TWO BOXES:
   __________     __________
@@ -36,12 +37,15 @@ def play_game(player_1, player_2):
     input(f'Press Enter when {player_2} closes their eyes.\n')
     print(f'Inside the BOX of {player_1}:')
 
+    # Randomly determine if the carrot is in Box A
     if random.randint(1, 2) == 1:
         carrot_in_box_1 = True
     else:
         carrot_in_box_1 = False
 
+    # Display the content of the box with or without the carrot
     if carrot_in_box_1:
+        # Box A contains the carrot
         print('''
    ___VV____
   |   VV    |
@@ -55,6 +59,7 @@ def play_game(player_1, player_2):
  (carrot!)''')
         print(players)
     else:
+        # Box A doesn't contain the carrot
         print('''
    _________
   |         |
@@ -69,6 +74,7 @@ def play_game(player_1, player_2):
         print(players)
 
     input('Press Enter to Continue...')
+
     # Clear screen
     print('\n'*100)
     print(f'{player_1}, tell {player_2} to open their eyes.')
@@ -83,6 +89,7 @@ def play_game(player_1, player_2):
         else:
             break
 
+    # Swap boxes if desired and display the result
     box_1 = 'A '
     box_2 = 'B'
 
@@ -127,6 +134,7 @@ def play_game(player_1, player_2):
 
     print(players)
 
+    # Determine and display the winner
     if carrot_in_box_1:
         print(f'{player_1} is the winner.')
     else:

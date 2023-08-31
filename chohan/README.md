@@ -13,7 +13,7 @@ Cho-han is a dice game invented in Japan. Two six-sided dice are rolled and play
 
 - The program rolls two dice using the `random.randint()` function. The player is then prompted to choose cho or han, and the input is validated. The program then calculates the sum of the dice and determines the winning bet. The results of the dice roll and whether the player won or lost the bet are then displayed.
 
-- The player's money is updated based on the result of the bet. If the player runs out of money, the program prints a message and exits.
+- The player's funds are updated based on the result of the bet. If the player runs out of money, the program prints a message and exits.
 
 
 ## Program Input & Output

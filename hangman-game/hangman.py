@@ -1,6 +1,9 @@
 import random
 
 class Hangman:
+    '''A class to represent the Hangman game.'''
+
+    # Constants for Hangman art
     HANGMAN_ART = [
         '''
          +---+
@@ -78,7 +81,7 @@ class Hangman:
         self.is_game_over = False
 
     def generate_random_word(self):
-        '''This function generates a random word and its corresponding set from the WORDS list.'''
+        '''Generate a random word and its corresponding set from the WORDS list.'''
 
         # Select a random word set and random word from the set
         word_set = random.choice(self.WORDS)
@@ -86,25 +89,29 @@ class Hangman:
         return word, word_set[0]
 
     def display_board(self):
-        '''This function displays the hangman art, missed letters, and current word progress.'''
+        '''Display the hangman art, missed letters, and current word progress.'''
 
+        # Display hangman art based on missed letters
         print(self.HANGMAN_ART[len(self.missed_letters)])
         print()
-
-        print('Missed letters:', ' '.join(self.missed_letters))
+        # Display missed letters separated by spaces
+        print(f'Missed letters: {" ".join(self.missed_letters)}')
         print()
 
+        # Create a string of underscores to represent unguessed letters
         blanks = '_' * len(self.secret_word)
         for i, letter in enumerate(self.secret_word):
             if letter in self.correct_letters:
+                # Replace underscores with correctly guessed letters
                 blanks = blanks[:i] + letter + blanks[i+1:]
 
+        # Display the current word progress with underscores and guessed letter
         for letter in blanks:
             print(letter, end=' ')
         print()
 
     def generate_guess(self):
-        '''This function prompts the player to enter a guess and validate the input.'''
+        '''Prompt the player to enter a guess and validate the input.'''
 
         while True:
             guess = input('Guess a letter: ').lower()
@@ -118,51 +125,43 @@ class Hangman:
                 return guess
 
     def play_again(self):
-        '''This function prompts the player to play again.'''
+        '''Prompt the player to play again.'''
 
-        response = input('Do you want to play again? (yes or no): ').lower()
+        response = input('Do you want to play again? Enter (y)es or (n)o: ').lower()
         return response.startswith('y')
 
-    def play(self):
-        '''This is the main play function that starts the Hangman game.'''
+    def main(self):
+        '''The main function that starts the Hangman game.'''
 
         print('\nWelcome to Hangman.\n')
 
-        difficulty = ''
-        while difficulty not in 'EMH':
-            difficulty = input('Enter difficulty: E - Easy, M - Medium, H - Hard: ').upper()
-
-        if difficulty == 'M':
-            del self.HANGMAN_ART[8]
-            del self.HANGMAN_ART[7]
-        elif difficulty == 'H':
-            del self.HANGMAN_ART[8]
-            del self.HANGMAN_ART[7]
-            del self.HANGMAN_ART[5]
-            del self.HANGMAN_ART[3]
-
         while True:
-            print('The secret word is in the set:', self.secret_set)
+            # Display the category of the secret word
+            print(f'The secret word is in the set: {self.secret_set}')
+            # Display the game board
             self.display_board()
 
             guess = self.generate_guess()
 
+            # Add the correctly guessed letter to the list
             if guess in self.secret_word:
                 self.correct_letters += guess
 
                 if all(letter in self.correct_letters for letter in self.secret_word):
-                    print('Yes! The secret word is "' + self.secret_word + '"! You have won!')
+                    print(f'Yes! The secret word is {self.secret_word}! You have won!')
                     self.is_game_over = True
+            # Add the missed letter to the list
             else:
                 self.missed_letters += guess
 
                 if len(self.missed_letters) == len(self.HANGMAN_ART) - 1:
                     self.display_board()
-                    print('You have run out of guesses!\nAfter', len(self.missed_letters), 'missed guesses and', len(self.correct_letters), 'correct guesses, the word was "', self.secret_word, '"')
+                    print(f'You have run out of guesses!\nAfter {len(self.missed_letters)} missed guesses and {len(self.correct_letters)} correct guesses, the word was {self.secret_word}')
                     self.is_game_over = True
 
             if self.is_game_over:
                 if self.play_again():
+                    # Reset game state
                     self.missed_letters = ''
                     self.correct_letters = ''
                     self.is_game_over = False
@@ -170,5 +169,8 @@ class Hangman:
                 else:
                     break
 
+# Initialize the Hangman game and start playing the game
 hangman = Hangman()
-hangman.play()
+
+if __name__ == '__main__':
+    hangman.main()

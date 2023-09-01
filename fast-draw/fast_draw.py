@@ -2,18 +2,19 @@ import random
 import time
 import sys
 
+# Constants
 DRAW_DELAY_MIN = 0.5
 DRAW_DELAY_MAX = 1.5
 DELAY_BEFORE_RESULTS = 1.0
 ROUND_LIMIT = 10
 
 def main():
-    '''This function represents the main logic of the Fast Draw game. It prompts the user to press Enter when the word "Draw" appears on the screen and measures the time it takes for the user to respond. Based on the response time, it determines whether the user wins or loses the round. The function keeps track of the score and offers the option to play again or quit. It provides a user-friendly experience with clear instructions and feedback.'''
+    '''Main logic of the program. It provides a user-friendly experience with clear instructions and feedback.'''
 
     # Introduction and instructions for the game
     print('\nFast Draw!\nLet us see if you are the fastest draw in the west. \n\nWhen you see "Draw", you have 0.3 seconds to press Enter. You lose if you press Enter before the word "Draw" appears')
+
     input('Press Enter To Continue ...')
-        
 
     # Initialize score counters
     wins = 0
@@ -22,6 +23,7 @@ def main():
     for round_num in range(1, ROUND_LIMIT + 1):
         print(f'\nRound {round_num}:')
         print('Ready ....')
+        
         # Pause for a random interval between 0.5 and 1.5 seconds
         time.sleep(random.uniform(DRAW_DELAY_MIN, DRAW_DELAY_MAX))
         print('DRAW!')

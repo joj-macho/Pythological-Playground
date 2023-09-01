@@ -2,7 +2,7 @@ import time
 import sys
 
 def main():
-    '''This is the main program that animates an indentation effect with asterisks.'''
+    '''Main function that animates an indentation effect with asterisks.'''
 
     print('\nIndentation Animation.\n')
     

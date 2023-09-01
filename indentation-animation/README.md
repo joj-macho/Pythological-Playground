@@ -2,18 +2,17 @@
 
 ## Description
 
-This program, Indentation Animation, creates a visually appealing effect by displaying an animation of indentation using asterisks. It utilizes a loop to dynamically adjust the number of spaces preceding a line of asterisks, creating the illusion of indentation. The animation smoothly transitions between increasing and decreasing indentation, giving a visually pleasing and engaging output. The speed of the animation can be adjusted by modifying the sleep duration. The program runs indefinitely until interrupted by the user.
+The "Indentation Animation" program is a simple console-based animation that creates an animation of indentation using asterisks (*). The indentation level oscillates between increasing and decreasing, forming a rhythmic pattern of asterisk lines.
 
 ## How it Works
 
 - The program starts by importing the `time` and `sys` modules.
 
-- The `main()` function is defined. It contains the main logic for the animation. The program starts by printing a header indicating the name of the animation and initializes three variables:
+- The `main()` function starts by printing a header indicating the name of the animation and initializes three variables:
     - The `indent` variable keeps track of the number of spaces to indent.
     - The `is_indent_increasing` variable is a boolean flag indicating whether the indentation is currently increasing or not.
     - The `sleep_duration` variable specifies the duration in seconds for the pause between each frame of the animation.
 
-- The program enters a `try-except` block to catch a `KeyboardInterrupt` exception (Ctrl+C) and exit gracefully. Within the `try` block. The program enters a loop (`while True`) that runs indefinitely until a keyboard interrupt is encountered.
 
 - In each iteration of the loop, the program prints a line with the number of spaces determined by the current value of indent, followed by a line of asterisks (`********`).
 
@@ -25,10 +24,10 @@ This program, Indentation Animation, creates a visually appealing effect by disp
 
 - The loop continues indefinitely, creating a back-and-forth motion of the asterisks with changing indentation.
 
-- If the user interrupts the program by pressing Ctrl+C (`KeyboardInterrupt`), the program catches the exception and calls `sys.exit()` to terminate the program cleanly.
+- If the user interrupts the program by pressing Ctrl+C (`KeyboardInterrupt`), the program catches the exception and calls `sys.exit()` to terminate the program.
 
 ## Program Input & Output
 
-When you run the program `indentation_animation.py`, the output will look like a visually appealing animation of a moving pattern that continuously oscillates between increasing and decreasing indentation;
+When you run the program `indentation_animation.py`, the output will look like a visually appealing animation of a moving pattern that continuously oscillates between increasing and decreasing indentation, i.e.:
 
 ![Indentation Animation Results](output/indent-result.gif)

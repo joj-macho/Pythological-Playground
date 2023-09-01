@@ -3,6 +3,7 @@ import time
 import bext
 
 # Constants
+# Adjust screen size
 WIDTH = 80
 HEIGHT = 30
 
@@ -10,93 +11,99 @@ TREE = 'A'
 FIRE = 'W'
 EMPTY = ' '
 
-TREE_DENSITY = 0.6
-GROWTH_CHANCE = 0.05
-FIRE_CHANCE = 0.06
-PAUSE = 0.5
-
+# Initial parameters
+TREE_DENSITY = 0.01  # Density of trees in the forest
+GROWTH_CHANCE = 0.05  # Probability of a tree growing in an empty space
+FIRE_CHANCE = 0.26  # Probability of a tree catching fire
+PAUSE = 0.5  # Time interval between each simulation step
 
 def main():
-    '''This is the main function of the program. It initializes the forest, displays it on the screen, and runs the simulation.'''
+    '''Main function of the program.'''
 
     print('\nWelcome to the Forest Fire Simulation.\n')
 
-    # Create Forest
+    # Create an initial forest
     forest = create_forest()
     bext.clear()
 
     try:
         while True:
             display_forest(forest)
-            # Single simulation step
-            next_forest = {'width': forest['width'], 'height': forest['height']}
-
-            for i in range(forest['width']):
-                for k in range(forest['height']):
-                    if (i, k) in next_forest:
-                        # If we've already set next_forest[(i, k)] on a previous iteration, just do nothing here:
-                        continue
-
-                    if (forest[(i, k)] == EMPTY) and (random.random() <= GROWTH_CHANCE):
-                        # Grow a tree in this empty space.
-                        next_forest[(i, k)] = TREE
-                    elif (forest[(i, k)] == TREE) and (random.random() <= FIRE_CHANCE):
-                        # Lightning sets this tree on fire.
-                        next_forest[(i, k)] = FIRE
-                    elif forest[(i, k)] == FIRE:
-                        # This tree is currently burning.
-                        # Loop through all the neighboring spaces:
-                        for p in range(-1, 2):
-                            for q in range(-1, 2):
-                                # Fire spreads to neighboring trees:
-                                if forest.get((i + p, k + q)) == TREE:
-                                    next_forest[(i + p, k + q)] = FIRE
-                        # The tree has burned down now, so erase it:
-                        next_forest[(i, k)] = EMPTY
-                    else:
-                        # Just copy the existing object:
-                        next_forest[(i, k)] = forest[(i, k)]
-            forest = next_forest
-
+            # Perform a single simulation step
+            forest = simulate_fire(forest)
             time.sleep(PAUSE)
-
     except KeyboardInterrupt:
         print('\n\nSimulation stopped by user.')
 
-
 def create_forest():
-    '''This function creates a new forest data structure with randomly generated trees and empty spaces. Returns a dictionary representing the forest with keys as coordinates and values as the characters representing trees or empty spaces.'''
+    '''Create a new forest data structure.'''
 
     forest = {'width': WIDTH, 'height': HEIGHT}
     for i in range(WIDTH):
         for k in range(HEIGHT):
+            # Randomly determine if a cell should contain a tree or be empty
             if (random.random() * 100) <= TREE_DENSITY:
-                forest[(i, k)] = TREE  # Start as a tree.
+                forest[(i, k)] = TREE  # Cell contains a tree
             else:
-                forest[(i, k)] = EMPTY  # Start as an empty space.
+                forest[(i, k)] = EMPTY  # Cell is empty
+
     return forest
 
-
 def display_forest(forest):
-    '''This function displays the forest data structure on the screen with trees, empty spaces, and fires represented by different characters and colors.'''
-    
+    '''Display the forest data structure on the screen.'''
+
     bext.goto(0, 0)
     for k in range(forest['height']):
         for i in range(forest['width']):
             if forest[(i, k)] == TREE:
+                # Display a tree in green
                 bext.fg('green')
                 print(TREE, end='')
             elif forest[(i, k)] == FIRE:
+                # Display fire in red
                 bext.fg('red')
                 print(FIRE, end='')
             elif forest[(i, k)] == EMPTY:
+                # Display empty space
                 print(EMPTY, end='')
         print()
-    bext.fg('reset')  # Use the default font color.
+
+    bext.fg('reset')
+    # Display growth chance
     print('Grow chance: {}%  '.format(GROWTH_CHANCE * 100), end='')
+    # Display fire chance
     print('Fire chance: {}%  '.format(FIRE_CHANCE * 100), end='')
     print('Press Ctrl-C to quit.')
 
+def simulate_fire(forest):
+    '''Simulate the forest fire.'''
+
+    next_forest = {'width': forest['width'], 'height': forest['height']}
+
+    for i in range(forest['width']):
+        for k in range(forest['height']):
+            if (i, k) in next_forest:
+                continue
+            
+            if (forest[(i, k)] == EMPTY) and (random.random() <= GROWTH_CHANCE):
+                # Empty space can grow a tree
+                next_forest[(i, k)] = TREE
+            elif (forest[(i, k)] == TREE) and (random.random() <= FIRE_CHANCE):
+                # A tree can catch fire
+                next_forest[(i, k)] = FIRE
+            elif forest[(i, k)] == FIRE:
+                # Spread fire to neighboring cells
+                for p in range(-1, 2):
+                    for q in range(-1, 2):
+                        if forest.get((i + p, k + q)) == TREE:
+                            next_forest[(i + p, k + q)] = FIRE
+                # The tree burns down
+                next_forest[(i, k)] = EMPTY
+            else:
+                # Copy existing state
+                next_forest[(i, k)] = forest[(i, k)]
+
+    return next_forest
 
 if __name__ == '__main__':
     main()

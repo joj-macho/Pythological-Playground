@@ -30,7 +30,7 @@ def main():
             print(anagram)
 
 def load_dictionary(file_name):
-    '''This function takes a file name as an argument, reads the file using the json.load() method and returns the loaded data.'''
+    '''Load a dictionary from a JSON file and return it.'''
 
     # Open and read the JSON file
     with open(file_name) as file:
@@ -38,7 +38,7 @@ def load_dictionary(file_name):
     return data
 
 def get_anagrams(word, words_dict):
-    '''This function finds all single-word anagrams of a given word and returns a list of all single-word anagrams of the given word.'''
+    '''Find single-word anagrams of a given word and return them as a list.'''
 
     # Create a dictionary to store the letter count of the input word
     word_dict = {}

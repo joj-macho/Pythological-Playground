@@ -53,7 +53,7 @@ MAX_DICE = 6
 
 
 def main():
-    '''This is the main function. It prompts the user to input the number of dice to roll, generates random dice roll results, and displays the ASCII representation of the rolled dice faces.'''
+    '''Main function for the dice rolling simulator.'''
 
     print('\nDice Rolling Simulator\n')
 
@@ -83,19 +83,20 @@ def get_num_of_dice():
 
 
 def roll_dice(num_of_dice):
-    '''This function rolls the dice using the random module.'''
+    '''This function simulates rolling the dice and returns the results as a list.'''
 
     return [random.randint(1, 6) for _ in range(num_of_dice)]
 
 
 def generate_dice_face(dice_roll_results):
-    '''This function returns the ASCII characters of a rolled die.'''
+    '''This function generates an ASCII representation of the rolled dice faces.'''
 
     try:
         dice_face = [DICE_FACES[face] for face in dice_roll_results]
     except KeyError:
         return 'Invalid dice face encountered.'
 
+    # Transpose the rows to display the dice faces side by side
     dice_face_rows = [' '.join(die_row) for die_row in zip(*dice_face)]
     show_dice_face = '\n'.join(dice_face_rows)
 
@@ -103,7 +104,7 @@ def generate_dice_face(dice_roll_results):
 
 
 def play_again():
-    '''This function prompts the user to play again.'''
+    '''This function asks the user if they want to play again and returns a boolean value.'''
 
     while True:
         response = input('Do you want to roll again? (y/n)\n> ').lower()

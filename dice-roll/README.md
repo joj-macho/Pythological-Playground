@@ -6,7 +6,7 @@ The program is a Dice Rolling Simulator that simulates rolling a dice or multipl
 
 ## How it works
 
-- The program begins by importing the `random` module which us ysed ti simulate rolling dice.
+- The program begins by importing the `random` module which us used to simulate rolling dice.
 
 - The program defines a dictionary `DICE_FACES` that contains ASCII representations of each possible dice face. Each face is represented as a tuple of strings, where each string represents a row of the dice face. The `DICE_HEIGHT` constant is defined to store the height of each dice face in rows. It is calculated based on the number of rows in one of the dice faces in `DICE_FACES`.
 

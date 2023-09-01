@@ -1,7 +1,3 @@
-'''This program find palindromes from a dictionary file.'''
-'Use Python to search an English language dictionary file for palindromes.'
-
-# Import Modules
 import os
 import sys
 import json
@@ -13,7 +9,7 @@ os.chdir(path)
 
 # Main Function
 def main():
-    '''This is the main function of the program'''
+    '''Main function for checking and generating palindromes.'''
 
     print('\nWelcome To Palindrome Checker.\n')
 
@@ -33,23 +29,23 @@ def main():
 
 
 def load_dictionary(file_name):
-    '''This function takes a file name as an argument, reads the file using the json.load() method and returns the loaded data.'''
+    '''Load a dictionary from a JSON file and return it.'''
 
     with open(file_name) as file:
         data = json.load(file)
+
     return data
 
 def is_palindrome(word):
-    '''This function checks if a given word is a palindrome by comparing the word with its reverse. It returns True if the word is a palindrome and False otherwise.'''
+    '''Check if a given word is a palindrome.'''
 
     return len(word) > 1 and word == word[::-1]
 
 def get_random_palindrome(words_dict):
-    '''This function takes a dictionary of words as an argument and returns a random palindrome from the dictionary.'''
+    '''Get a random palindrome from a dictionary of words.'''
 
     palindromes = [word for word in words_dict if is_palindrome(word)]
     return random.choice(palindromes)
-
 
 
 if __name__ == '__main__':

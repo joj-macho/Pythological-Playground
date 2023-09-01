@@ -1,223 +1,229 @@
-import shutil
+import shutil # For getting terminal size for canvas dimensions
 import sys
+import os
 
+# Set the working directory to the script's directory
+path = os.path.dirname(os.path.realpath(__file__))
+os.chdir(path)
 
-# Set up the constants for line characters:
-UP_DOWN_CHAR = chr(9474)  # Character 9474 is '│'
-LEFT_RIGHT_CHAR = chr(9472)  # Character 9472 is '─'
-DOWN_RIGHT_CHAR = chr(9484)  # Character 9484 is '┌'
-DOWN_LEFT_CHAR = chr(9488)  # Character 9488 is '┐'
-UP_RIGHT_CHAR = chr(9492)  # Character 9492 is '└'
-UP_LEFT_CHAR = chr(9496)  # Character 9496 is '┘'
-UP_DOWN_RIGHT_CHAR = chr(9500)  # Character 9500 is '├'
-UP_DOWN_LEFT_CHAR = chr(9508)  # Character 9508 is '┤'
-DOWN_LEFT_RIGHT_CHAR = chr(9516)  # Character 9516 is '┬'
-UP_LEFT_RIGHT_CHAR = chr(9524)  # Character 9524 is '┴'
-CROSS_CHAR = chr(9532)  # Character 9532 is '┼'
+# Constants for line characters
+UP_DOWN_CHAR = chr(9474)  # '│' character
+LEFT_RIGHT_CHAR = chr(9472)  # '─' character
+DOWN_RIGHT_CHAR = chr(9484)  # '┌' character
+DOWN_LEFT_CHAR = chr(9488)  # '┐' character
+UP_RIGHT_CHAR = chr(9492)  # '└' character
+UP_LEFT_CHAR = chr(9496)  # '┘' character
+UP_DOWN_RIGHT_CHAR = chr(9500)  # '├' character
+UP_DOWN_LEFT_CHAR = chr(9508)  # '┤' character
+DOWN_LEFT_RIGHT_CHAR = chr(9516)  # '┬' character
+UP_LEFT_RIGHT_CHAR = chr(9524)  # '┴' character
+CROSS_CHAR = chr(9532)  # '┼' character
 
-# Get the size of the terminal window:
+# Terminal window size
 CANVAS_WIDTH, CANVAS_HEIGHT = shutil.get_terminal_size()
 CANVAS_WIDTH -= 1
 CANVAS_HEIGHT -= 5
 
-"""The keys for canvas will be (x, y) integer tuples for the coordinate,
-and the value is a set of letters W, A, S, D that tell what kind of line
-should be drawn."""
+# Initialize canvas dictionary to store canvas data
 canvas = {}
-cursor_x = 0
-cursor_y = 0
+# Initialize cursor position (x-coordinate, y-coordinate)
+cursor_x, cursor_y = 0, 0
 
+# Keeps track of user's moves (W, A, S, D) in a list
+moves = []  
 
 def main():
-    # canvas = {}
-    cursor_x = 0
-    cursor_y = 0
-    moves = []
-    while True:  # Main program loop.
-        # Draw the lines based on the data in canvas:
+    '''This is the main function. It controls the flow of the program.'''
+
+    while True:
+        # Display the canvas and cursor position
         print(generate_canvas_string(canvas, cursor_x, cursor_y))
+        
+        print('Use WASD keys to move, (H)elp screen, (C)lear canvas, (E)xport to save, or (Q)UIT to exit.')
 
-        print(
-            "WASD keys to move, H for help, C to clear, "
-            + "F to save, L to load, or QUIT."
-        )
-        response = input("> ").upper()
+        # Process the user's input command.
+        response = input('> ').upper()
 
-        if response == "QUIT":
-            print("Thanks for playing!")
-            sys.exit()  # Quit the program.
-        elif response == "H":
-            print_help()
-            continue
-        elif response == "C":
-            clear_canvas()
-            moves.append("C")  # Record this move.
-        elif response == "F":
-            print("Enter filename to save to:")
-            filename = input("> ")
-
-            # Make sure the filename ends with .txt:
-            if not filename.endswith(".txt"):
-                filename += ".txt"
-            save_canvas(filename)
-        elif response == "L":
-            print("Enter filename to load:")
-            filename = input("> ")
-            load_canvas(filename)
+        # Handle user commands
+        if response == 'QUIT' or response == 'Q':
+            print('Thanks for playing!')
+            sys.exit()
+        elif response == 'HELP' or response == 'H':
+            print_help()  # Display help information
+        elif response == 'CLEAR' or response == 'C':
+            clear_canvas()  # Clear the canvas
+            moves.append('C')
+        elif response == 'EXPORT' or response == 'E':
+            save_canvas()  # Save the canvas to a file
         else:
-            for command in response:
-                if command not in ("W", "A", "S", "D"):
-                    continue  # Ignore this letter and continue to the next one.
-                moves.append(command)  # Record this move.
-
-                # The first line we add needs to form a full line:
-                if canvas == {}:
-                    if command in ("W", "S"):
-                        # Make the first line a horizontal one:
-                        canvas[(cursor_x, cursor_y)] = {"W", "S"}
-                    elif command in ("A", "D"):
-                        # Make the first line a vertical one:
-                        canvas[(cursor_x, cursor_y)] = {"A", "D"}
-
-                # Update x and y:
-                if command == "W" and cursor_y > 0:
-                    canvas[(cursor_x, cursor_y)].add(command)
-                    cursor_y = cursor_y - 1
-                elif command == "S" and cursor_y < CANVAS_HEIGHT - 1:
-                    canvas[(cursor_x, cursor_y)].add(command)
-                    cursor_y = cursor_y + 1
-                elif command == "A" and cursor_x > 0:
-                    canvas[(cursor_x, cursor_y)].add(command)
-                    cursor_x = cursor_x - 1
-                elif command == "D" and cursor_x < CANVAS_WIDTH - 1:
-                    canvas[(cursor_x, cursor_y)].add(command)
-                    cursor_x = cursor_x + 1
-                else:
-                    # If the cursor doesn't move because it would have moved off
-                    # the edge of the canvas, then don't change the set at
-                    # canvas[(cursor_x, cursor_y)].
-                    continue
-
-                # If there's no set for (cursor_x, cursor_y), add an empty set:
-                if (cursor_x, cursor_y) not in canvas:
-                    canvas[(cursor_x, cursor_y)] = set()
-
-                # Add the direction string to this xy point's set:
-                if command == "W":
-                    canvas[(cursor_x, cursor_y)].add("S")
-                elif command == "S":
-                    canvas[(cursor_x, cursor_y)].add("W")
-                elif command == "A":
-                    canvas[(cursor_x, cursor_y)].add("D")
-                elif command == "D":
-                    canvas[(cursor_x, cursor_y)].add("A")
+            process_moves(response)  # Handle user moves
 
 
+def process_moves(moves_str):
+    '''Processes the movement commands.'''
 
-def generate_canvas_string(canvas_data, c_x, c_y):
-    """Returns a multiline string of the line drawn in canvas_data."""
-    canvas_string = ''
+    for command in moves_str:
+        if command in ('W', 'A', 'S', 'D'):
+            record_move(command)
+        else:
+            continue
 
-    """canvas_data is a dictionary with (x, y) tuple keys and values that
-    are sets of 'W', 'A', 'S', and/or 'D' strings to show which
-    directions the lines are drawn at each xy point."""
-    for row_number in range(CANVAS_HEIGHT):
-        for column_number in range(CANVAS_WIDTH):
-            if column_number == c_x and row_number == c_y:
-                canvas_string += '#'
-                continue
+def record_move(command):
+    '''Records the move and updates the canvas.'''
 
-            # Add the line character for this point to canvas_string.
-            cell = canvas_data.get((column_number, row_number))
-            if cell in ({"W", "S"}, {"W"}, {"S"}):
-                canvas_string += UP_DOWN_CHAR
-            elif cell in ({"A", "D"}, {"A"}, {"D"}):
-                canvas_string += LEFT_RIGHT_CHAR
-            elif cell == {"S", "D"}:
-                canvas_string += DOWN_RIGHT_CHAR
-            elif cell == {"A", "S"}:
-                canvas_string += DOWN_LEFT_CHAR
-            elif cell == {"W", "D"}:
-                canvas_string += UP_RIGHT_CHAR
-            elif cell == {"W", "A"}:
-                canvas_string += UP_LEFT_CHAR
-            elif cell == {"W", "S", "D"}:
-                canvas_string += UP_DOWN_RIGHT_CHAR
-            elif cell == {"W", "S", "A"}:
-                canvas_string += UP_DOWN_LEFT_CHAR
-            elif cell == {"A", "S", "D"}:
-                canvas_string += DOWN_LEFT_RIGHT_CHAR
-            elif cell == {"W", "A", "D"}:
-                canvas_string += UP_LEFT_RIGHT_CHAR
-            elif cell == {"W", "A", "S", "D"}:
-                canvas_string += CROSS_CHAR
-            elif cell is None:
-                canvas_string += " "
-        canvas_string += "\n"  # Add a newline at the end of each row.
-    return canvas_string
+    # Add the move to the list of moves
+    moves.append(command)
+    if not canvas:
+        initialize_canvas(command)  # Initialize canvas if empty
 
+    # Move the cursor position
+    move_cursor(command)
+    # Update the canvas based on the move
+    update_canvas(command)
+
+def initialize_canvas(command):
+    '''Initializes the canvas based on the first move.'''
+
+    # Initialize with vertical line
+    if command in ('W', 'S'):
+        canvas[(cursor_x, cursor_y)] = {'W', 'S'}
+    # Initialize with horizontal line
+    elif command in ('A', 'D'):
+        canvas[(cursor_x, cursor_y)] = {'A', 'D'}
+
+def move_cursor(command):
+    '''Moves the cursor position.'''
+    
+    global cursor_x, cursor_y
+    if command == 'W' and cursor_y > 0:
+        canvas[(cursor_x, cursor_y)].add(command)
+        cursor_y -= 1
+    elif command == 'S' and cursor_y < CANVAS_HEIGHT - 1:
+        canvas[(cursor_x, cursor_y)].add(command)
+        cursor_y += 1
+    elif command == 'A' and cursor_x > 0:
+        canvas[(cursor_x, cursor_y)].add(command)
+        cursor_x -= 1
+    elif command == 'D' and cursor_x < CANVAS_WIDTH - 1:
+        canvas[(cursor_x, cursor_y)].add(command)
+        cursor_x += 1
+    else:
+        # If cursor would move off the canvas, do nothing
+        return
+
+def update_canvas(command):
+    '''Updates the canvas data based on the move.'''
+    
+    if (cursor_x, cursor_y) not in canvas:
+        canvas[(cursor_x, cursor_y)] = set()  # Add an empty set if not present
+
+    # Add the direction string to this xy point's set
+    if command == 'W':
+        canvas[(cursor_x, cursor_y)].add('S')  # Vertical line below cursor
+    elif command == 'S':
+        canvas[(cursor_x, cursor_y)].add('W')  # Vertical line above cursor
+    elif command == 'A':
+        canvas[(cursor_x, cursor_y)].add('D')  # Horizontal line to the right
+    elif command == 'D':
+        canvas[(cursor_x, cursor_y)].add('A')  # Horizontal line to the left
 
 def clear_canvas():
-    """Clears the canvas data."""
+    '''Clears the canvas data.'''
+
     global canvas
+
+    # Reset canvas to an empty dictionary
     canvas = {}
 
+def save_canvas():
+    '''Saves the canvas data to a text file.'''
 
-def save_canvas(filename):
-    """Saves the canvas data to a text file."""
     try:
-        with open(filename, "w", encoding="utf-8") as file:
-            file.write("".join(moves) + "\n")
+        print('Enter filename to save to:')
+        filename = input('> ')
+
+        # Text file should end with .txt
+        if not filename.endswith('.txt'):
+            filename += '.txt'
+
+        with open(filename, 'w', encoding='utf-8') as file:
+            # Write recorded moves
+            file.write(''.join(moves) + '\n')
+            # Write canvas data
             file.write(generate_canvas_string(canvas, None, None))
-        print("Canvas saved successfully.")
+        
+        print('Canvas saved successfully.')
     except Exception as e:
-        print(f"An error occurred while saving the canvas: {e}")
-
-
-def load_canvas(filename):
-    """Loads the canvas data from a text file."""
-    try:
-        with open(filename, "r", encoding="utf-8") as file:
-            lines = file.readlines()
-            moves.extend(list(lines[0].strip()))
-            canvas_str = "".join(lines[1:])
-            load_canvas_data(canvas_str)
-        print("Canvas loaded successfully.")
-    except Exception as e:
-        print(f"An error occurred while loading the canvas: {e}")
-
-
-def load_canvas_data(canvas_str):
-    """Loads the canvas data from a string."""
-    global canvas
-    clear_canvas()
-    for y, line in enumerate(canvas_str.splitlines()):
-        for x, char in enumerate(line):
-            if char != " ":
-                if x == cursor_x and y == cursor_y:
-                    # Update the cursor position if it's in the canvas data.
-                    canvas[(x, y)] = set()
-                else:
-                    canvas[(x, y)] = {char}
-
+        print(f'An error occurred while saving the canvas: {e}')
 
 def print_help():
-    """Prints the help information."""
-    print("Enter W, A, S, and D characters to move the cursor and")
-    print("draw a line behind it as it moves. For example, 'ddd'")
-    print("draws a line going right, and 'sssdddwwwaaa' draws a box.")
-    print()
-    print("Commands:")
-    print("WASD - Move the cursor and draw lines")
-    print("H - Help")
-    print("C - Clear the canvas")
-    print("F - Save the canvas")
-    print("L - Load a saved canvas")
-    print("QUIT - Quit the program")
-    input("Press Enter to return to the program...")
+    '''Prints the help information.'''
 
+    print('Welcome to the Etch-A-Sketch Simulator!')
+    print('Use the following commands to draw and interact with the canvas:')
+    print('---------------------------------------------------------------')
+    print('WASD - Move the cursor and draw lines:')
+    print('  W - Move Up   (Draws a vertical line below the cursor)')
+    print('  A - Move Left (Draws a horizontal line to the left of the cursor)')
+    print('  S - Move Down (Draws a vertical line above the cursor)')
+    print('  D - Move Right (Draws a horizontal line to the right of the cursor)')
+    print('---------------------------------------------------------------')
+    print('H - Help: Display these instructions')
+    print('C - Clear the canvas: Erase all drawings')
+    print('E - Export the canvas: Save your masterpiece to a text file')
+    print('Q - Quit the program: Exit the Etch-A-Sketch Simulator')
+    print('---------------------------------------------------------------')
+    print('Example: Drawing a Hilbert Curve Fractal')
+    print('  To draw a Hilbert Curve fractal, you can use the following keys:')
+    print('  SDWDDSASDSAAWASSDSASSDWDSDWWAWDDDSASSDWDSDWWAWDWWASAAWDWAWDDSDW')
+    print('  This sequence will create a beautiful Hilbert Curve fractal!')
+    input('Press Enter to return to the program...')
 
+def generate_canvas_string(canvas_data, c_x, c_y):
+    '''Generates a multiline string of the canvas.'''
 
+    canvas_string = ''
+    
+    # Iterate through the canvas_data to generate the drawing
+    for row_number in range(CANVAS_HEIGHT):
+        for column_number in range(CANVAS_WIDTH):
+            # Add the line character for this point to canvasStr
+            if column_number == c_x and row_number == c_y:
+                canvas_string += 'X'  # Display cursor position
+                continue
 
-if __name__ == "__main__":
+            cell = canvas_data.get((column_number, row_number))
+
+            # Add characters based on the lines at each xy point
+            if cell in ({'W', 'S'}, {'W'}, {'S'}):
+                canvas_string += UP_DOWN_CHAR
+            elif cell in ({'A', 'D'}, {'A'}, {'D'}):
+                canvas_string += LEFT_RIGHT_CHAR
+            elif cell == {'S', 'D'}:
+                canvas_string += DOWN_RIGHT_CHAR
+            elif cell == {'A', 'S'}:
+                canvas_string += DOWN_LEFT_CHAR
+            elif cell == {'W', 'D'}:
+                canvas_string += UP_RIGHT_CHAR
+            elif cell == {'W', 'A'}:
+                canvas_string += UP_LEFT_CHAR
+            elif cell == {'W', 'S', 'D'}:
+                canvas_string += UP_DOWN_RIGHT_CHAR
+            elif cell == {'W', 'S', 'A'}:
+                canvas_string += UP_DOWN_LEFT_CHAR
+            elif cell == {'A', 'S', 'D'}:
+                canvas_string += DOWN_LEFT_RIGHT_CHAR
+            elif cell == {'W', 'A', 'D'}:
+                canvas_string += UP_LEFT_RIGHT_CHAR
+            elif cell == {'W', 'A', 'S', 'D'}:
+                canvas_string += CROSS_CHAR
+            # Add a space for empty cells
+            elif cell is None:
+                canvas_string += ' '
+        # Add a newline at the end of each row.
+        canvas_string += '\n'  
+
+    return canvas_string
+
+if __name__ == '__main__':
     main()

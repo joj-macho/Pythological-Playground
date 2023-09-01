@@ -13,7 +13,7 @@ The Leetspeak Converter is a Python program that allows users to convert English
 - The `main()` function begins by printing a welcome message and prompting the user to enter their English message, and calls the `convert_to_leetspeak` function to convert the input into Leetspeak. The resulting Leetspeak message is then printed.
 
 - The `convert_to_leetspeak` function takes an English string as input and converts it to Leetspeak. It iterates over each character in the input string. If the lowercase version of the character exists in the `CHAR_MAPPING` dictionary and a random number is less than or equal to 0.70 (70% chance), it selects a random replacement from the list of possible Leetspeak replacements for that character. Otherwise, it keeps the original character. The converted Leetspeak string is built character by character and returned.
-
+    
 
 ## Program Input & Output
 

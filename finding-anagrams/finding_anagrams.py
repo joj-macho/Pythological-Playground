@@ -8,7 +8,7 @@ path = os.path.dirname(os.path.realpath(__file__))
 os.chdir(path)
 
 def main():
-    '''This is the main function.'''
+    '''Main function for generating anagrams.'''
 
     print('\nWelcome to Finding Anagrams.\n')
     
@@ -32,6 +32,7 @@ def main():
 def load_dictionary(file_name):
     '''This function takes a file name as an argument, reads the file using the json.load() method and returns the loaded data.'''
 
+    # Open and read the JSON file
     with open(file_name) as file:
         data = json.load(file)
     return data
@@ -39,18 +40,29 @@ def load_dictionary(file_name):
 def get_anagrams(word, words_dict):
     '''This function finds all single-word anagrams of a given word and returns a list of all single-word anagrams of the given word.'''
 
+    # Create a dictionary to store the letter count of the input word
     word_dict = {}
+
+    # Count the occurrences of each letter in the input word
     for letter in word.lower():
         word_dict[letter] = word_dict.get(letter, 0) + 1
+
+    # Initialize an empty list to store anagrams
     anagrams = []
+
+    # Iterate through words in the loaded dictionary
     for dict_word in words_dict:
         dict_word_dict = {}
+
+        # Count the occurrences of each letter in the dictionary word
         for letter in dict_word.lower():
             dict_word_dict[letter] = dict_word_dict.get(letter, 0) + 1
+
+        # Check if the dictionary word is an anagram of the input word
         if dict_word_dict == word_dict and dict_word != word:
             anagrams.append(dict_word)
-    return anagrams
 
+    return anagrams
 
 
 if __name__ == '__main__':

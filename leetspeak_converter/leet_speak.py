@@ -2,48 +2,40 @@ import random
 
 # Dictionary that maps characters to their possible Leetspeak replacements
 CHAR_MAPPING = {
-    'a': ['4', '@'],
+    'a': ['@'],
     'b': ['8', '|3'],
-    'c': ['(', '[', '<'],
-    'd': ['|)', '|>'],
-    'f': ['ph', '|#'],
-    'g': ['6', '9'],
+    'c': ['[', '<'],
+    'd': ['|)'],
+    'g': ['9'],
     'i': ['1', '!'],
-    'j': ['_|', '_/'],
-    'k': [']<', '|<', '|{'],
+    'j': ['_|'],
+    'k': ['|<', '|{'],
     'l': ['|', '|_'],
-    'o': ['0', '()', '[]'],
-    'p': ['|D', '|>', '|*', '|o'],
-    'r': ['|2', '|?', '/2'],
-    's': ['$', '5', 'z', 'Z', '§'],
-    't': ['7', '+', '7`', '~|~'],
+    'o': ['0', '()'],
+    'p': ['|D', '|*', '|o'],
+    's': ['$', '5', '§'],
+    't': ['7', '+', ],
     'v': ['\\/'],
     'z': ['2', '7_']
 }
 
 
 def main():
-    '''This is the main function that converts English text to Leetspeak and displays the result.'''
+    ''' Main function to converts English text to Leetspeak.'''
 
     print('\nWelcome to Leetspeak.\n')
 
-    english = get_user_input('Enter your message: ')
-    leetspeak = convert_to_leetspeak(english)
-    print('Leetspeak:', leetspeak)
-
-
-def get_user_input(prompt):
-    '''This function prompts the user for input and return the input string.'''
-
     while True:
-        user_input = input(prompt).strip()
-        if user_input:
-            return user_input
+        english = input('Enter your message: ').strip()
+        if english:
+            leetspeak = convert_to_leetspeak(english)
+            print('Leetspeak:', leetspeak)
+            break
         print('Invalid input. Please try again.')
 
 
 def convert_to_leetspeak(message):
-    '''This function converts the given English string to Leetspeak string.'''
+    '''Converts the given English string to Leetspeak.'''
 
     leetspeak = ''
     # Check if the character has Leetspeak replacements and randomly decide whether to replace it

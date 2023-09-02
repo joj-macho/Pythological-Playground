@@ -6,7 +6,7 @@ def main():
 
     print('\nWelcome to the Number Guessing Game. Can you guess which number I am thinking of between 1 and 20?\n')
 
-    # Generate a secret number between 1 and 10
+    # Generate a secret number between 1 and 20
     secret_number = random.randint(1, 20)
 
     # Prompt the user for to guess the number

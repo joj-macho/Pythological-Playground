@@ -1,16 +1,16 @@
-# High and Low Number Guessing Game
+# High or Low Number Guessing Game
 
 ## Description
 
-The program you provided is a simple number guessing game.
+The "High or Low Number Guessing Game" is an interactive Python program that challenges the users's guessing skills. In this game, the user must attempt to guess a secret number randomly chosen by the computer within a specified range.
 
 ## How it Works
 
 - First, the program imports the `random` module, which allows for generating random numbers.
 
-- Then the `main()` function is defined. The program begins prints a welcome message and briefly explains the rules of the game. It generates a random secret number using the `random.randint()` function. The secret number is a random integer between 1 and 20. The program prompts the user to guess the number.
+- Then the `main()` function begins prints a welcome message and briefly explains the rules of the game. It generates a random secret number using the `random.randint()` function. The secret number is a random integer between 1 and 20. The program prompts the user to guess the number.
 
-- The `main` funcion then enters a loop that gives the user five attempts to guess the number. The loop variable `num_guesses` keeps track of the number of guesses made. Inside the loop, the program informs the user about the number of remaining guesses.
+- The program then enters a loop that gives the user 5 attempts to guess the number. The loop variable `num_guesses` keeps track of the number of guesses made. Inside the loop, the program informs the user about the number of remaining guesses.
 
 - The user is prompted to enter their guess using the `input()` function. The input is converted to an integer using `int()`.
 

@@ -4,7 +4,7 @@ import time
 
 
 def main():
-    '''This is the main function of the program.'''    
+    '''Main function of the Magic Fortune Teller.'''    
 
     # Slow spaced print
     slow_print('Magic Fortune Ball!')
@@ -75,7 +75,8 @@ def main():
 
 
 def slow_print(text, interval=0.04):
-    '''This function slowly displays text with spaces in between letters'''
+    '''Slowly display text with spaces in between letters'''
+
     for char in text:
         print(char , end='', flush=True)
         time.sleep(interval)

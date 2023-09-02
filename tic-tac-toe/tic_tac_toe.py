@@ -19,10 +19,13 @@ def main():
 
     print('\nWelcome to Tic-Tac-Toe.\n')
 
+    # Create a new empty Tic-Tac-Toe board
     board = generate_new_board()
+    # Start with player X
     current_player = X
 
     while True:
+        # Display the current board
         print(generate_board_string(board))
         move = None
 
@@ -44,17 +47,22 @@ def main():
 
             break
 
+        # Update the board with the current player's move
         update_board(board, move, current_player)
 
+        # Check if the current player has won
         if is_winner(board, current_player):
             print(generate_board_string(board))
             print(f'{current_player} won the game.')
             break
+
+        # Check if the board is full (tie)
         elif is_board_full(board):
             print(generate_board_string(board))
             print('The game is a tie.')
             break
 
+        # Switch to the other player's turn
         current_player = switch_player(current_player)
 
     print('Bye.')

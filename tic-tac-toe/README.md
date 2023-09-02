@@ -1,14 +1,16 @@
+# Tic-Tac-Toe Game
+
 ## Description
 
-This program is a command-line implementation of the classic Tic-Tac-Toe game.
+This program is a command-line implementation of the classic Tic-Tac-Toe game. It follows the traditional rules of the game, where two players take turns marking spaces on a 3x3 grid. The goal is to be the first to form a horizontal, vertical, or diagonal line of their own marks (either "X" or "O"), or to fill the entire board, resulting in a tie.
 
 ## How it Works
 
 - First, the program defines some constants; `ALL_SPACES` is a list containing all the possible spaces on the Tic-Tac-Toe board. `X`, `O`, and `BLANK` represent the player marks for X, O, and empty spaces, respectively. The program also defines a dictionary called `WINNING_COMBINATIONS`, which contains all the possible winning combinations in the Tic-Tac-Toe game. Each key represents a specific combination (e.g., 'across_top', 'diagonal'), and the corresponding value is a list of spaces that form that combination.
 
-- The `main` function is defined, inside the `main` function, the program displays a welcome message. Then the `generate_new_board` function is called to create a new blank Tic-Tac-Toe board. It returns a dictionary where each space is initially set to `BLANK`. The `current_player` variable is set to `X`, indicating that X will be the first player to make a move.
+- The `main` function starts by displaying a welcome message. Then the `generate_new_board` function is called to create a new blank Tic-Tac-Toe board. It returns a dictionary where each space is initially set to `BLANK`. The `current_player` variable is set to `X`, indicating that X will be the first player to make a move.
 
-- The main game loop begins with a `while True` loop, which continues until the game is won or tied.
+- The main game loop continues until the game is won or tied.
 
 - The `generate_board_string` function is called to generate a string representation of the current state of the board. It displays the board's layout and the marks in each space.
 

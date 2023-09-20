@@ -3,26 +3,7 @@
 Welcome to the Pythological-Playground repository! This repository contains a diverse collection of Python programs, ranging from simple games to in-depth simulations and various Python examples.
 
 
-## Games 🎮
-
-- [**blackjack-game**](blackjack-game/): Python CLI implementation of the classic card game, Blackjack.
-- [**bouncing-DVD-logo**](bouncing-DVD-logo/): Python program that simulates the bouncing DVD logo.
-- [**chohan**](chohan/): Python implementation of the dice game, Chohan.
-- [**fast-draw**](fast-draw/): Python CLI game to test reaction speed where the user needs to press Enter key within a specified time.
-- [**four-in-a-row-game**](four-in-a-row-game/): Python CLI implementation of the classic game, Four in a Row.
-- [**hangman-game**](hangman-game/): Python CLI implementation of the classic word-guessing game, Hangman.
-- [**hungry-robots-game**](hungry-robots-game/): Python CLI game where robots compete to reach food.
-- [**lottery-simulator**](lottery-simulator/): Python CLI program simulating a lottery drawing.
-- [**mancala-board-game**](mancala-board-game/): Python CLI implementation of the Mancala board game.
-- [**number-guessing-game**](number-guessing-game/): Python CLI game where the player guesses a number within a range.
-- [**pico-fermi-bagels**](pico-fermi-bagels/): Python game where the player guesses a secret number.
-- [**rock-paper-scissors-game**](rock-paper-scissors-game/): Python CLI implementation of the game Rock-Paper-Scissors.
-- [**sliding-tile-game**](sliding-tile-game/): Python CLI implementation of a sliding tile puzzle game.
-- [**snail-race**](snail-race/): Python CLI game where snails race to the finish.
-- [**tic-tac-toe**](tic-tac-toe/): Python CLI implementation of the classic game, Tic-Tac-Toe.
-
-# Programs  🚀
-
+## Programs 🚀
 - [**address-book**](address-book/): Python CLI program to manage a list of contacts, including creating, updating, deleting, and searching contacts.
 - [**bank-manager**](bank-manager/): Python CLI program that simulates the banking system allowing users to create and manage bank accounts.
 - [**calendar-display**](calendar-display/): Python CLI program that generates a text-based calendar for a given year and month.
@@ -49,6 +30,25 @@ Welcome to the Pythological-Playground repository! This repository contains a di
 - [**python-scripts**](python-scripts/): Collection of useful Python scripts.
 - [**rainbow**](rainbow/): Python CLI program that displays a rainbow animation.
 - [**seven-segment-display**](seven-segment-display/): Python CLI program that displays numbers using the seven-segments display.
+
+
+## Games 🎮
+- [**blackjack-game**](blackjack-game/): Python CLI implementation of the classic card game, Blackjack.
+- [**bouncing-DVD-logo**](bouncing-DVD-logo/): Python program that simulates the bouncing DVD logo.
+- [**chohan**](chohan/): Python implementation of the dice game, Chohan.
+- [**fast-draw**](fast-draw/): Python CLI game to test reaction speed where the user needs to press Enter key within a specified time.
+- [**four-in-a-row-game**](four-in-a-row-game/): Python CLI implementation of the classic game, Four in a Row.
+- [**hangman-game**](hangman-game/): Python CLI implementation of the classic word-guessing game, Hangman.
+- [**hungry-robots-game**](hungry-robots-game/): Python CLI game where robots compete to reach food.
+- [**lottery-simulator**](lottery-simulator/): Python CLI program simulating a lottery drawing.
+- [**mancala-board-game**](mancala-board-game/): Python CLI implementation of the Mancala board game.
+- [**number-guessing-game**](number-guessing-game/): Python CLI game where the player guesses a number within a range.
+- [**pico-fermi-bagels**](pico-fermi-bagels/): Python game where the player guesses a secret number.
+- [**rock-paper-scissors-game**](rock-paper-scissors-game/): Python CLI implementation of the game Rock-Paper-Scissors.
+- [**sliding-tile-game**](sliding-tile-game/): Python CLI implementation of a sliding tile puzzle game.
+- [**snail-race**](snail-race/): Python CLI game where snails race to the finish.
+- [**tic-tac-toe**](tic-tac-toe/): Python CLI implementation of the classic game, Tic-Tac-Toe.
+
 
 Each program is contained in its own directory with its own README.md file that explains how the program works and the output of the program.
 

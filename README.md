@@ -19,12 +19,9 @@ Welcome to the Pythological-Playground repository! This repository contains a di
 - [**finding-anagrams**](finding-anagrams/): Python CLI program that finds anagrams of a given word.
 - [**finding-palindromes**](finding-palindromes/): Python CLI program that finds the palindromes of a word.
 - [**forest-fire-simulator**](forest-fire-simulator/): Python CLI program that simulates a forest fire.
-- [**hour-glass-animation**](hour-glass-animation/): Python CLI program that simulates an hourglass animation.
 - [**indentation-animation**](indentation-animation/): Python CLI program that simulates an indentation animation.
 - [**leetspeak_converter**](leetspeak_converter/): Python program to convert text into leetspeak.
 - [**magic-fortune-ball**](magic-fortune-ball/): Python CLI program, a digital fortune-telling ball.
-- [**maze-runner**](maze-runner/): Python CLI program to solve mazes.
-- [**mondrian-art-generator**](mondrian-art-generator/): Python CLI program to generate art in the style of Piet Mondrian.
 - [**progress-bar-animation**](progress-bar-animation/): Python CLI program to simulate a progress bar animation.
 - [**python-examples**](python-examples/): Python examples covering various programming topics.
 - [**python-scripts**](python-scripts/): Collection of useful Python scripts.
@@ -38,15 +35,12 @@ Welcome to the Pythological-Playground repository! This repository contains a di
 - [**chohan**](chohan/): Python implementation of the dice game, Chohan.
 - [**fast-draw**](fast-draw/): Python CLI game to test reaction speed where the user needs to press Enter key within a specified time.
 - [**four-in-a-row-game**](four-in-a-row-game/): Python CLI implementation of the classic game, Four in a Row.
+- [**high-low-card-game**](high-low-card-game/): Python CLI implementation of the drinking card game, Higher or Lower game.
 - [**hangman-game**](hangman-game/): Python CLI implementation of the classic word-guessing game, Hangman.
-- [**hungry-robots-game**](hungry-robots-game/): Python CLI game where robots compete to reach food.
 - [**lottery-simulator**](lottery-simulator/): Python CLI program simulating a lottery drawing.
-- [**mancala-board-game**](mancala-board-game/): Python CLI implementation of the Mancala board game.
 - [**number-guessing-game**](number-guessing-game/): Python CLI game where the player guesses a number within a range.
 - [**pico-fermi-bagels**](pico-fermi-bagels/): Python game where the player guesses a secret number.
 - [**rock-paper-scissors-game**](rock-paper-scissors-game/): Python CLI implementation of the game Rock-Paper-Scissors.
-- [**sliding-tile-game**](sliding-tile-game/): Python CLI implementation of a sliding tile puzzle game.
-- [**snail-race**](snail-race/): Python CLI game where snails race to the finish.
 - [**tic-tac-toe**](tic-tac-toe/): Python CLI implementation of the classic game, Tic-Tac-Toe.
 
 

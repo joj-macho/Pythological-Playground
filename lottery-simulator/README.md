@@ -2,25 +2,21 @@
 
 ## Description
 
-This program is a Powerball Lottery simulator. It allows users to experience the excitement of playing the Powerball Lottery without spending any money.
+This program is a Python implementation of a Lottery Simulator where players can choose 5 numbers from 1 to 69 and a Powerball number from 1 to 26. The program allows users to specify how many times they want to play and see the results of the lottery simulation.
 
 ## How it Works
 
 - The program first imports the `random` module. The `random` module is essential in creating a realistic simulation of the lottery draw by introducing randomness in the selection of winning numbers and the powerball number.
 
-- The program starts by defining constants for the ticket cost (`TICKET_COST`), the jackpot amount (`JACKPOT_AMOUNT`), and the maximum number of plays (`MAX_PLAYS`).
+- The `main()` function is defined and called, this function displays an introductory message to welcome the user and provides instructions for playing the lottery simulation. Inside the `main()` function, there is a while loop that allows the user to play the game multiple times. The user is prompted to enter 5 different numbers from 1 to 69 and a Powerball number from 1 to 26. The user can also specify how many times they want to play the lottery.
 
-- The `main()` function is defined and calle, this function displays an introductory message to welcome the user and explain the purpose of the simulation. Inside the `main()` function, there is a while loop that allows the user to play the game multiple times.
+The `get_user_numbers()`, `get_user_powerball()`, and `get_user_num_plays()` functions handle user inputs for numbers selection and the number of plays.
 
-- The `get_numbers()` function prompts the user to enter five different numbers from 1 to 69. It validates the input to ensure it meets the required criteria.
+- The `simulate_lottery()` function simulates the lottery draw based on user inputs. It shuffles a range of possible numbers and randomly selects winning numbers and a Powerball number for each simulation. The function then checks for matching numbers and calculates hits.
 
-- The `get_powerball()` function prompts the user to enter the powerball number from 1 to 26. It also validates the input.
+- The `print_results()` function displays the simulation results, including the user's chosen numbers, the number of hits, and the maximum hits.
 
-- The `get_num_of_plays()` function prompts the user to enter the number of times they want to play. It ensures that the input is within the valid range.
-
-- The `simulate_lottery()` function takes the user's chosen numbers, powerball number, and the number of plays as input. It simulates the lottery draw by generating random winning numbers and a powerball number. It checks if the user's numbers match the winning numbers and powerball number to determine if they have won.
-
-- After each simulation, the user is given the option to play again. If the user chooses to continue, the game repeats. Otherwise, the program ends with a thank-you message.
+- Players can choose whether or not to gamble again.
 
 
 ## Program Input & Output
@@ -29,69 +25,123 @@ When you run the program `lottery_sim.py`, the output will look like this;
 
 ```
 
-Welcome to the Powerball Lottery Simulator!
-
-Experience the excitement of the Powerball Lottery without spending a dime.
-
-Each Powerball lottery ticket typically costs $2, and the current jackpot stands at $500000000.
-However, with odds of 1 in 292,201,338, winning the jackpot is extremely unlikely.
-
-This simulation allows you to enjoy the thrill of playing without the financial risk.
-
+Welcome to the Lottery Simulator!
+This program simulates a lottery draw where you choose 5 numbers from 1 to 69 and a Powerball number from 1 to 26.
+You can specify how many times you want to play and see the results.
+    
 Enter 5 different numbers from 1 to 69, separated by spaces:
-> 1 2 3 4 5
-Enter the powerball number from 1 to 26:
-> 6
-How many times do you want to play? (Max: 1000000):
-> 20
-
-It costs $ 40 to play 20 times, but don't
-worry. I'm sure you'll win it all back.
+> 12 16 20 18 25
+Enter the Powerball number from 1 to 26:
+> 23
+How many times do you want to play? (Max: 1000000)
+> 100000
+If the cost of the lotto ticket is $2. It would cost $200000 to play 100000 times...
+Now then let' get our gambling freak on!
 Press Enter to start...
 
-The winning numbers are: 62 38 46 30 50 and 3You lost.
+0 Simulations Completed...
+10000 Simulations Completed...
+20000 Simulations Completed...
+30000 Simulations Completed...
+40000 Simulations Completed...
+50000 Simulations Completed...
+60000 Simulations Completed...
+70000 Simulations Completed...
+80000 Simulations Completed...
+90000 Simulations Completed...
 
-The winning numbers are: 19 53 7 63 49 and 2You lost.
+100000 Simulations Completed...
 
-The winning numbers are: 19 9 57 33 29 and 6You lost.
+Your numbers: 12, 16, 20, 18, 25, (23-Powerball Number)
+Out of 100000 Simulations...
 
-The winning numbers are: 67 37 19 69 29 and 19You lost.
+1 Simulations matched 4 numbers:
+    Attempt 19738: 16 67 12 18 25
 
-The winning numbers are: 32 17 67 37 61 and 21You lost.
+208 Simulations matched 3 numbers:
 
-The winning numbers are: 31 25 69 40 33 and 10You lost.
+3643 Simulations matched 2 numbers:
 
-The winning numbers are: 11 5 2 15 17 and 2You lost.
+28183 Simulations matched 1 numbers:
 
-The winning numbers are: 20 69 40 50 56 and 10You lost.
+67965 Simulations matched 0 numbers.
 
-The winning numbers are: 30 17 43 57 6 and 17You lost.
+Maximum Hits: 4 numbers
 
-The winning numbers are: 12 16 4 39 51 and 4You lost.
+Do you want to play again? Enter (y)es or (n)o: y
+Enter 5 different numbers from 1 to 69, separated by spaces:
+> 1 2 3 4 5
+Enter the Powerball number from 1 to 26:
+> 6
+How many times do you want to play? (Max: 1000000)
+> 25
+If the cost of the lotto ticket is $2. It would cost $50 to play 25 times...
+Now then let' get our gambling freak on!
+Press Enter to start...
 
-The winning numbers are: 4 33 30 62 31 and 3You lost.
+25 Simulations Completed...
 
-The winning numbers are: 25 10 52 20 63 and 14You lost.
+Your numbers: 1, 2, 3, 4, 5, (6-Powerball Number)
+Out of 25 Simulations...
 
-The winning numbers are: 34 30 12 59 21 and 16You lost.
+2 Simulations matched 2 numbers:
+    Attempt 18: 62 4 68 3 35
+    Attempt 25: 37 1 12 64 5
 
-The winning numbers are: 59 68 55 38 44 and 26You lost.
+9 Simulations matched 1 numbers:
+    Attempt 2: 5 65 7 45 30
+    Attempt 3: 19 3 33 13 10
+    Attempt 5: 22 25 1 56 51
+    Attempt 8: 12 31 29 15 4
+    Attempt 11: 30 41 51 4 47
+    Attempt 14: 57 39 13 19 5
+    Attempt 15: 28 42 3 41 15
+    Attempt 22: 5 16 34 40 30
+    Attempt 23: 36 2 47 57 53
 
-The winning numbers are: 6 38 67 26 5 and 10You lost.
+14 Simulations matched 0 numbers.
 
-The winning numbers are: 28 48 21 41 58 and 25You lost.
+Maximum Hits: 2 numbers
 
-The winning numbers are: 23 29 59 11 13 and 18You lost.
+Do you want to play again? Enter (y)es or (n)o: y
+Enter 5 different numbers from 1 to 69, separated by spaces:
+> 1 2 3 4 5
+Enter the Powerball number from 1 to 26:
+> 6
+How many times do you want to play? (Max: 1000000)
+> 800000
+If the cost of the lotto ticket is $2. It would cost $1600000 to play 800000 times...
+Now then let' get our gambling freak on!
+Press Enter to start...
 
-The winning numbers are: 58 30 36 10 46 and 15You lost.
+0 Simulations Completed...
+100000 Simulations Completed...
+200000 Simulations Completed...
+300000 Simulations Completed...
+400000 Simulations Completed...
+You won the Powerball Lottery on attempt 450281!
+500000 Simulations Completed...
+600000 Simulations Completed...
+700000 Simulations Completed...
 
-The winning numbers are: 29 7 28 40 15 and 2You lost.
+Your numbers: 1, 2, 3, 4, 5, (6-Powerball Number)
+Out of 800000 Simulations...
 
-The winning numbers are: 37 25 69 64 49 and 14You lost.
+1 Simulations matched 5 numbers:
+    Attempt 450281: 2 3 4 5 1
 
-You have wasted $ 40
+24 Simulations matched 4 numbers:
 
-Do you want to play again? Enter (y)es/(n)o:
-> n
+1466 Simulations matched 3 numbers:
+
+29776 Simulations matched 2 numbers:
+
+225744 Simulations matched 1 numbers:
+
+542989 Simulations matched 0 numbers.
+
+Maximum Hits: 5 numbers
+
+Do you want to play again? Enter (y)es or (n)o: n
 Thanks for playing!
 ```

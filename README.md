@@ -6,9 +6,11 @@ Welcome to the Pythological-Playground repository! This repository contains a di
 ## Programs 🚀
 - [**address-book**](address-book/): Python CLI program to manage a list of contacts, including creating, updating, deleting, and searching contacts.
 - [**bank-manager**](bank-manager/): Python CLI program that simulates the banking system allowing users to create and manage bank accounts.
+- [**bmi-calculator**](bmi-calculator/): Python program that calculate Body Mass Index (BMI) based on the provided height and weight.
 - [**calendar-display**](calendar-display/): Python CLI program that generates a text-based calendar for a given year and month.
 - [**carrot-in-a-box**](carrot-in-a-box/): Python CLI program, a text-based implementation of the carrot in a box game.
 - [**clickbait-generator-cli**](clickbait-generator-cli/): Python CLI program that generates clickbait headlines.
+- [**converter**](converter/): Python CLI program that allows users to convert lengths, masses, or temperatures based on their input and selected units
 - [**count-down-timer**](count-down-timer/): Python CLI program to implement a count-down timer.
 - [**deep-cave-tunnel**](deep-cave-tunnel/): Python CLI program to simulate exploring a cave tunnel.
 - [**dice-roll**](dice-roll/): Python CLI program that simulates the rolling of dice.

@@ -194,3 +194,8 @@ Press Enter to Continue...
 No funds to Continue Game.
 Bye!
 ```
+
+## To Do
+
+- Use OOP concepts
+- Add pygame program

@@ -7,18 +7,14 @@ The Converter is a command-line program that allows users to convert lengths, ma
 
 ## How it Works
 
-- The <code>main</code> function begins by printing a welcome message. Then it prompts the user to choose the desired type of conversion by entering the corresponding number.
+- The <code>main</code> function starts by printing a welcome message and enters a loop to perform unit conversions based on the user's choice. Users are prompted to select the type of conversion (length, mass, or temperature) by entering the corresponding number. The menu interface allows users to select the type of conversion they want to perform.
 
-- The program contains three conversion functions. Each of these functions takes the input value, the unit to convert from, and the unit to convert to as arguments. They calculate the result based on the conversion formula for the respective type (length, weight, or temperature) and print the converted value.
-    - <code>convert_length</code>: Converts a length from one unit to another.
-    - <code>convert_weight</code>: Converts a weight from one unit to another.
-    - <code>convert_temperature</code>: Converts a temperature from one unit to another.
+- The program contains three conversion functions: <code>convert_length</code>, <code>convert_weight</code>, and <code>convert_temperature</code>. Each of these functions accepts an input value, the unit to convert from, and the unit to convert to as arguments. They calculate the result using the appropriate conversion formula for the respective type and display the converted value.
 
-- Each of these functions takes the input value, the unit to convert from, and the unit to convert to as arguments. They calculate the result based on the conversion formula for the respective type (length, weight, or temperature) and print the converted value.
+- The program provides a list of available units for each type of conversion. This list is obtained through the <code>get_unit_list</code> function, which returns the units for the chosen category (length, mass, or temperature).
 
-- The program interacts with the user to collect input values for the conversion, including the type of conversion and the units involved. It validates user input and ensures a smooth flow of the conversion process.
+- The program interacts with the user to collect input values for conversion, including the choice of conversion type and the units involved. It also validates user input to ensure everything works well.
 
-- The menu interface is governed by the <code>get_conversion_choice</code> function and the <code>main</code> function. It allows users to select the type of conversion they wish to perform. It provides options to choose from and guides the user through the conversion process based on their choice.
 
 ## Program Input & Output
 
@@ -26,35 +22,63 @@ When you run `converter.py`, the output will look like this:
 
 ```
 
-Welcome to the Converter CLI!
+Welcome to the Unit Converter Program!
 
-Select a conversion:
+Choose a Conversion Option:
 1. Length
 2. Mass
 3. Temperature
+
 Enter choice: 1
-Enter the length: 42
-Enter the unit to convert from: inch
-Enter the unit to convert to: m
-Result: 1.066799423928311 m
+
+Available units: mm, cm, m, km, inch, foot, yard, mile
+Enter the length value: 10
+Enter the unit to convert from: km
+Enter the unit to convert to: yard
+Results: 10.0 km = 10936.1 yard
+
 Do you want to perform another conversion? (y/n): y
-Select a conversion:
+Choose a Conversion Option:
 1. Length
 2. Mass
 3. Temperature
+
 Enter choice: 2
-Enter the weight: 100
-Enter the unit to convert from: kg
-Enter the unit to convert to: lb
-Result: 220.462 lb
+
+Available units: g, kg, mg, lb, oz, ton
+Enter the mass value: 10
+Enter the unit to convert from: lb
+Enter the unit to convert to: oz
+Result: 10.0 lb = 160.00036287432755 oz
+
 Do you want to perform another conversion? (y/n): y
-Select a conversion:
+Choose a Conversion Option:
 1. Length
 2. Mass
 3. Temperature
+
 Enter choice: 3
-Enter the temperature: 32
+
+Available units: Celsius, Fahrenheit, Kelvin
+Enter the temperature value: 0      
+Enter the unit to convert from: celcius
+Enter the unit to convert to: kelvin
+Invalid units.
+
+Do you want to perform another conversion? (y/n): y
+Choose a Conversion Option:
+1. Length
+2. Mass
+3. Temperature
+
+Enter choice: 3
+
+Available units: Celsius, Fahrenheit, Kelvin
+Enter the temperature value: 0
 Enter the unit to convert from: celsius
-Enter the unit to convert to: fahrenheit
-Result: 89.6 Fahrenheit
+Enter the unit to convert to: kelvin
+Result: 0.0 Celsius = 273.15 Kelvin
+
+Do you want to perform another conversion? (y/n): n
+Bye!
 ```

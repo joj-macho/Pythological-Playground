@@ -1,45 +1,55 @@
 def main():
     '''Main function to run the Converter Program.'''
 
-    print('\nWelcome to the Converter CLI!\n')
+    print('\nWelcome to the Unit Converter Program!\n')
+
     while True:
-        choice = get_conversion_choice()
+        # Display menu options
+        print('Choose a Conversion Option:')
+        print('1. Length')
+        print('2. Mass')
+        print('3. Temperature')
+        print()
+
+        choice = int(input('Enter choice: '))
         
         if choice == 1:
-            length = float(input('Enter the length: '))
+            print('Available units:', ', '.join(get_unit_list('length')))
+            length = float(input('Enter the length value: '))
             unit_from = input('Enter the unit to convert from: ').lower()
             unit_to = input('Enter the unit to convert to: ').lower()
             convert_length(length, unit_from, unit_to)
         
         elif choice == 2:
-            weight = float(input('Enter the weight: '))
+            print('Available units:', ', '.join(get_unit_list('mass')))
+            weight = float(input('Enter the mass value: '))
             unit_from = input('Enter the unit to convert from: ').lower()
             unit_to = input('Enter the unit to convert to: ').lower()
             convert_weight(weight, unit_from, unit_to)
         
         elif choice == 3:
-            temperature = float(input('Enter the temperature: '))
+            print('Available units:', ', '.join(get_unit_list('temperature')))
+            temperature = float(input('Enter the temperature value: '))
             unit_from = input('Enter the unit to convert from: ').capitalize()
             unit_to = input('Enter the unit to convert to: ').capitalize()
             convert_temperature(temperature, unit_from, unit_to)
 
         else:
-            print('Invalid choice. Please try again.')
+            print('\nInvalid choice. Please try again.')
 
-        cont = input('Do you want to perform another conversion? (y/n): ').lower()
+        cont = input('\nDo you want to perform another conversion? (y/n): ').lower()
         if cont != 'y':
             print('Bye!')
             break
 
-def get_conversion_choice():
-    '''Get user's choice for the type of conversion.'''
 
-    print('Select a conversion:')
-    print('1. Length')
-    print('2. Mass')
-    print('3. Temperature')
-    choice = input('Enter choice: ')
-    return int(choice)
+def get_unit_list(category):
+    if category == 'length':
+        return ['mm', 'cm', 'm', 'km', 'inch', 'foot', 'yard', 'mile']
+    elif category == 'mass':
+        return ['g', 'kg', 'mg', 'lb', 'oz', 'ton']
+    elif category == 'temperature':
+        return ['Celsius', 'Fahrenheit', 'Kelvin']
 
 
 def convert_length(length, unit_from, unit_to):
@@ -59,7 +69,7 @@ def convert_length(length, unit_from, unit_to):
     try:
         length_meters = length / conversion_factors[unit_from]
         result = length_meters * conversion_factors[unit_to]
-        print(f'Result: {result} {unit_to}')
+        print(f'Results: {length} {unit_from} = {result} {unit_to}')
     except KeyError:
         print('Invalid units.')
 
@@ -78,19 +88,30 @@ def convert_weight(weight, unit_from, unit_to):
     try:
         weight_grams = weight / conversion_factors[unit_from]
         result = weight_grams * conversion_factors[unit_to]
-        print(f'Result: {result} {unit_to}')
+        print(f'Result: {weight} {unit_from} = {result} {unit_to}')
     except KeyError:
         print('Invalid units.')
 
 def convert_temperature(temperature, unit_from, unit_to):
     '''Convert temperature to the specified units and print the result.'''
-
     if unit_from == 'Celsius' and unit_to == 'Fahrenheit':
         result = temperature * 9/5 + 32
-        print(f'Result: {result} {unit_to}')
+        print(f'Result: {temperature} {unit_from} =  {result} {unit_to}')
+    elif unit_from == 'Celsius' and unit_to == 'Kelvin':
+        result = temperature + 273.15
+        print(f'Result: {temperature} {unit_from} = {result} {unit_to}')
     elif unit_from == 'Fahrenheit' and unit_to == 'Celsius':
         result = (temperature - 32) * 5/9
-        print(f'Result: {result} {unit_to}')
+        print(f'Result: {temperature} {unit_from} = {result} {unit_to}')
+    elif unit_from == 'Fahrenheit' and unit_to == 'Kelvin':
+        result = (temperature - 32) * 5/9 + 273.15
+        print(f'Result: {temperature} {unit_from} = {result} {unit_to}')
+    elif unit_from == 'Kelvin' and unit_to == 'Celsius':
+        result = temperature - 273.15
+        print(f'Result: {temperature} {unit_from} = {result} {unit_to}')
+    elif unit_from == 'Kelvin' and unit_to == 'Fahrenheit':
+        result = (temperature - 273.15) * 9/5 + 32
+        print(f'Result: {temperature} {unit_from} = {result} {unit_to}')
     else:
         print('Invalid units.')
 

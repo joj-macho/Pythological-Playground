@@ -29,7 +29,7 @@ def count_down(start_time):
             minutes, seconds = divmod(start_time, 60)
 
             timer = f'{minutes:02} : {seconds:02}'
-            print(timer)
+            print(timer, end='\r')
 
             time.sleep(1)
 

@@ -42,11 +42,19 @@ def count_down(start_time):
             sec_top_row, sec_middle_row, sec_bottom_row = sec_digit.splitlines()
 
             # Display the digits:
-            print(hour_top_row + '     ' + minute_top_row + '     ' + sec_top_row)
-            print(hour_middle_row + '  *  ' +
-                  minute_middle_row + '  *  ' + sec_middle_row)
-            print(hour_bottom_row + '  *  ' +
-                  minute_bottom_row + '  *  ' + sec_bottom_row)
+            timer_display = (
+                hour_top_row + '     ' +
+                minute_top_row + '     ' +
+                sec_top_row + '\n' +
+                hour_middle_row + '  *  ' +
+                minute_middle_row + '  *  ' +
+                sec_middle_row + '\n' +
+                hour_bottom_row + '  *  ' +
+                minute_bottom_row + '  *  ' +
+                sec_bottom_row
+            )
+
+            print(timer_display)
 
             if start_time == 0:
                 print()

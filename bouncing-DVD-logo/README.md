@@ -15,7 +15,7 @@ This program displays bouncing DVD logos on the console. It generates multiple D
     - `DIRECTIONS` is a tuple that contains all the direction constants.
     - `COLOR`, `X_POSITION`, `Y_POSITION`, and `DIRECTION` are key names for logo dictionaries. These keys are used to access specific information in the logo dictionaries.
 
-- The `main` function is responsible for the main logic of the program. This function starts off by calling `bext.clear()` which clears the console. Then it generates a list of `logos` by calling the `generate_logos` function, which then creates a list of logo dictionaries with random positions and directions. The number of logos generated is based on the `NUMBER_OF_LOGOS` constant. A variable `corner_bounces` is initialized to keep track of the number of times a logo bounces off a corner.
+- The `main` function starts off by calling `bext.clear()` which clears the console. Then it generates a list of `logos` by calling the `generate_logos` function, which then creates a list of logo dictionaries with random positions and directions. The number of logos generated is based on the `NUMBER_OF_LOGOS` constant. A variable `corner_bounces` is initialized to keep track of the number of times a logo bounces off a corner.
 
 - The program enters an infinite loop where each iteration represents a frame. Within the loop, the program iterates over each logo in the `logos` list and handles the bounce logic.
 
@@ -34,7 +34,6 @@ This program displays bouncing DVD logos on the console. It generates multiple D
 - The `handle_bounce` function takes a logo dictionary as an argument and handles the logo's bouncing logic. It checks if the logo has hit any of the corners or edges of the console and changes the logo's direction accordingly. If a corner bounce occurs, the function returns `True`; otherwise, it returns `False`.
 
 - The program handles keyboard interrupts (Ctrl+C) and exits gracefully by printing "Bye!" and calling `sys.exit()` when interrupted.
-
 
 ## Program Input & Output
 

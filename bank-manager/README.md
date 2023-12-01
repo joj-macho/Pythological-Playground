@@ -1,26 +1,22 @@
-# Bank Account Manager / ATM Simulator
+# Bank Account Manager
 
 ## Description
 
-The Bank Account Manager program is a Python program that emulates an Automated Teller Machine (ATM) experience. This program provides users with a convenient way to interact with their bank accounts by offering functionalities such as balance inquiries, withdrawals, deposits, and transfers.
-
+The Bank Account Manager (aka ATM Simulator) program is a Python program that emulates an Automated Teller Machine (ATM) experience. This program provides users with a convenient way to interact with their bank accounts by offering functionalities such as balance inquiries, withdrawals, deposits, and transfers.
 
 ## How it Works
 
-- The program employs a class-based approach with the <code>BankAccount</code> class serving as the core structure to manage user accounts. Each <code>BankAccount</code> instance represents a distinct user account and encapsulates attributes like the account holder's name, password, and account balance.
+- The program employs a class-based approach with the `BankAccount` class serving as the core structure to manage user accounts. Each `BankAccount` instance represents a distinct user account and encapsulates attributes like the account holder's name, password, and account balance.
 
-- The program initiates by displaying a welcome screen using the <code>display_centered</code> function and introducing a brief delay using the <code>time.sleep</code> function for a more engaging user experience.
+- The program initiates by displaying a welcome screen using the `display_centered` function and introducing a brief delay using the `time.sleep` function for a more engaging user experience.
 
-- On startup, the user is prompted to enter their name, password, and initial balance to create their account. These details are used to initialize an instance of the <code>BankAccount</code> class.
+- On startup, the user is prompted to enter their name, password, and initial balance to create their account. These details are used to initialize an instance of the `BankAccount` class.
 
 - The main loop presents users with a menu containing five options: Balance Inquiry, Withdrawal, Deposit, Transfer, and Exit. Users select an option by entering the corresponding number. The program processes the chosen operation by calling the appropriate methods on the user's account instance.
 
-- During interactions, the program provides informative messages to guide users through each step of the operation. It also introduces a short delay using <code>time.sleep</code> to simulate processing time, enhancing the realism of the ATM experience. For instance, when performing a balance inquiry, the program displays a "Processing..." message and a brief delay before revealing the user's account balance.
+- During interactions, the program provides informative messages to guide users through each step of the operation. It also introduces a short delay using `time.sleep` to simulate processing time, enhancing the realism of the ATM experience. For instance, when performing a balance inquiry, the program displays a "Processing..." message and a brief delay before revealing the user's account balance.
 
 - In case of withdrawals, deposits, and transfers, the program validates user inputs, ensuring that the provided amounts are valid positive numbers. If invalid inputs are detected, the program notifies the user accordingly.
-
-- The program exits the while loop when the user chooses to quit by entering '5'.
-
 
 ## Program Input & Output
 

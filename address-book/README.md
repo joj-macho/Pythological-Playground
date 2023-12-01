@@ -4,29 +4,25 @@
 
 The Simple Address Address Book is a simple Python program that allows users to manage a dictionary of contacts, including adding new contacts, updating contacts, searching and displaying existing contacts by name, deleting contacts, saving contacts to json file, and loading contacts from json file, all done using a simple command-line interface.
 
-
 ## How it Works
 
-- The program begins by importing required modules, setting the working directory and creates an empty dictionary called <code>contacts</code>. This dictionary will be used to store the contact information for each person.
+- The program begins by importing required modules, setting the working directory and creates an empty dictionary called `contacts`. This dictionary will be used to store the contact information for each person.
 
-- The <code>main()</code> function begins by displaying a menu of options to the user and prompts them to select one. Based on the user's input, it calls the appropriate function to perform the selected task. The program runs until the user chooses to quit the program.
+- The `main()` function begins by displaying a menu of options to the user and prompts them to select one. Based on the user's input, it calls the appropriate function to perform the selected task. The program runs until the user chooses to quit the program.
 
-- Response 1 - "Add New Contact": The <code>add_contact()</code> function allows the user to add a new contact to the address book by entering the contact's name, phone number, and email address. It then adds this information to the <code>contacts</code> dictionary.
+- The `add_contact()` function allows the user to add a new contact to the address book by entering the contact's name, phone number, and email address. It then adds this information to the `contacts` dictionary.
 
-- Response 2 - "Update Contact Information": The <code>update_contact()</code> function allows the user to update the phone number and email address of an existing contact in the address book.
+- The `update_contact()` function allows the user to update the phone number and email address of an existing contact in the address book.
 
-- Response 3 - "Delete Contact": The <code>delete_contact()</code> allows the user to delete an EXISTING contact from the address book.
+- The `delete_contact()` allows the user to delete an existing contact from the address book.
 
-- Response 4 - "Search Contact": The <code>search_contact()</code> function allows the user to search for an existing contact in the address book by entering their name. If the contact exists, the program displays their name, phone number, and email address. If contact name not in <code>contacts</code>, a response message is displayed.
+- The `search_contact()` function allows the user to search for an existing contact in the address book by entering their name. If the contact exists, the program displays their name, phone number, and email address. If contact name not in `contacts`, a response message is displayed.
 
-- Response 5 - "View All Contact": The <code>view_contact()</code> function allows the user to look up the contact in the <code>contacts</code> dictionary and displays their phone number and email address if the name is found.
+- The `view_contact()` function allows the user to look up the contact in the `contacts` dictionary and displays their phone number and email address if the name is found.
 
-- Response 6 - "Save Contacts" option: The <code>save_contact()</code> function saves the current contents of the contacts dictionary to a JSON file called "contacts.json", which is found in the current working directory.
+- The `save_contact()` function saves the current contents of the contacts dictionary to a JSON file called "contacts.json", which is found in the current working directory.
 
-- Response 7 - "Load Contacts": The <code>load_contacts()</code> function loads the contacts from the "contacts.json" file into the program's contacts dictionary. If the file does not exist, it creates an empty dictionary.
-
-- Response 8 - "Exit Contacts": The program exits when the user selects this option
-
+- The `load_contacts()` function loads the contacts from the "contacts.json" file into the program's contacts dictionary. If the file does not exist, it creates an empty dictionary.
 
 ## Program Input & Output
 

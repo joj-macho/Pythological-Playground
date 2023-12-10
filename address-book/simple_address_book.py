@@ -139,3 +139,6 @@ def load_contacts():
 if __name__ == '__main__':
     main()
 
+# TODO:
+# 1. Use OOP
+# 2. Files

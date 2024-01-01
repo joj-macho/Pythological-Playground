@@ -2,14 +2,14 @@
 
 Welcome to the Pythological-Playground repository! This repository contains a diverse collection of Python programs, ranging from simple games to in-depth simulations and various Python examples.
 
-
 ## Programs 🚀
-- [**address-book**](address-book/): Python CLI program to manage a list of contacts, including creating, updating, deleting, and searching contacts.
+
 - [**bank-manager**](bank-manager/): Python CLI program that simulates the banking system allowing users to create and manage bank accounts.
 - [**bmi-calculator**](bmi-calculator/): Python program that calculate Body Mass Index (BMI) based on the provided height and weight.
 - [**calendar-display**](calendar-display/): Python CLI program that generates a text-based calendar for a given year and month.
 - [**carrot-in-a-box**](carrot-in-a-box/): Python CLI program, a text-based implementation of the carrot in a box game.
 - [**clickbait-generator-cli**](clickbait-generator-cli/): Python CLI program that generates clickbait headlines.
+- [**contact-manager**](contact-manager/): Python CLI program to manage a list of contacts, including creating, updating, deleting, and searching contacts.
 - [**converter**](converter/): Python CLI program that allows users to convert lengths, masses, or temperatures based on their input and selected units
 - [**count-down-timer**](count-down-timer/): Python CLI program to implement a count-down timer.
 - [**deep-cave-tunnel**](deep-cave-tunnel/): Python CLI program to simulate exploring a cave tunnel.
@@ -30,8 +30,8 @@ Welcome to the Pythological-Playground repository! This repository contains a di
 - [**rainbow**](rainbow/): Python CLI program that displays a rainbow animation.
 - [**seven-segment-display**](seven-segment-display/): Python CLI program that displays numbers using the seven-segments display.
 
-
 ## Games 🎮
+
 - [**blackjack-game**](blackjack-game/): Python CLI implementation of the classic card game, Blackjack.
 - [**bouncing-DVD-logo**](bouncing-DVD-logo/): Python program that simulates the bouncing DVD logo.
 - [**chohan**](chohan/): Python implementation of the dice game, Chohan.
@@ -45,10 +45,10 @@ Welcome to the Pythological-Playground repository! This repository contains a di
 - [**rock-paper-scissors-game**](rock-paper-scissors-game/): Python CLI implementation of the game Rock-Paper-Scissors.
 - [**tic-tac-toe**](tic-tac-toe/): Python CLI implementation of the classic game, Tic-Tac-Toe.
 
-
 Each program is contained in its own directory with its own README.md file that explains how the program works and the output of the program.
 
 ## Contribution Guidelines 🌟
+
 Feel free to contribute and add your Python programs or enhance existing ones. Please follow the [contribution guidelines](CONTRIBUTING.md) before making a pull request.
 
 ## License 📝

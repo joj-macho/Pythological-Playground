@@ -147,3 +147,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# Todo:
+# Separate to account_manager.py and main_account.py
+# Refactor and add color

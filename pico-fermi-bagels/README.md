@@ -2,65 +2,90 @@
 
 ## Description
 
-The program is a number guessing game called "Pico Fermi Bagels" or simply "Bagels", which generates a random secret number and challenges the player to guess it within a limited number of attempts. It provides feedback through clues (Pico, Fermi, Bagels) to help the player make correct guesses.
-
+The program is a number guessing game called "Pico Fermi Bagels" or simply "Bagels". This Python program challenges you to guess a secret three-digit number with no repeated digits, within a limited number of attempts. The game provides clues (Pico, Fermi, Bagels) to help you make correct guesses.
 
 ## How it Works
 
-- The program begins by importing the `random` module which is used to generate random numbers and make the game more unpredictable and challenging. The program then defines two constants: `NUM_DIGITS`, which represents the number of digits in the secret number, and `NUM_GUESSES`, which determines the maximum number of guesses allowed.
+- The program begins by importing the `random` module which is used to generate random numbers.
 
-- The `main()` function starts by printing the game instructions and enters a loop that allows the player to play multiple games. A new secret number is generated using the `generate_secret_number()` function, which selects `NUM_DIGITS` random digits without repetition.
+- The `main()` function starts by printing the game instructions and enters a loop that allows the player to play multiple games. Inside this game loop, a new secret number is generated for each round using the `generate_secret_number()` function, which selects 3 random digits without repetition.
 
-- The player is informed about the number of digits and the number of guesses they have. The player's guesses are collected using the `get_valid_guess()` function, which prompts the user to enter a valid `NUM_DIGITS`-digit number.
+- The player is informed about the number of digits and the number of guesses they have. The player's guesses are collected using the `get_user_guess()` function, which prompts the user to enter a valid 3-digit number.
 
-- After each guess, the program calls the `generate_clues()` function, which compares the guess with the secret number and generates clues based on the matching digits. The clues are then displayed to the player.
+- The program checks if the guess is correct. If correct, the user is congratulated on their success, and the number of attempts is displayed. If incorrect, the program generates clues using the `generate_clues()` function, guiding the user toward the correct answer.
 
-- The game continues until the player guesses the correct number, runs out of guesses, or decides not to play again. If the player guesses correctly, a congratulatory message is displayed. If the player runs out of guesses, the correct answer is revealed.
+- If the user reaches the maximum allowed attempts, the correct number is revealed, and the game ends for that round.
 
-- The `play_again()` function prompts the player to choose whether they want to play another game or quit. It validates the input and returns a Boolean value indicating the player's decision.
-
+- After each round, the user is given the option to play again. If the user chooses to play again, a new round starts with a new secret number. If they choose not to play again, the program exits.
 
 ## Program Input & Output
 
 When you run `pico_fermi_bagels.py`, the output will look like this:
 
 ```
-Pico Fermi Bagels!
-Can you guess the 3-digit number...?
+
+Welcome To The Pico Fermi Bagels Game!
+
+Your challenge is to guess the secret three-digit number with no repeated digits.
 
 Here are the clues:
-Pico -- One digit is correct, but in the wrong position.
-Fermi --- One digit is correct, and in the right position.
-Bagels --- No digit is correct.
-    
+    - Pico: One digit is correct but in the wrong position.
+    - Fermi: One digit is correct and in the right position.
+    - Bagels: No digit is correct.
 
-I thought of a 3-digit number. Can you guess it?
-You have 10 tries to guess the number correctly!
+Press Enter to start the game...
 
-Guess: 169
-Fermi
-Guess: 619
-Pico
-Guess: 187
+I've chosen a three-digit number. Can you guess it?
+You have 10 attempts to guess the number correctly!
+
+Enter your guess: 123
 Fermi Pico Pico
-Guess: 817
+Enter your guess: 231
+Fermi Pico Pico
+Enter your guess: 132
+
+Congratulations! You guessed the correct number 132 in 3 attempts.
+
+Do you want to play again? (y)es or (n)o: y
+716
+
+I've chosen a three-digit number. Can you guess it?
+You have 10 attempts to guess the number correctly!
+
+Enter your guess: 12
+
+Invalid Input. Please enter a valid three-digit integer number with no repeated digits.
+
+Enter your guess: 123
+Pico
+Enter your guess: 145
+Pico
+Enter your guess: 167
 Pico Pico Pico
-Guess: 178
-You guessed CORRECTLY!
-Congratulations! You guessed the correct number!
-Do you want to play again? (y)es or (n)o: 
-> y
+Enter your guess: 176
+Fermi Pico Pico
+Enter your guess: 716
 
-I thought of a 3-digit number. Can you guess it?
-You have 10 tries to guess the number correctly!
+Congratulations! You guessed the correct number 716 in 5 attempts.
 
-Guess: 236
-Bagels
-Guess: 123
-Fermi
-Guess: 145
-You guessed CORRECTLY!
-Congratulations! You guessed the correct number!
-Do you want to play again? (y)es or (n)o:
-> n
+Do you want to play again? (y)es or (n)o: y
+496
+
+I've chosen a three-digit number. Can you guess it?
+You have 10 attempts to guess the number correctly!
+
+Enter your guess: 12e
+
+Invalid Input. Please enter a valid three-digit integer number with no repeated digits.
+
+Enter your guess: dad
+
+Invalid Input. Please enter a valid three-digit integer number with no repeated digits.
+
+Enter your guess: 496
+
+Congratulations! You guessed the correct number 496 in 1 attempts.
+
+Do you want to play again? (y)es or (n)o: n
+Bye!
 ```

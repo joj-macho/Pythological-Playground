@@ -1,32 +1,53 @@
-# Import modules
 import random
 
-def main():
-    '''This is the main function'''
+def number_guessing_game():
+    '''Implement and play the Number Guessing Game'''
+    print('\nWelcome to the Number Guessing Game!\n')
 
-    print('\nWelcome to the Number Guessing Game. Can you guess which number I am thinking of between 1 and 20?\n')
+    # Get user input for the range of numbers
+    while True:
+        try:
+            print('Enter the range of numbers:')
+            lower_bound = int(input('   Lower bound: '))
+            upper_bound = int(input('   Upper bound: '))
 
-    # Generate a secret number between 1 and 20
-    secret_number = random.randint(1, 20)
-
-    # Prompt the user for to guess the number
-    print('I am thinking of a number between 1 and 20... Can you figure it out?')
-    for num_guesses in range(1, 6):
-        print('You have {} guesses remaining'.format(6 - num_guesses))
-        guess = int(input('Enter your guess:\n> '))
-        # Generate clues --> Too high or Too low
-        if guess < secret_number:
-            print('You guess is too low.\n')
-        elif guess > secret_number:
-            print('Your guess is too high.\n')
-        else:
+            # Validate the range
+            if lower_bound >= upper_bound:
+                print('Invalid range. Please ensure that the lower bound is less than the upper bound!\n')
+                continue
             break
-    
-    if guess == secret_number:
-        print('Correct! You guessed the secret number in {} guesses'.format(num_guesses))
+        except ValueError:
+            print('Invalid input. Please enter valid numeric values!\n')
+
+    print(f'\nI\'m thinking of a number between {lower_bound} and {upper_bound}. Can you guess it?\n')
+
+    # Generate random secret number
+    secret_number = random.randint(lower_bound, upper_bound)
+    print(secret_number)  # For debugging
+
+    attempts = 0      # For score keeping
+    max_attempts = 5  # Set max number of attemps
+
+    while attempts < max_attempts:
+        try:
+            # Ask the player for guess
+            player_guess = int(input('Enter your guess: '))
+
+            # Check if guess is correct 
+            if player_guess == secret_number:
+                print(f'\nCongratulations! You guessed the correct number {secret_number} in {attempts + 1} attempts.')
+                break
+            elif player_guess < secret_number:
+                print('Your Guess is Too Low! Try Again.\n')
+            else:
+                print('Your Guess is Too High! Try Again.\n')
+
+            attempts += 1
+        except ValueError:
+            print('\nInvalid input. Please enter a valid number.\n')
+
     else:
-        print('You lose! The secret number was {}'.format(secret_number))
+        print(f'Sorry, you\'ve reached the maximum attempts. The correct number was {secret_number}.')
 
-
-if __name__ ==  '__main__':
-    main()
+if __name__ == '__main__':
+    number_guessing_game()

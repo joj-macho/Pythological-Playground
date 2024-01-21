@@ -1,103 +1,82 @@
 import random
 
-# Game Constants
-NUM_DIGITS = 3
-NUM_GUESSES = 10
-
 def main():
-    '''Main function to handle the logic of the game.'''
+    '''Main function to play the Bagels game.'''
 
     print('''
-Pico Fermi Bagels!
-Can you guess the 3-digit number...?
+Welcome To The Pico Fermi Bagels Game!
+
+Your challenge is to guess the secret three-digit number with no repeated digits.
 
 Here are the clues:
-Pico -- One digit is correct, but in the wrong position.
-Fermi --- One digit is correct, and in the right position.
-Bagels --- No digit is correct.
-    ''')
+    - Pico: One digit is correct but in the wrong position.
+    - Fermi: One digit is correct and in the right position.
+    - Bagels: No digit is correct.
+''')
+
+    input('Press Enter to start the game...')
 
     while True:
-        # Generate a secret number.
         secret_number = generate_secret_number()
-        print(f'\nI thought of a {NUM_DIGITS}-digit number. Can you guess it?\nYou have {NUM_GUESSES} tries to guess the number correctly!\n')
-        # print(secret_number)
-        
-        number_of_guesses = 1
-        while number_of_guesses <= NUM_GUESSES:
-            # Get a valid guess from the player
-            guess = get_valid_guess()
+        # print(secret_number)  # Uncomment for debugging to see the secret number
 
-            # Generate clues based on the player's guess and the secret number
-            clues = generate_clues(guess, secret_number)
-            print(clues)
-            number_of_guesses += 1
+        attempts = 0
+        max_attempts = 10
 
-            # Check if the player guessed the correct number
+        print(f'\nI\'ve chosen a three-digit number. Can you guess it?\nYou have {max_attempts} attempts to guess the number correctly!\n')
+
+        while attempts < max_attempts:
+            guess = get_user_guess()
+            attempts += 1
+
             if guess == secret_number:
-                print('Congratulations! You guessed the correct number!')
+                print(f'\nCongratulations! You guessed the correct number {secret_number} in {attempts} attempts.\n')
                 break
+            else:
+                clues = generate_clues(guess, secret_number)
+                print(clues)
 
-            # When you run out of guesses
-            if number_of_guesses > NUM_GUESSES:
-                print(f'You ran out of guesses. The correct answer was {secret_number}')
-                
-        if not play_again():
+        else:
+            print(f'\nSorry, you\'ve reached the maximum attempts. The correct number was {secret_number}.\n')
+
+        play_again = input('Do you want to play again? (y)es or (n)o: ').lower()
+        if play_again.startswith('y'):
+            continue
+        else:
+            print('Bye!')
             break
 
-
 def generate_secret_number():
-    '''Generate and return a string of random NUM_DIGITS numbers.'''
-
-    # Generate unique digits
-    numbers = random.sample('0123456789', NUM_DIGITS)
-
+    '''Generate a secret three-digit number with no repeated digits.'''
+    numbers = random.sample('0123456789', 3)
     return ''.join(numbers)
 
-
-def get_valid_guess():
-    '''Prompt the user to enter a valid 3-digit number.'''
-
+def get_user_guess():
+    '''Get a three-digit number guess from the player.'''
     while True:
-        guess = input(f'Guess: ')
-        if len(guess) == NUM_DIGITS and guess.isdecimal():
-            return guess
-        else:
-            print(f'Enter a valid {NUM_DIGITS}-digit number.')
-
+        try:
+            guess = input('Enter your guess: ')
+            if len(guess) == 3 and guess.isdecimal():
+                return guess
+            else:
+                print('\nInvalid Input. Please enter a valid three-digit integer number with no repeated digits.\n')
+        except ValueError:
+            print('\nInvalid input. Please enter a valid three-digit integer number with no repeated digits.\n')
 
 def generate_clues(guess, secret_number):
-    '''Generate and return a string of clues based on the user's guess and the secret number.'''
-
-    if guess == secret_number:
-        return 'You guessed CORRECTLY!'
-
+    '''Generate clues based on the user guess.'''
     clues = []
-    for i in range(NUM_DIGITS):
+    for i in range(3):
         if guess[i] == secret_number[i]:
             clues.append('Fermi')
         elif guess[i] in secret_number:
             clues.append('Pico')
-
-    if len(clues) == 0:
-        return 'Bagels'
+    
+    if not clues:
+        clues.append('Bagels')
     else:
         clues.sort()
-        return ' '.join(clues)
-
-
-def play_again():
-    '''Prompt the user to play again or quit.'''
-
-    while True:
-        response = input('Do you want to play again? (y)es or (n)o:\n> ').lower()
-        if response.startswith('y'):
-            return True
-        elif response.startswith('n'):
-            return False
-        else:
-            print('Invalid input. Please enter (y)es or (n)o.')
-
+    return ' '.join(clues)
 
 if __name__ == '__main__':
     main()

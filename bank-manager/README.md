@@ -6,21 +6,23 @@ The Bank Account Manager (aka ATM Simulator) program is a Python program that em
 
 ## How it Works
 
-- The program employs a class-based approach with the `BankAccount` class serving as the core structure to manage user accounts. Each `BankAccount` instance represents a distinct user account and encapsulates attributes like the account holder's name, password, and account balance.
+- The program uses a class-based approach with the `BankAccount` class (in `bank_account_manager.py`) serving as the core structure to manage user accounts. Each `BankAccount` instance represents a distinct user account and has attributes like the account holder's name, pin number, and account balance.
 
-- The program initiates by displaying a welcome screen using the `display_centered` function and introducing a brief delay using the `time.sleep` function for a more engaging user experience.
+- The `main()` function (in `main_bank.py`) runs the `bank_account_manager`. This function provides a user interface for managing a bank account, allowing users to perform transactions like deposit, withdraw, and transfer. It interacts with the `BankAccount` class to execute these transactions based on user input.
 
-- On startup, the user is prompted to enter their name, password, and initial balance to create their account. These details are used to initialize an instance of the `BankAccount` class.
+- The program initiates by displaying a welcome screen using the `display_centered` function and introducing a brief delay using the `time.sleep` function for a more 'realistic' user experience.
+
+- On startup, the user is prompted to enter their name, pin number, and initial balance to create their account. These details are used to initialize an instance of the `BankAccount` class.
 
 - The main loop presents users with a menu containing five options: Balance Inquiry, Withdrawal, Deposit, Transfer, and Exit. Users select an option by entering the corresponding number. The program processes the chosen operation by calling the appropriate methods on the user's account instance.
 
-- During interactions, the program provides informative messages to guide users through each step of the operation. It also introduces a short delay using `time.sleep` to simulate processing time, enhancing the realism of the ATM experience. For instance, when performing a balance inquiry, the program displays a "Processing..." message and a brief delay before revealing the user's account balance.
+- During interactions, the program provides informative messages to guide users through each step of the operation. It also introduces a short delay using `time.sleep` to simulate processing time, enhancing the realism of the ATM experience..
 
-- In case of withdrawals, deposits, and transfers, the program validates user inputs, ensuring that the provided amounts are valid positive numbers. If invalid inputs are detected, the program notifies the user accordingly.
+- In case of withdrawals, deposits, and transfers, the program validates user inputs using the `validate_amount` function, ensuring that the provided amounts are valid positive numbers. If invalid inputs are detected, the program notifies the user accordingly.
 
 ## Program Input & Output
 
-When you run the program `bank_manager.py`, the output will look like this;
+When you run the program `main_bank.py`, the output will look like this;
 
 ```
 
@@ -32,7 +34,7 @@ When you run the program `bank_manager.py`, the output will look like this;
 Intitializing ATM ...
 
 Enter your name: Joj
-Enter your password: 1234
+Enter your pin number: 1234
 Enter your initial balance: 100
 
 ****************************************

@@ -2,26 +2,28 @@
 
 ## Description
 
-This program displays bouncing DVD logos on the console. It generates multiple DVD logo objects with random positions and directions, and then animates their movement within the console window. The logos bounce off the edges and corners of the window, changing direction upon collision.
+This program simulates the bouncing DVD logos on the screen. It generates multiple DVD logo objects with random positions and directions, and then animates their movement within the console window. The logos bounce off the edges and corners of the window, changing direction upon collision.
 
 ## How it Works
 
-- The program starts by importing the necessary modules: `sys`, `random`, `time`, and `bext` (a module for console text and background color manipulation). The program then defines the screen set-up, program constants, and key names.
+- The program starts by importing the necessary modules: `sys`, `random`, `time`, and `bext` (a module for console text and background color manipulation).
+
+- Constants are defined, including:
     - `WIDTH` and `HEIGHT` represent the dimensions of the console window.
     - `NUMBER_OF_LOGOS` determines the number of bouncing DVD logos to display.
     - `PAUSE_AMOUNT` specifies the time delay between each frame.
     - `COLORS` is a list of color options for the logos.
     - `UP_RIGHT`, `UP_LEFT`, `DOWN_RIGHT`, and `DOWN_LEFT` are string constants representing different directions.
     - `DIRECTIONS` is a tuple that contains all the direction constants.
-    - `COLOR`, `X_POSITION`, `Y_POSITION`, and `DIRECTION` are key names for logo dictionaries. These keys are used to access specific information in the logo dictionaries.
+    - `COLOR`, `X_POSITION`, `Y_POSITION`, and `DIRECTION` are used to access specific information in the logo dictionaries.
 
-- The `main` function starts off by calling `bext.clear()` which clears the console. Then it generates a list of `logos` by calling the `generate_logos` function, which then creates a list of logo dictionaries with random positions and directions. The number of logos generated is based on the `NUMBER_OF_LOGOS` constant. A variable `corner_bounces` is initialized to keep track of the number of times a logo bounces off a corner.
+- The `main` function starts off by clearing the screen using the `bext.clear()`. Then it generates a list of `logos` by calling the `generate_logos` function, which then creates a list of logo dictionaries with random positions and directions. The number of logos generated is based on the `NUMBER_OF_LOGOS` constant. A variable `corner_bounces` is initialized to keep track of the number of times a logo bounces off a corner.
 
 - The program enters an infinite loop where each iteration represents a frame. Within the loop, the program iterates over each logo in the `logos` list and handles the bounce logic.
 
-- The console cursor is moved to the position of the current logo using `bext.goto(logo[X_POSITION], logo[Y_POSITION])`, and three empty spaces are printed using `print(' ', end='')`. This effectively clears the previous logo at its old position. The original direction of the logo is stored in `original_direction` for later comparison.
+- The console cursor is moved to the position of the current logo using `bext.goto(logo[X_POSITION], logo[Y_POSITION])`, and three empty spaces are printed using `print(' ', end='')`. This effectively clears the previous logo at its old position. The bounce direction of the logo is stored in `bounce_direction` for later comparison.
 
-- The `handle_bounce` function is called to handle logo bouncing logic. If a logo bounces off a corner, `handle_bounce` returns `True` and the `corner_bounces` counter is incremented. If the current direction of the logo is different from the original direction, a new random color is assigned to the logo.
+- The `handle_bounce` function is called to handle logo bouncing logic. If a logo bounces off a corner, `handle_bounce` returns `True` and the `corner_bounces` counter is incremented. If the current direction of the logo is different from the bounce direction, a new random color is assigned to the logo.
 
 - Depending on the current direction of the logo, its position is updated accordingly by modifying `logo[X_POSITION]` and `logo[Y_POSITION]`. After updating the positions of all logos, the console is moved to the position to display the corner bounces count using `bext.goto(5, 0)`. The color is set to white (`bext.fg('white')`) and the corner bounces count is printed.
 
@@ -30,10 +32,6 @@ This program displays bouncing DVD logos on the console. It generates multiple D
 - Finally, the console cursor is moved to the top-left corner using `bext.goto(0, 0)`, the output is flushed (`sys.stdout.flush()`), and the program pauses for a short duration specified by `PAUSE_AMOUNT` using `time.sleep(PAUSE_AMOUNT)`.
 
 - The `generate_logos` function takes the `number_of_logos` argument and returns a list of logo dictionaries. Each logo dictionary contains a random color, random position within the console dimensions, and a random direction.
-
-- The `handle_bounce` function takes a logo dictionary as an argument and handles the logo's bouncing logic. It checks if the logo has hit any of the corners or edges of the console and changes the logo's direction accordingly. If a corner bounce occurs, the function returns `True`; otherwise, it returns `False`.
-
-- The program handles keyboard interrupts (Ctrl+C) and exits gracefully by printing "Bye!" and calling `sys.exit()` when interrupted.
 
 ## Program Input & Output
 

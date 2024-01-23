@@ -4,20 +4,15 @@
 
 This program is a Python implementation of the Higher or Lower Card Game. In this game, the player guesses whether the next card in a set of cards will be higher or lower than the current card shown. The goal is to make correct guesses to maximize the score.
 
-
 ## How it works
 
-- The program begins by importing the <code>random</code> and <code>sys</code> modules. It then defines variables representing the four suits in a deck of playing cards: <code>HEARTS</code>, <code>DIAMONDS</code>, <code>SPADES</code>, and <code>CLUBS</code>. Each suit is represented using their Unicode character codes.
+- The main game logic is defined in the `main()` function. This function starts by displaying the game rules and instructions to the player. The game begins with a starting card displayed on the console. Players must decide whether the next card will be higher or lower.
 
-- The main game logic is defined in the <code>main()</code> function. This function starts by displaying the game rules and instructions to the player, generates a deck of cards using <code>generate_card_deck()</code>, and starts the game loop. The player is prompted to guess if the next card will be higher or lower than the current card, and points are awarded or deducted accordingly.
+- Players input their prediction by pressing 'h' for higher or 'l' for lower.
 
-- The <code>generate_card_deck()</code> function creates a deck of cards by iterating through suits and ranks, creating tuples to represent each card. It shuffles the deck using <code>random.shuffle()</code>.
+- The next card is drawn, and the game evaluates the guess. Players earn points for correct guess and lose points for incorrect ones.
 
-- The <code>show_card()</code> function displays a card in a stylized format using Unicode characters.
-
-- The game continues for a specified number of rounds (<code>NUM_OF_CARDS</code>). In each round, the player guesses whether the next card will be higher or lower than the current card. The score is updated based on correct or incorrect guesses.
-
-- The player is given the option to play again or quit. If the player chooses to quit, the game terminates.
+- The game continues for a specified number of rounds. The player's current score is displayed after each round.
 
 ## Program Input & Output
 
@@ -25,103 +20,132 @@ When you run `high_low.py`, the output will look like this:
 
 ```
 
-Welcome to Higher or Lower card game!
+Welcome to the Higher or Lower Card Game!
 
-In this game, you have to choose whether the next card will be higher or lower than the current card.
-    - Starting with 50 points...
-    - If you guess correctly, you get 20 points
-    - If you guess incorrectly, you lose 15 points
+Rules:
+    - Guess whether the next card will be higher or lower than the current card.
+    - Correct guesses earn 20 points, incorrect guesses result in a loss of 15 points.
+    - The game starts with a score of 50 points.
 
-How to Play:
-    - Enter (h)igher to guess higher card.
-    - Enter (l)lower to guess lower card.
-    - You can (q)uit to exit program.
-    
 Starting card:
- ___ 
-|Q  |
-| ♠ |
-|__Q|
-
-Do you think the next card will be (h)igher or (l)ower? (q)uit to exit: l
-Next Card is:
- ___ 
-|3  |
-| ♠ |
-|__3|
-
-Correct! You guessed lower.
-Your Score: 70.
-
-Do you think the next card will be (h)igher or (l)ower? (q)uit to exit: h
-Next Card is:
- ___ 
-|4  |
-| ♥ |
-|__4|
-
-Correct! You guessed higher.
-Your Score: 90.
-
-Do you think the next card will be (h)igher or (l)ower? (q)uit to exit: h
-Next Card is:
- ___ 
-|A  |
-| ♣ |
-|__A|
-
-Correct! You guessed higher.
-Your Score: 110.
-
-Do you think the next card will be (h)igher or (l)ower? (q)uit to exit: h
-Next Card is:
- ___ 
-|8  |
-| ♥ |
-|__8|
-
-Wrong! The card is lower.
-Your Score: 95.
-
-Do you think the next card will be (h)igher or (l)ower? (q)uit to exit: l
-Next Card is:
- ___ 
-|9  |
-| ♦ |
-|__9|
-
-Wrong! The card is higher.
-Your Score: 80.
-
-Do you think the next card will be (h)igher or (l)ower? (q)uit to exit: l
-Next Card is:
- ___ 
-|K  |
-| ♠ |
-|__K|
-
-Wrong! The card is higher.
-Your Score: 65.
-
-Do you think the next card will be (h)igher or (l)ower? (q)uit to exit: l
-Next Card is:
- ___ 
-|3  |
-| ♣ |
-|__3|
-
-Correct! You guessed lower.
-Your Score: 85.
-
-Do you think the next card will be (h)igher or (l)ower? (q)uit to exit: h
-Next Card is:
  ___ 
 |7  |
 | ♥ |
 |__7|
 
-Correct! You guessed higher.
-Your Score: 105.
+Will the next card be (h)igher or (l)ower than the current card (7 of ♥)?
+Press "h" for higher, "l" for lower
+> l
+Next card:
+ ___ 
+|6  |
+| ♦ |
+|__6|
 
-Press ENTER to play again, press (q)uit to exit: q
+Correct! 6 of ♦ is lower than 7 of ♥.
+You earned 20 points.
+Your current score: 70
+
+Will the next card be (h)igher or (l)ower than the current card (6 of ♦)?
+Press "h" for higher, "l" for lower
+> h
+Next card:
+ ___ 
+|9  |
+| ♥ |
+|__9|
+
+Correct! 9 of ♥ is higher than 6 of ♦.
+You earned 20 points.
+Your current score: 90
+
+Will the next card be (h)igher or (l)ower than the current card (9 of ♥)?
+Press "h" for higher, "l" for lower
+> l
+Next card:
+ ___ 
+|A  |
+| ♠ |
+|__A|
+
+Correct! A of ♠ is lower than 9 of ♥.
+You earned 20 points.
+Your current score: 110
+
+Will the next card be (h)igher or (l)ower than the current card (A of ♠)?
+Press "h" for higher, "l" for lower
+> o
+Invalid input. Please enter "h" for higher or "l" for lower.
+
+Will the next card be (h)igher or (l)ower than the current card (A of ♠)?
+Press "h" for higher, "l" for lower
+> l
+Next card:
+ ___ 
+|5  |
+| ♥ |
+|__5|
+
+Wrong! 5 of ♥ is higher than A of ♠.
+You lost 15 points.
+Your current score: 95
+
+Will the next card be (h)igher or (l)ower than the current card (5 of ♥)?
+Press "h" for higher, "l" for lower
+> h
+Next card:
+ ___ 
+|A  |
+| ♦ |
+|__A|
+
+Wrong! A of ♦ is lower than 5 of ♥.
+You lost 15 points.
+Your current score: 80
+
+Will the next card be (h)igher or (l)ower than the current card (A of ♦)?
+Press "h" for higher, "l" for lower
+> h
+Next card:
+ ___ 
+|2  |
+| ♥ |
+|__2|
+
+Correct! 2 of ♥ is higher than A of ♦.
+You earned 20 points.
+Your current score: 100
+
+Will the next card be (h)igher or (l)ower than the current card (2 of ♥)?
+Press "h" for higher, "l" for lower
+> h
+Next card:
+ ___ 
+|8  |
+| ♦ |
+|__8|
+
+Correct! 8 of ♦ is higher than 2 of ♥.
+You earned 20 points.
+Your current score: 120
+
+Will the next card be (h)igher or (l)ower than the current card (8 of ♦)?
+Press "h" for higher, "l" for lower
+> l
+Next card:
+ ___ 
+|Q  |
+| ♣ |
+|__Q|
+
+Wrong! Q of ♣ is higher than 8 of ♦.
+You lost 15 points.
+Your current score: 105
+
+Game Over!
+Your final score is 105.
+
+To play again, press ENTER, or "q" to quit:
+> q
+Thank you for playing! Goodbye!
 ```

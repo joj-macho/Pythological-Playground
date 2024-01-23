@@ -2,7 +2,9 @@
 
 ## Description
 
-This program simulates the bouncing DVD logos on the screen. It generates multiple DVD logo objects with random positions and directions, and then animates their movement within the console window. The logos bounce off the edges and corners of the window, changing direction upon collision.
+This program emulates the classic bouncing DVD logos on the screen. It creates multiple DVD logo objects with randomized positions and directions, then animates their movement within the console window. The logos bounce off the edges and corners of the window, changing direction upon collision.
+
+For an enhanced experience, explore the [Pygame version of this DVD logo animation](https://github.com/joj-macho/Pygame-Playground/tree/main/animate-bouncing-dvd-logo).
 
 ## How it Works
 

@@ -8,17 +8,13 @@ The objective of the game is to anticipate and counter your opponent's move with
 
 ## How it works
 
-- The program begins by importing the `random`, `time`, and `sys` modules. These modules are used for generating random numbers, introducing delays, and exiting the program, respectively.
+- The program uses the `random`, `time`, and `sys` modules for generating random numbers, introducing delays, and exiting the program, respectively.
 
-- The program then defines three constant variables (`ROCK`, `PAPER`, `SCISSORS`) that store the ASCII art representations of rock, paper, and scissors. The available options for the game (rock, paper, scissors) are stored in a dictionary called `OPTIONS`. Each option is associated with a key ('r' for rock, 'p' for paper, 's' for scissors) and a tuple value containing the name of the option and its corresponding ASCII art.
+- `ROCK`, `PAPER`, `SCISSORS` each store the ASCII art representations of rock, paper, and scissors. The available options for the game (rock, paper, scissors) are stored in a dictionary called `OPTIONS`. Each option is associated with a key ('r' for rock, 'p' for paper, 's' for scissors) and a tuple value containing the name of the option and its corresponding ASCII art.
 
-- The `main()` function is defined. This function begins by printing a welcome message. Then it initializes variables to keep track of the score: `wins`, `losses`, and `ties`.
+- The `main()` function is has an outer `while` loop that runs indefinitely until the user chooses to quit the game. Inside the outer loop, there is an inner `while` loop that prompts the user to enter their move (rock, paper, scissors) or to quit the game.
 
-- The program enters an outer while loop that runs indefinitely until the user chooses to quit the game. Inside the outer loop, there is an inner while loop that prompts the user to enter their move (rock, paper, scissors) or to quit the game.
-
-- The program checks the user's input. If the user chooses to quit by entering 'q', the program prints "Bye!" and exits using `sys.exit()`. If the user enters a valid move ('r', 'p', 's' for rock, paper, scissors), the loop is exited using break.
-
-- After the inner loop, the program determines the player's move based on their input. The player's move is stored in the `player_move `variable, which is retrieved from the `OPTIONS` dictionary based on the user's input. The player's move is displayed by printing the name and ASCII art associated with the chosen option.
+- The program checks the user's input.
 
 - The computer's move is randomly selected from the `OPTIONS` dictionary using `ranom.choice()` function. It assigns the move as a string to the `computer_move` variable. The computer's move is displayed similarly to the player's move.
     - The program introduces a delay of 1 second using `time.sleep()` and then displays the computer's move. Another delay of 0.5 seconds is introduced using `time.sleep()`.

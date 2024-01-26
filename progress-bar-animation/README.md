@@ -6,7 +6,7 @@ This program simulates a progress bar for a download process using random values
 
 ## How it Works
 
-- The program imports the `random` and `time` modules which are used to generate random numbers and control the timing of the progress bar simulation, respectively.
+- The program uses the `random` and `time` modules to generate random numbers and control the timing of the progress bar simulation, respectively.
 
 - The program defines a constant `BAR` which is set to the Unicode character for a filled block (▇) and `DOWNLOAD_SIZE` which represents the total size of the download.
 
@@ -19,7 +19,6 @@ This program simulates a progress bar for a download process using random values
 - This process continues until the `downloaded` variable reaches or exceeds the `total_size`. Once the download is completed, the program prints a message indicating that the download is finished.
 
 - The `generate_progress_bar()` function takes the `progress`, `total`, and `bar_width` as inputs and returns a string representing the progress bar. It calculates the number of filled bars based on the ratio of the `progress` to the `total` using integer division. The remaining empty spaces are filled with spaces. The percentage of completion and the current progress and total size are appended to the progress bar string.
-
 
 ## Program Input & Output
 

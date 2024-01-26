@@ -1,14 +1,10 @@
-
 def main():
-    '''Main function for the BMI calculator.'''
-
+    '''Main function to calculate the BMI of a person.'''
     print('\nWelcome to the BMI Calculator!\n')
 
-    # Input height and weight
     height = input('Enter your height in cm: ')
     weight = input('Enter your weight in kg: ')
 
-    # Calculate BMI
     bmi = calculate_bmi(height, weight)
 
     # Display result
@@ -16,24 +12,18 @@ def main():
     print(f'\nYour BMI is: {bmi:.2f}')
     print(f'You are {classification}\n')
 
-
 def calculate_bmi(height, weight):
     '''Calculate BMI based on height and weight.'''
-
     try:
         height_cm = float(height)
         weight_kg = float(weight)
-
-        # BMI calculation
         bmi = weight_kg / ((height_cm / 100) ** 2)
         return bmi
     except ValueError:
         return None
 
-
 def classify_bmi(bmi):
     '''Classify BMI based on given ranges.'''
-
     if bmi is None:
         return 'ERROR: Invalid input'
 
@@ -53,7 +43,6 @@ def classify_bmi(bmi):
         return 'Obese Class II'
     else:
         return 'Obese Class III'
-
 
 if __name__ == '__main__':
     main()

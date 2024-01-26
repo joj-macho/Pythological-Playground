@@ -19,10 +19,8 @@ CHAR_MAPPING = {
     'z': ['2', '7_']
 }
 
-
 def main():
     ''' Main function to converts English text to Leetspeak.'''
-
     print('\nWelcome to Leetspeak.\n')
 
     while True:
@@ -33,14 +31,12 @@ def main():
             break
         print('Invalid input. Please try again.')
 
-
 def convert_to_leetspeak(message):
     '''Converts the given English string to Leetspeak.'''
-
     leetspeak = ''
     # Check if the character has Leetspeak replacements and randomly decide whether to replace it
     for char in message:
-        if char.lower() in CHAR_MAPPING and random.random() <= 0.70:
+        if char.lower() in CHAR_MAPPING and random.random() <= 0.60:
             possible_leet_replacements = CHAR_MAPPING[char.lower()]
             leet_replacement = random.choice(possible_leet_replacements)
             leetspeak += leet_replacement
@@ -48,7 +44,6 @@ def convert_to_leetspeak(message):
             leetspeak += char
 
     return leetspeak
-
 
 if __name__ == '__main__':
     main()

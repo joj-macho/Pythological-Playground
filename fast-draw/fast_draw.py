@@ -6,17 +6,20 @@ import sys
 DRAW_DELAY_MIN = 0.5
 DRAW_DELAY_MAX = 1.5
 DELAY_BEFORE_RESULTS = 1.0
-ROUND_LIMIT = 10
+ROUND_LIMIT = 5
 
 def main():
-    '''Main logic of the program. It provides a user-friendly experience with clear instructions and feedback.'''
+    '''Main function to run the fast draw game.'''
+    print('''
+Welcome to Fast Draw Game!
+Let us see if you are the fastest draw in the west.
 
-    # Introduction and instructions for the game
-    print('\nFast Draw!\nLet us see if you are the fastest draw in the west. \n\nWhen you see "Draw", you have 0.3 seconds to press Enter. You lose if you press Enter before the word "Draw" appears')
+When you see "Draw", you have 0.3 seconds to press Enter.
+You lose if you press Enter before the word "Draw" appears
+    ''')
 
     input('Press Enter To Continue ...')
 
-    # Initialize score counters
     wins = 0
     losses = 0
 
@@ -27,13 +30,11 @@ def main():
         # Pause for a random interval between 0.5 and 1.5 seconds
         time.sleep(random.uniform(DRAW_DELAY_MIN, DRAW_DELAY_MAX))
         print('DRAW!')
-        # Record the current time
+        
         draw_time = time.time()
-        # Wait for user input (Enter key press)
         input()
         time_elapsed = time.time() - draw_time
 
-        # Determine the outcome based on the response time
         if time_elapsed < 0.01:
             print('You drew before "DRAW" appeared. You lose!')
             losses += 1
@@ -47,25 +48,22 @@ def main():
             print('You are the fastest draw in the West!')
             wins += 1
 
-        # Display the current score
         print(f'Score: Wins = {wins}, Losses = {losses}')
 
-        # Check if round limit is reached
         if round_num == ROUND_LIMIT:
             print('\nGame Over!')
             print(f'Final Score: Wins = {wins}, Losses = {losses}')
             break
 
-        # Ask to play again
-        response = input('Press Enter to Play again, or enter (q)uit to quit.\n> ').lower()
-        while response not in ['', 'q', 'quit']:
-            response = input('Invalid input. Press Enter to Play again, or enter (q)uit to quit.\n> ').lower()
+        # Play Again?
+        play_again = input('Press Enter to Play again, or enter (q)uit to exit.\n> ').lower()
+        while play_again not in ('', 'q', 'quit'):
+            play_again = input('Invalid input. Press Enter to Play again, or enter (q)uit to quit.\n> ').lower()
 
-        if response == 'q' or response == 'quit':
+        if play_again.startswith('q'):
             print('Bye!')
             sys.exit()
 
-        # Delay before displaying results for the next round
         time.sleep(DELAY_BEFORE_RESULTS)
 
 if __name__ == '__main__':

@@ -2,19 +2,19 @@
 
 ## Description
 
-The Password Generator is a command-line program that assists users in generating, saving, and searching for passwords. It provides functionalities such as generating secure passwords with various options, saving passwords to a database, and searching for saved passwords based on the website.
+The Password Generator is a command-line program that assists users in generating, saving, and searching for passwords. It provides functionalities such as generating 'secure' passwords with various options, saving passwords to a database, and searching for saved passwords based on the website.
 
 ## How it Works
 
-- The program starts by importing necessary modules:
-    - The `random` module is used to generate random choices for creating passwords.
-    - The `json` module is employed for reading and writing JSON data.
+- The program uses the following modules:
+    - The `random` module to generate random choices for creating passwords.
+    - The `json` module for reading and writing JSON data.
     - The `string` module provides a collection of string constants, including ASCII letters (both lowercase and uppercase), digits, and punctuation symbols.
-    - The `secrets` module is used for generating cryptographically secure random numbers.
-    - The `os` module provides a way to interact with the operating system.
-    - The `Path` class from the `pathlib` module is used for working with file system paths.
+    - The `secrets` modulefor generating cryptographically secure random numbers.
+    - The `os` module to interact with the operating system.
+    - The `Path` class from the `pathlib` module for working with file system paths.
 
-- The `main` function is defined, tt displays a menu with options to generate a password, save a password, search for passwords, or exit the program. The user is prompted to enter their choice, and the corresponding action is performed.
+- The `main` function displays a menu with options to generate a password, save a password, search for passwords, or exit the program. The user is prompted to enter their choice, and the corresponding action is performed.
 
 - The `generate_password` function generates a random password with the specified length and character types (lowercase letters, symbols, digits, uppercase letters). It utilizes the `secrets` module for secure random choices.
 

@@ -1,6 +1,6 @@
 import random
 
-def number_guessing_game():
+def main():
     '''Implement and play the Number Guessing Game'''
     print('\nWelcome to the Number Guessing Game!\n')
 
@@ -30,10 +30,8 @@ def number_guessing_game():
 
     while attempts < max_attempts:
         try:
-            # Ask the player for guess
             player_guess = int(input('Enter your guess: '))
 
-            # Check if guess is correct 
             if player_guess == secret_number:
                 print(f'\nCongratulations! You guessed the correct number {secret_number} in {attempts + 1} attempts.')
                 break
@@ -50,4 +48,4 @@ def number_guessing_game():
         print(f'Sorry, you\'ve reached the maximum attempts. The correct number was {secret_number}.')
 
 if __name__ == '__main__':
-    number_guessing_game()
+    main()

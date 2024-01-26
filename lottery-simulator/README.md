@@ -6,18 +6,17 @@ This program is a Python implementation of a Lottery Simulator where players can
 
 ## How it Works
 
-- The program first imports the `random` module. The `random` module is essential in creating a realistic simulation of the lottery draw by introducing randomness in the selection of winning numbers and the powerball number.
+- The program uses the `random` module to create a realistic simulation of the lottery draw by introducing randomness in the selection of winning numbers and the powerball number.
 
-- The `main()` function is defined and called, this function displays an introductory message to welcome the user and provides instructions for playing the lottery simulation. Inside the `main()` function, there is a while loop that allows the user to play the game multiple times. The user is prompted to enter 5 different numbers from 1 to 69 and a Powerball number from 1 to 26. The user can also specify how many times they want to play the lottery.
+- The `main()` function uses a `while` loop that allows the user to play the game multiple times. The user is prompted to enter 5 different numbers from 1 to 69 and a Powerball number from 1 to 26. The user can also specify how many times they want to play the lottery.
 
-The `get_user_numbers()`, `get_user_powerball()`, and `get_user_num_plays()` functions handle user inputs for numbers selection and the number of plays.
+- The `get_user_numbers()`, `get_user_powerball()`, and `get_user_num_plays()` functions handle user inputs for numbers selection and the number of plays.
 
 - The `simulate_lottery()` function simulates the lottery draw based on user inputs. It shuffles a range of possible numbers and randomly selects winning numbers and a Powerball number for each simulation. The function then checks for matching numbers and calculates hits.
 
 - The `print_results()` function displays the simulation results, including the user's chosen numbers, the number of hits, and the maximum hits.
 
-- Players can choose whether or not to gamble again.
-
+- Players can choose whether or not to play the lottery again.
 
 ## Program Input & Output
 

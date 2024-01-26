@@ -2,19 +2,14 @@ import time
 import sys
 
 def main():
-    '''Main function that animates an indentation effect with asterisks.'''
-
+    '''Main function to animate an indentation effect with asterisks.'''
     print('\nIndentation Animation.\n')
     
-    # Spaces to indent.
-    indent = 0 
-    # Increase indentation or not?
+    indent = 0  # Spaces to indent.
     is_indent_increasing = True  
-    # Pause duration in seconds.
     sleep_duration = 0.1  
 
     try:
-        # The main program loop.
         while True:  
             print(' ' * indent, end='')
             print('********')

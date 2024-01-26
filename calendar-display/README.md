@@ -4,32 +4,29 @@
 
 This program generates a text-based calendar for a given year and month. It prompts the user to enter a valid year and month, and then generates a calendar for that month and year. The calendar is displayed in the terminal window.
 
-
 ## How it Works
 
 - The program uses the `datetime` module to handle dates and time. It defines two constant tuples, `MONTHS` and `DAYS`, to store the names of the months and days of the week, respectively.
 
+### `calendar_display_1.py`
 
-### calendar_display_1.py
-
-- The `main()` function starts by prompting the user to enter a year and month, and then calls the `generate_calendar()` function with the specified `year` and `month` as arguments. The resulting calendar is then printed to the console.
+- The `main()` function prompts the user to enter a year and month, and then calls the `generate_calendar()` function with the specified `year` and `month` as arguments. The resulting calendar is then printed to the console.
 
 - The `generate_calendar()` function takes in a year and month and returns a string representation of the corresponding calendar.
     - The function first generates a title for the calendar by concatenating the month and year, and then adds a row of days of the week (Sunday, Monday, Tuesday, etc.). The function then creates a separator for each week, a blank row for each day, and starts at the first day of the specified month. It then iterates over each week of the month, adding the day of the month to the appropriate day of the week. After each week, it adds three blank rows and continues until the last day of the month is reached. Finally, the function returns the entire string representation of the calendar.
 
-### calendar_display_2.py
+### `calendar_display_2.py`
 
-- The program is a simple command-line calendar display application that prompts the user to either display a yearly or monthly calendar using the calendar module in Python.
+- The calendar program is a simple command-line calendar display application that prompts the user to either display a yearly or monthly calendar using the `calendar` module.
 
-- The `main()` function prompts the user to select an option for displaying the calendar. If the user enters 1, the program prompts the user to enter a year to display and then prints the yearly calendar for that year using the `calendar.calendar()` function. If the user enters 2, the program prompts the user to enter a year and month to display and then prints the monthly calendar for that year and month using the `calendar.month()` function.
-
-- The `calendar.calendar()` function returns a multi-line string representing a calendar for an entire year, while the `calendar.month()` function returns a multi-line string representing a calendar for a specific month of a year.
+- The `main()` function prompts the user to select an option for displaying the calendar. If the user chooses to display the yearly calendar, the program prints the yearly calendar for that year using the `calendar.calendar()` function. If the user chooses to display the year and month, the program prints the monthly calendar for that year and month using the `calendar.month()` function.
 
 ## Program Input & Output
 
 When you run `calendar_display_1.py`, the output will look like this:
 
 ```
+
 Text-based Calendar Maker.
     
 Enter a Calendar Year:
@@ -70,7 +67,7 @@ When you run `calendar_display_2.py`, the output will look like this:
 
 ```
 
-Calendar Display
+Text-based Calendar Maker - Version 2.
 
 Select option to display:
 Enter 1 to show year only.

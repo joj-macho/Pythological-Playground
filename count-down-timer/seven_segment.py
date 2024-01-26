@@ -1,7 +1,6 @@
-
 def main():
+    '''Main function to display digits using seven-segments.'''
     print('\nSeven-Segment Number Display\n')
-    # Check to see if valid number entered.
     while True:
         response = input('Enter number to show:\n> ')
         if not response.isdecimal():
@@ -10,15 +9,12 @@ def main():
             response = int(response)
             break
 
-    print(generate_seven_segments(response))
+    print(display_seven_segments(response))
     print()
 
-
-def generate_seven_segments(number, minWidth=0):
-    '''This function takes the number and the 0-padding as an input and returns a seven segment display string of the number'''
-
-    number = str(number).zfill(minWidth)
-    # print(number)
+def display_seven_segments(number, min_width=0):
+    '''Generate the seven segment display string of a number'''
+    number = str(number).zfill(min_width)
     rows = ['', '', '']
     for i, numeral in enumerate(number):
         if numeral == '.':
@@ -78,7 +74,6 @@ def generate_seven_segments(number, minWidth=0):
             rows[2] += ' '
 
     return '\n'.join(rows)
-
 
 if __name__ == '__main__':
     main()

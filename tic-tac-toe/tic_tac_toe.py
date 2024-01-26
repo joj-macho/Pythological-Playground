@@ -69,12 +69,10 @@ def main():
 
 def generate_new_board():
     '''Generate a new blank tic-tac-toe board.'''
-
     return {space: BLANK for space in ALL_SPACES}
 
 def generate_board_string(board):
     '''Generate a string representation of the board.'''
-
     return '''
       {}|{}|{}  1 2 3
       -+-+-
@@ -84,12 +82,10 @@ def generate_board_string(board):
 
 def is_valid_space(board, space):
     '''Check if a space on the board is valid and blank.'''
-
     return space in ALL_SPACES and board[space] == BLANK
 
 def is_winner(board, player):
     '''Check if the current player is the winner.'''
-
     for combination in WINNING_COMBINATIONS.values():
         if all(board[space] == player for space in combination):
             return True
@@ -97,20 +93,15 @@ def is_winner(board, player):
 
 def is_board_full(board):
     '''Check if the board is full.'''
-
     return all(board[space] != BLANK for space in ALL_SPACES)
 
 def update_board(board, space, mark):
     '''Update the board by setting a space to the current player's mark.'''
-
     board[space] = mark
 
 def switch_player(player):
     '''Switch the current player between X and O.'''
-
     return O if player == X else X
-
-
 
 if __name__ == '__main__':
     main()

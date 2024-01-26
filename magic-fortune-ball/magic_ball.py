@@ -1,11 +1,8 @@
-# Import modules 
 import random
 import time
 
-
 def main():
-    '''Main function of the Magic Fortune Teller.'''    
-
+    '''Main function to run Magic Fortune Teller.'''    
     # Slow spaced print
     slow_print('Magic Fortune Ball!')
     print('   ___')
@@ -66,22 +63,19 @@ def main():
 
     slow_print(random.choice(answers), 0.05)
 
-    # Ask if the user wants to play again
+    # Play Again?
     play_again = input('\nDo you want to ask another question? (y/n)\n> ').lower()
     if play_again == 'y':
         main()
     else:
         print('Thank you for playing! Bye.')
 
-
 def slow_print(text, interval=0.04):
     '''Slowly display text with spaces in between letters'''
-
     for char in text:
         print(char , end='', flush=True)
         time.sleep(interval)
     print()
-
 
 if __name__ == '__main__':
     main()

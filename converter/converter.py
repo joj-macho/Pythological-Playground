@@ -4,7 +4,6 @@ def main():
     print('\nWelcome to the Unit Converter Program!\n')
 
     while True:
-        # Display menu options
         print('Choose a Conversion Option:')
         print('1. Length')
         print('2. Mass')
@@ -37,11 +36,10 @@ def main():
         else:
             print('\nInvalid choice. Please try again.')
 
-        cont = input('\nDo you want to perform another conversion? (y/n): ').lower()
-        if cont != 'y':
+        convert_again = input('\nDo you want to perform another conversion? (y/n): ').lower()
+        if convert_again != 'y':
             print('Bye!')
             break
-
 
 def get_unit_list(category):
     if category == 'length':
@@ -50,7 +48,6 @@ def get_unit_list(category):
         return ['g', 'kg', 'mg', 'lb', 'oz', 'ton']
     elif category == 'temperature':
         return ['Celsius', 'Fahrenheit', 'Kelvin']
-
 
 def convert_length(length, unit_from, unit_to):
     '''Convert length to the specified units and print the result.'''
@@ -114,7 +111,6 @@ def convert_temperature(temperature, unit_from, unit_to):
         print(f'Result: {temperature} {unit_from} = {result} {unit_to}')
     else:
         print('Invalid units.')
-
 
 if __name__ == '__main__':
     main()

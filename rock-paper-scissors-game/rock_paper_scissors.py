@@ -80,6 +80,5 @@ Rock Paper Scissors Game. The rules of the game are simple;
             print('You Lose!\n')
             losses += 1
 
-
 if __name__ == '__main__':
     main()

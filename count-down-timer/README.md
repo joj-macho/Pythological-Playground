@@ -1,4 +1,4 @@
-# Countdown Timer
+# Count-down Timer
 
 ## Description
 
@@ -21,13 +21,11 @@ E     C
 
 ### count_down_1.py
 
-- The program begins by importing the `time` module, well duh.
-
-- The `main()` program first displays a welcome message. Then, it uses a while loop to continuously prompt the user to enter a valid number of seconds to count down from. The program ensures that the user input is a decimal number using the `isdecimal()` method.
+- The `main()` function uses a while loop to continuously prompt the user to enter a valid number of seconds to count down from. The program ensures that the user input is a decimal number using the `isdecimal()` method.
 
 - The program then calls the `count_down()` function and passes the user input as an argument to it. The `count_down()` function then takes the start time as an argument and enters a loop that subtracts one second from the start time variable in each iteration. The `divmod()` function is used to calculate the minutes and seconds left in the countdown. These values are then formatted into a string using the f-string syntax and displayed to the user.
 
-- The loop continues until the start time variable becomes zero. Finally, the program prints a message to indicate that the countdown is complete.
+- The loop continues until the start time variable becomes zero.
 
 ### count_down_2.py
 
@@ -37,10 +35,9 @@ E     C
 
 - The `main()` function prompts the user to enter a valid number of seconds to countdown, using a while loop that continues to ask for input until a valid integer is entered. Once a valid integer is entered, the `count_down` function is called with the entered integer as an argument.
 
-- The `count_down` function takes the starting time as an argument and performs the countdown using a while loop. Within each iteration of the loop, the number of hours, minutes, and seconds remaining are calculated and passed to the `generate_seven_segment` function from the `seven_segments` module, which returns seven-segment display strings for each digit. These strings are then split into three lines each. The resulting strings are printed to the console, separated by spaces and asterisks, to create a visually appealing display of the remaining time in the countdown. The loop also includes a one-second pause using the `time.sleep` function and decrements the `start_time` variable by one each iteration.
+- The `count_down` function takes the starting time as an argument and performs the countdown using a while loop. Within each iteration of the loop, the number of hours, minutes, and seconds remaining are calculated and passed to the `display_seven_segments` function from the `seven_segments` module, which returns seven-segment display strings for each digit. These strings are then split into three lines each. The resulting strings are printed to the console, separated by spaces and asterisks, to create a visually appealing display of the remaining time in the countdown. The loop also includes a one-second pause using the `time.sleep` function and decrements the `start_time` variable by one each iteration.
 
 - If the countdown reaches zero, the program prints "COUNTDOWN COMPLETE" to the console and exits the loop.
-
 
 ## Program Input & Output
 

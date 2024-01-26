@@ -26,8 +26,7 @@ STRAND = [
 
 
 def main():
-    '''This is the main function'''
-
+    '''Main function to run the DNA animation.'''
     print('\nDNA Animation\n')
 
     try:
@@ -55,7 +54,6 @@ def main():
     except KeyboardInterrupt:
         print('Goodbye')
         sys.exit()
-
 
 if __name__ == '__main__':
     main()

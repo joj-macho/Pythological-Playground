@@ -6,7 +6,7 @@ This program is a command-line implementation of the classic Tic-Tac-Toe game. I
 
 ## How it Works
 
-- First, the program defines some constants; `ALL_SPACES` is a list containing all the possible spaces on the Tic-Tac-Toe board. `X`, `O`, and `BLANK` represent the player marks for X, O, and empty spaces, respectively. The program also defines a dictionary called `WINNING_COMBINATIONS`, which contains all the possible winning combinations in the Tic-Tac-Toe game. Each key represents a specific combination (e.g., 'across_top', 'diagonal'), and the corresponding value is a list of spaces that form that combination.
+- `ALL_SPACES` is a list containing all the possible spaces on the Tic-Tac-Toe board. `X`, `O`, and `BLANK` represent the player marks for X, O, and empty spaces, respectively. The program also defines a dictionary called `WINNING_COMBINATIONS`, which contains all the possible winning combinations in the Tic-Tac-Toe game. Each key represents a specific combination (e.g., 'across_top', 'diagonal'), and the corresponding value is a list of spaces that form that combination.
 
 - The `main` function starts by displaying a welcome message. Then the `generate_new_board` function is called to create a new blank Tic-Tac-Toe board. It returns a dictionary where each space is initially set to `BLANK`. The `current_player` variable is set to `X`, indicating that X will be the first player to make a move.
 

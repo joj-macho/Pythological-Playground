@@ -1,10 +1,11 @@
 import random
 
 def main():
-    '''Main function for the Carrot in the Box game.'''
-
+    '''Main function for playing the Carrot in the Box game.'''
     print('''
-Carrot in the Box Game. The rules are simple: To win, bluff until you have a box with a carrot in it.
+Welcome to Carrot in the Box Game.
+
+The rules are simple: To win, bluff until you have a box with a carrot in it.
     ''')
 
     player_1 = input('Enter the name of player 1:\n> ')
@@ -19,7 +20,6 @@ Carrot in the Box Game. The rules are simple: To win, bluff until you have a box
 
 def play_game(player_1, player_2):
     '''This function handles the logic for a single round of the game.'''
-
     # Display initial boxes setup
     print()
     print('''HERE ARE TWO BOXES:
@@ -134,7 +134,6 @@ def play_game(player_1, player_2):
 
     print(players)
 
-    # Determine and display the winner
     if carrot_in_box_1:
         print(f'{player_1} is the winner.')
     else:

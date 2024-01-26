@@ -2,10 +2,8 @@ import sys
 import time
 import seven_segment
 
-
 def main():
-    '''Main function for the countdown timer with seven-segment display.'''
-
+    '''Main function run the countdown timer with seven-segment display.'''
     print('\nCountDown Timer.\n')
 
     # Enter a valid number of seconds to countdown.
@@ -21,10 +19,8 @@ def main():
     # Do the Countdown
     count_down(start_time)
 
-
 def count_down(start_time):
-    '''This function performs the countdown using the seven segment display.'''
-
+    '''Perform the countdown using the seven segment display.'''
     try:
         while True:
             # Get time components: hours, minutes, seconds
@@ -32,13 +28,13 @@ def count_down(start_time):
             minutes, seconds = divmod(start_time, 60)
 
             # Generate seven-segment digit strings
-            hour_digit = seven_segment.generate_seven_segments(hours, 2)
+            hour_digit = seven_segment.display_seven_segments(hours, 2)
             hour_top_row, hour_middle_row, hour_bottom_row = hour_digit.splitlines()
 
-            minute_digit = seven_segment.generate_seven_segments(minutes, 2)
+            minute_digit = seven_segment.display_seven_segments(minutes, 2)
             minute_top_row, minute_middle_row, minute_bottom_row = minute_digit.splitlines()
 
-            sec_digit = seven_segment.generate_seven_segments(seconds, 2)
+            sec_digit = seven_segment.display_seven_segments(seconds, 2)
             sec_top_row, sec_middle_row, sec_bottom_row = sec_digit.splitlines()
 
             # Display the digits:
@@ -68,7 +64,6 @@ def count_down(start_time):
 
     except KeyboardInterrupt:
         sys.exit()
-
 
 if __name__ == '__main__':
     main()

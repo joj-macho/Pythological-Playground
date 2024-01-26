@@ -2,25 +2,21 @@
 
 ## Description
 
-This program implements a two-player "Carrot in the Box" game where players can bluff and try to guess which box contains a carrot. That is, player A has to bluff as best as possible, so that B ultimately selects the wrong (empty) box. B on the other hands needs to call the bluff of A. B has the "easier" task, as he has the ultimate decision; on the other hand, he has much less information than A (who actually knows which box contains the carrot).
-
+This program implements a two-player Carrot in the Box game where players can bluff and try to guess which box contains a carrot. That is, player A has to bluff as best as possible, so that B ultimately selects the wrong (empty) box. B on the other hands needs to call the bluff of A. B has the "easier" task, as he has the ultimate decision; on the other hand, he has much less information than A (who actually knows which box contains the carrot).
 
 ## How it Works
 
-- The program begins by importing the `random` module which it then uses to randomly determine the location of the carrot in the boxes.
+- The program uses the `random` module to randomly determine the location of the carrot in the boxes.
 
-- The `main()` function starts by printing the rules of the game and prompts the players to enter their names.
+- The `main()` function uses a loop that allows multiple rounds of the game to be played. Inside the loop, the `play_game()` function is called to play a single round.
 
-- The program enters a loop that allows multiple rounds of the game to be played. Inside the loop, the `play_game()` function is called to play a single round.
-
-- In the `play_game()` function, the boxes (Box A and Box B) are displayed using ASCII art. The names of the players are printed, and the first player (`player_1`) is instructed to look into their box while the second player (`player_2`) closes their eyes. The program waits for the second player to close their eyes by prompting the first player to press Enter. Randomly, either Box A or Box B is selected to contain the carrot. The result is stored in the `carrot_in_box_1` variable.
+- In the `play_game()` function, the boxes (Box A and Box B) are displayed using ASCII art. The first player (`player_1`) is instructed to look into their box while the second player (`player_2`) closes their eyes. The program waits for the second player to close their eyes by prompting the first player to press Enter. Randomly, either Box A or Box B is selected to contain the carrot.
 
 - The contents of the first player's box are displayed based on whether the carrot is in Box A or not. The program waits for the first player to press Enter, and then clears the screen. The first player is instructed to tell the second player to open their eyes, and the program waits for the first player to press Enter. The program prompts the second player to decide whether they want to swap boxes with the first player or not. The input is validated to ensure it's either 'y' or 'n'.
 
-- If the second player chooses to swap boxes (responds with 'y'), the `carrot_in_box_1` variable is inverted, and the boxes (Box A and Box B) are swapped. The updated boxes are displayed, and the program prompts the user to press Enter to show the winner. The program displays the final state of the boxes based on the location of the carrot and prints the names of the players.
+- If the second player chooses to swap boxes (responds with 'y'), the boxes (Box A and Box B) are swapped. The program displays the final state of the boxes based on the location of the carrot.
 
 - Finally, the program declares the winner based on the location of the carrot and prints their name.
-
 
 ## Program Input & Output
 

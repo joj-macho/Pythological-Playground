@@ -2,17 +2,16 @@
 
 ## Description
 
-The "Indentation Animation" program is a simple console-based animation that creates an animation of indentation using asterisks (*). The indentation level oscillates between increasing and decreasing, forming a rhythmic pattern of asterisk lines.
+The Indentation Animation program is a simple console-based animation that creates an animation of indentation using asterisks (*). The indentation level oscillates between increasing and decreasing, forming a rhythmic pattern of asterisk lines.
 
 ## How it Works
 
 - The program starts by importing the `time` and `sys` modules.
 
-- The `main()` function starts by printing a header indicating the name of the animation and initializes three variables:
+- The `main()` function initializes three variables:
     - The `indent` variable keeps track of the number of spaces to indent.
     - The `is_indent_increasing` variable is a boolean flag indicating whether the indentation is currently increasing or not.
     - The `sleep_duration` variable specifies the duration in seconds for the pause between each frame of the animation.
-
 
 - In each iteration of the loop, the program prints a line with the number of spaces determined by the current value of indent, followed by a line of asterisks (`********`).
 

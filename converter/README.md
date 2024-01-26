@@ -1,20 +1,18 @@
-# Converter
+# Unit Converter
 
 ## Description
 
 The Converter is a command-line program that allows users to convert lengths, masses, or temperatures based on their input and selected units. The program supports three types of conversions: length, mass, and temperature.
 
-
 ## How it Works
 
-- The <code>main</code> function starts by printing a welcome message and enters a loop to perform unit conversions based on the user's choice. Users are prompted to select the type of conversion (length, mass, or temperature) by entering the corresponding number. The menu interface allows users to select the type of conversion they want to perform.
+- The `main` function enters a loop to perform unit conversions based on the user's choice. Users are prompted to select the type of conversion (length, mass, or temperature) by entering the corresponding number. The menu interface allows users to select the type of conversion they want to perform.
 
-- The program contains three conversion functions: <code>convert_length</code>, <code>convert_weight</code>, and <code>convert_temperature</code>. Each of these functions accepts an input value, the unit to convert from, and the unit to convert to as arguments. They calculate the result using the appropriate conversion formula for the respective type and display the converted value.
+- The program contains three conversion functions: `convert_length`, `convert_weight`, and `convert_temperature`. Each of these functions accepts an input value, the unit to convert from, and the unit to convert to as arguments. They calculate the result using the appropriate conversion formula for the respective type and display the converted value.
 
-- The program provides a list of available units for each type of conversion. This list is obtained through the <code>get_unit_list</code> function, which returns the units for the chosen category (length, mass, or temperature).
+- The program provides a list of available units for each type of conversion. This list is obtained through the `get_unit_list` function, which returns the units for the chosen category (length, mass, or temperature).
 
 - The program interacts with the user to collect input values for conversion, including the choice of conversion type and the units involved. It also validates user input to ensure everything works well.
-
 
 ## Program Input & Output
 

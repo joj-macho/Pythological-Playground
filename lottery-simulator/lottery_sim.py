@@ -1,8 +1,7 @@
 import random
 
 def main():
-    '''Main function for the lottery simulation.'''
-
+    '''Main function to run the lottery simulation.'''
     print('''
 Welcome to the Lottery Simulator!
 This program simulates a lottery draw where you choose 5 numbers from 1 to 69 and a Powerball number from 1 to 26.
@@ -10,26 +9,21 @@ You can specify how many times you want to play and see the results.
     ''')
 
     while True:
-        # Get user input for numbers, powerball, and number of plays
         numbers = get_user_numbers()
         powerball = get_user_powerball()
         num_plays = get_user_num_plays()
 
-        # Simulate the lottery based on user inputs
         simulate_lottery(numbers, powerball, num_plays)
 
-        # Ask the user if they want to play again
         play_again = input('Do you want to play again? Enter (y)es or (n)o: ').lower()
-        if play_again == 'yes' or play_again == 'y':
+        if play_again.startswith('y'):
             continue
         else:
             print('Thanks for playing!')
             break
 
-
 def get_user_numbers():
     '''Prompt the user to enter 5 different numbers from 1 to 69.'''
-    
     while True:
         print('Enter 5 different numbers from 1 to 69, separated by spaces:')
         response = input('> ')
@@ -61,15 +55,12 @@ def get_user_numbers():
 
         return numbers
 
-
 def get_user_powerball():
     '''Prompt the user to enter a Powerball number from 1 to 26.'''
-
     while True:
         print('Enter the Powerball number from 1 to 26:')
         response = input('> ')
 
-        # Convert the string into an integer:
         try:
             powerball = int(response)
         except ValueError:
@@ -83,15 +74,12 @@ def get_user_powerball():
 
         return powerball
 
-
 def get_user_num_plays():
     '''Prompt the user to enter the number of times they want to play.'''
-
     while True:
         print('How many times do you want to play? (Max: 1000000)')
         response = input('> ')
 
-        # Convert the string into an integer:
         try:
             num_plays = int(response)
         except ValueError:
@@ -105,7 +93,6 @@ def get_user_num_plays():
 
         return num_plays
 
-
 def simulate_lottery(numbers, powerball, num_plays):
     '''Simulate the lottery draw and display results.'''
 
@@ -115,11 +102,9 @@ def simulate_lottery(numbers, powerball, num_plays):
     input('Press Enter to start...')
     print()
 
-    # Initialize variables to track hits and maximum hits
     hits = {}
     max_hits = 0
 
-    # Initialize the list of possible lottery numbers
     possible_numbers = list(range(1, 70))
 
     # Simulate each play
@@ -155,14 +140,11 @@ def simulate_lottery(numbers, powerball, num_plays):
         if 100_000 < num_plays <= 1_000_000 and i % 100_000 == 0:
             print(f'{i} Simulations Completed...')
 
-    # Print final results
     print()
     print_results(price, hits, max_hits, num_plays, numbers, powerball)
 
-
 def print_results(price, hits, max_hits, num_plays, numbers, powerball):
     '''Print the simulation results.'''
-
     # Print a message indicating simulation completion for long simulations
     if 10_000 < num_plays <= 100_000:
         print(f'{num_plays} Simulations Completed...\n')
@@ -190,9 +172,7 @@ def print_results(price, hits, max_hits, num_plays, numbers, powerball):
         if num_matching_numbers > 0 and num_hits > 20:
             print(f'\n{num_hits} Simulations matched {num_matching_numbers} numbers:')
 
-    # Print the maximum number of hits
     print(f'\nMaximum Hits: {max_hits} numbers\n')
-
 
 if __name__ == '__main__':
     main()

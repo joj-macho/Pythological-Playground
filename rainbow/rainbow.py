@@ -37,13 +37,12 @@ def main():
             bext.fg('purple')
             print('##')
 
+            # Increase/decrease the number of spaces
             if indent_increase:
-                # Increase the number of spaces:
                 indent += 1
                 if indent == INDENT_LIMIT:
                     indent_increase = False
             else:
-                # Decrease the number of spaces:
                 indent -= 1
                 if indent == 0:
                     indent_increase = True
@@ -53,7 +52,6 @@ def main():
     except KeyboardInterrupt:
         time.sleep(0.1)
         print('\nExiting...')
-
 
 if __name__ == '__main__':
     main()

@@ -1,6 +1,5 @@
 import random
 
-# Constants
 # Lists of words to be used in generating clickbait headlines
 OBJECT_PRONOUNS = ['her', 'him', 'them', 'it', 'us', 'me']
 POSSESSIVE_PRONOUNS = ['her', 'his', 'their', 'my', 'our', 'its']
@@ -44,7 +43,6 @@ CLICKBAIT_TYPES = {
 
 def main():
     '''Main function for the Clickbait Headline Generator.'''
-
     print('''
 Clickbait Headline Generator!
 
@@ -61,7 +59,6 @@ This program will trick people into looking at ads.
             numHeadlines = int(response)
             break
 
-    # Generate and print the specified number of clickbait headlines
     for i in range(numHeadlines):
         # Choose a random clickbait template
         clickbaitType = random.randint(1, len(CLICKBAIT_TYPES))
@@ -83,7 +80,6 @@ This program will trick people into looking at ads.
         # Generate the clickbait headline based on the chosen template
         if clickbaitType == 1:
             headline = CLICKBAIT_TYPES[1].format(noun1, noun2)
-        # More cases for different clickbait templates
         elif clickbaitType == 2:
             headline = CLICKBAIT_TYPES[2].format(noun1, noun2, noun2, when)
         elif clickbaitType == 3:
@@ -133,11 +129,8 @@ This program will trick people into looking at ads.
         elif clickbaitType == 25:
             headline = CLICKBAIT_TYPES[25].format(adj1, noun1, verb, num1)
 
-        # Print the generated clickbait headline
         print()
         print(headline.title())
-
-
 
 if __name__ == '__main__':
     main()

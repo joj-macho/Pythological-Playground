@@ -5,7 +5,6 @@ import secrets
 import os
 from pathlib import Path
 
-
 # Set Working Directory
 BASE_DIRECTORY = Path(__file__).resolve().parent
 os.chdir(BASE_DIRECTORY)
@@ -14,11 +13,9 @@ PASSWORDS_FILE = 'passwords.json'
 
 def main():
     '''Main function to run the password manager.'''
-    
     print('\nWelcome to Password Generator\n')
 
     while True:
-        # Display menu options
         print('1. Generate Password')
         print('2. Save Password')
         print('3. Search Password')
@@ -116,7 +113,6 @@ def search_password():
             print(f'No passwords found for {website}.\n')
     except (FileNotFoundError, json.JSONDecodeError):
         print('No passwords found. Database is empty.\n')
-
 
 if __name__ == '__main__':
     main()

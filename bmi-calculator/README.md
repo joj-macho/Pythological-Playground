@@ -10,11 +10,9 @@ This is a Python program to calculate Body Mass Index (BMI) based on the provide
 
 The BMI is calculated using the following formula: $BMI = \frac{\text{Weight (kg)}}{(\text{height (m)})^2} = \frac{\text{Weight (kg)}}{(\frac{\text{height (cm)}}{100})^2}$
 
-- The `main()` function is defined. It starts by printing the welcome message and prompts the user to enter their height and height, then it calculates the BMI using `calculate_bmi` function, and displays the result along with the classification.
+- The `main()` function runs the program. It prompts the user to enter their height (in centimeters) and weight (in kilograms), then it calculates the BMI using `calculate_bmi` function by applying the above BMI formular, and displays the results of your BMI.
 
-- The `calculate_bmi(height, weight)` function calculates BMI based on the given height (in cm) and weight (in kg) using the formular defined above.
-
-- After calculating the BMI, the program calls the `classify_bmi(bmi)` function, which classifies the BMI based on the BMI value. It returns a classification such as "Normal", "Overweight", "Obese Class I", etc.
+- The `classify_bmi(bmi)` function, which classifies the BMI based on the BMI value, returns a classification such as "Normal", "Overweight", "Obese Class I", etc.
 
 ## Program Input & Output
 

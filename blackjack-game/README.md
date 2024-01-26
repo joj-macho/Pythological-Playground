@@ -6,189 +6,388 @@ This program is a Python implementation of a Blackjack Card Game where players t
 
 ## How it works
 
-- The program begins by importing the `random` and `sys` modules. Then, it defines four variables that represent the four suits in a deck of playing cards: `HEARTS, DIAMONDS, SPADES, and CLUBS`. The four different suits of cards are represented using their Unicode character codes, i.e. `HEARTS = chr(9829), DIAMONDS = chr(9830), SPADES = chr(9824), CLUBS = chr(9827)`.
+- To play the game, execute the `main()` function in the `blackjack.py` file. Follow the on-screen prompts to place bets and make moves during the game.
 
-- The `main()` function starts by printing rules of the game. The game runs in a while loop, where the player is first checked if they can afford to play. The game loops until the player runs out of funds or chooses to quit the game. Inside the `main()` function, there are a series of functions that handle different aspects of the game.
+- The `main()` creates an instance of the of the `BlackjackGame`. The `BlackjackGame` class represents the core of the game with the following key methods:
+    - `get_player_bet(player_funds)`: Prompt the player to enter a valid bet amount.
+    - `display_hands(show_dealer_hand)`: Display the current hands of the dealer and player.
+    - `calculate_hand_value(hand)`: Calculate the total value of a hand.
+    - `get_player_move()`: Prompt the player to choose a move.
 
-- The first function to be called is `generate_bet()`, which prompts the player for a bet and returns the `bet` amount. The function ensures that the `bet` amount is valid and within the player's available funds.
+- The game starts with a welcoming introduction, explaining the rules and how to play.
 
-- The next function is `generate_card_deck()`, which returns a list of tuples representing a standard deck of 52 playing cards. The deck is shuffled using the `random.shuffle()` function from the `random` module.
+- The player is prompted to enter a bet amount, ensuring it is within their available funds.
 
-- After the deck is generated, the player and dealer cards are dealt. Each player is given two cards from the deck. The player's cards are stored in the `player_hand` list, while the dealer's cards are stored in the `dealer_hand` list.
+- Initial cards are dealt to both the player and the dealer.
 
-- The player then decides on their next move. They can choose to "hit", "stand", or "double down". If the player chooses to "hit", they are dealt another card from the deck. The goal is to get as close to 21 as possible without going over. If the player goes over 21, they lose the game.
+- The player takes turns hitting, standing, or doubling down until they either win, lose, or choose to stand.
 
-- Once the player has finished their turn, it is the dealer's turn to play. The dealer continues to hit until their hand value is 17 or higher.
+- If the player doesn't bust, the dealer takes their turn, hitting until their hand reaches 17 or higher.
 
-- After both the player and dealer have completed their turns, the hands are compared to determine the winner. The winner is the player with a hand value closest to 21 without going over. If the dealer goes over 21, the player wins. If the player goes over 21 or has a lower hand value than the dealer, the player loses. If the player and dealer have the same hand value, it is a tie and the bet is returned to the player.
+- The final hands are compared, and the winner is determined. The player's funds are adjusted accordingly.
 
 ## Program Input & Output
 
 When you run `blackjack.py`, the output will look like this:
 
 ```
-Blackjack Card Game.
 
-This game follows these simple rules:
-    - Get as close to 21 without going over to win the game.
-    - Kings, Queens, and Jacks are worth 10 points each.
-    - Aces are worth 1 or 11 points.
-    - Cards 2 through 10 are worth their face value.
-    - The bet is returned to the player in case of a tie.
-    - The dealer stops hitting at 17.
+Welcome to the Blackjack Card Game!
 
-How to Play:
-    - Enter (h)it to take another card.
-    - Enter (s)tand to stop taking cards.
-    - You can (d)ouble down on your first play to increase your bet + will hit one more time.
-    
-Now... Let's get our gambling freak on!
+The aim is to get as close to 21 without going over. Let's go over the rules:
+  - Kings, Queens, and Jacks are worth 10 points each.
+  - Aces can be worth 1 or 11 points.
+  - Cards 2 through 10 are valued at their face value.
+  - The dealer stops hitting at 17.
+  - If you tie with the dealer, your bet is returned.
 
-Available Funds: $5000
-Enter bet amount between $1 - $5000. Enter (q)uit to exit.
-> 200
-Your bet is $200
+Now, Let's get our gambling freak on!
+
+Your Available Funds: $1000
+Enter bet amount between $1 - $1000. Enter (q)uit to exit.
+> 500
+
+Your bet is $500
+
+
+------ Current Hands ------
 
 Dealer: ???
- ___  ___ 
-|## | |10 |
-|###| | ♦ |
-|_##| |_10|
+ ___ 
+|## |
+|###|
+|_##|
+ ___ 
+|A  |
+| ♠ |
+|__A|
 
-Player: 11
- ___  ___ 
-|8  ||3  |
-| ♠ || ♥ |
-|__8||__3|
+Player: 20
+ ___ 
+|Q  |
+| ♣ |
+|__Q|
+ ___ 
+|10 |
+| ♦ |
+|_10|
 
-(h)it,(s)tand,(d)ouble down
-> h
-You drew a 8 of ♣
-Dealer: ???
- ___  ___ 
-|## | |10 |
-|###| | ♦ |
-|_##| |_10|
-
-Player: 19
- ___  ___  ___ 
-|8  ||3  ||8  |
-| ♠ || ♥ || ♣ |
-|__8||__3||__8|
-
-(h)it,(s)tand
+Choose your move: (h)it, (s)tand, or (d)ouble down
 > s
+
+------ Final Hands ------
+
 Dealer: 20
- ___  ___ 
-|Q  ||10 |
-| ♥ || ♦ |
-|__Q||_10|
+ ___ 
+|9  |
+| ♠ |
+|__9|
+ ___ 
+|A  |
+| ♠ |
+|__A|
 
-Player: 19
- ___  ___  ___ 
-|8  ||3  ||8  |
-| ♠ || ♥ || ♣ |
-|__8||__3||__8|
+Player: 20
+ ___ 
+|Q  |
+| ♣ |
+|__Q|
+ ___ 
+|10 |
+| ♦ |
+|_10|
 
-You lost.
-Press Enter to Continue...
+It's a tie! The bet is returned to you.
 
-Available Funds: $4800
-Enter bet amount between $1 - $4800. Enter (q)uit to exit.
-> 4000
-Your bet is $4000
+Player Wins: 0 | Dealer Wins: 0
+Your Total Funds: $1000
+
+Do you want to play another round? (y/n)
+> y
+Your Available Funds: $1000
+Enter bet amount between $1 - $1000. Enter (q)uit to exit.
+> 500
+
+Your bet is $500
+
+
+------ Current Hands ------
 
 Dealer: ???
- ___  ___ 
-|## | |8  |
-|###| | ♥ |
-|_##| |__8|
+ ___ 
+|## |
+|###|
+|_##|
+ ___ 
+|8  |
+| ♠ |
+|__8|
+
+Player: 9
+ ___ 
+|2  |
+| ♦ |
+|__2|
+ ___ 
+|7  |
+| ♦ |
+|__7|
+
+Choose your move: (h)it, (s)tand, or (d)ouble down
+> h
+
+------ Current Hands ------
+
+Dealer: ???
+ ___ 
+|## |
+|###|
+|_##|
+ ___ 
+|8  |
+| ♠ |
+|__8|
 
 Player: 14
- ___  ___ 
-|9  ||5  |
-| ♦ || ♠ |
-|__9||__5|
+ ___ 
+|2  |
+| ♦ |
+|__2|
+ ___ 
+|7  |
+| ♦ |
+|__7|
+ ___ 
+|5  |
+| ♠ |
+|__5|
 
-(h)it,(s)tand,(d)ouble down
+Choose your move: (h)it, (s)tand, or (d)ouble down
 > h
-You drew a 4 of ♦
+
+------ Current Hands ------
+
 Dealer: ???
- ___  ___ 
-|## | |8  |
-|###| | ♥ |
-|_##| |__8|
+ ___ 
+|## |
+|###|
+|_##|
+ ___ 
+|8  |
+| ♠ |
+|__8|
 
-Player: 18
- ___  ___  ___ 
-|9  ||5  ||4  |
-| ♦ || ♠ || ♦ |
-|__9||__5||__4|
+Player: 21
+ ___ 
+|2  |
+| ♦ |
+|__2|
+ ___ 
+|7  |
+| ♦ |
+|__7|
+ ___ 
+|5  |
+| ♠ |
+|__5|
+ ___ 
+|7  |
+| ♥ |
+|__7|
 
-(h)it,(s)tand
-> s
+BLACKJACK! You Win.
+
+------ Final Hands ------
+
 Dealer: 18
- ___  ___ 
-|Q  ||8  |
-| ♦ || ♥ |
-|__Q||__8|
+ ___ 
+|J  |
+| ♥ |
+|__J|
+ ___ 
+|8  |
+| ♠ |
+|__8|
 
-Player: 18
- ___  ___  ___ 
-|9  ||5  ||4  |
-| ♦ || ♠ || ♦ |
-|__9||__5||__4|
+Player: 21
+ ___ 
+|2  |
+| ♦ |
+|__2|
+ ___ 
+|7  |
+| ♦ |
+|__7|
+ ___ 
+|5  |
+| ♠ |
+|__5|
+ ___ 
+|7  |
+| ♥ |
+|__7|
 
-A tie! The bet is returned to you.
-Press Enter to Continue...
+You won $500
 
-Available Funds: $4800
-Enter bet amount between $1 - $4800. Enter (q)uit to exit.
-> 4800
-Your bet is $4800
+Player Wins: 1 | Dealer Wins: 0
+Your Total Funds: $1500
+
+Do you want to play another round? (y/n)
+> y
+Your Available Funds: $1500
+Enter bet amount between $1 - $1500. Enter (q)uit to exit.
+> 1200
+
+Your bet is $1200
+
+
+------ Current Hands ------
 
 Dealer: ???
- ___  ___ 
-|## | |Q  |
-|###| | ♣ |
-|_##| |__Q|
+ ___ 
+|## |
+|###|
+|_##|
+ ___ 
+|Q  |
+| ♦ |
+|__Q|
 
-Player: 13
- ___  ___ 
-|6  ||7  |
-| ♣ || ♣ |
-|__6||__7|
+Player: 19
+ ___ 
+|Q  |
+| ♥ |
+|__Q|
+ ___ 
+|9  |
+| ♣ |
+|__9|
 
-(h)it,(s)tand
+Choose your move: (h)it, (s)tand, or (d)ouble down
+> s
+
+------ Final Hands ------
+
+Dealer: 19
+ ___ 
+|9  |
+| ♦ |
+|__9|
+ ___ 
+|Q  |
+| ♦ |
+|__Q|
+
+Player: 19
+ ___ 
+|Q  |
+| ♥ |
+|__Q|
+ ___ 
+|9  |
+| ♣ |
+|__9|
+
+It's a tie! The bet is returned to you.
+
+Player Wins: 1 | Dealer Wins: 0
+Your Total Funds: $1500
+
+Do you want to play another round? (y/n)
+> y
+Your Available Funds: $1500
+Enter bet amount between $1 - $1500. Enter (q)uit to exit.
+> 1500
+
+Your bet is $1500
+
+
+------ Current Hands ------
+
+Dealer: ???
+ ___ 
+|## |
+|###|
+|_##|
+ ___ 
+|J  |
+| ♦ |
+|__J|
+
+Player: 12
+ ___ 
+|K  |
+| ♥ |
+|__K|
+ ___ 
+|2  |
+| ♥ |
+|__2|
+
+Choose your move: (h)it, (s)tand, or (d)ouble down
 > h
-You drew a Q of ♥
+
+------ Current Hands ------
+
 Dealer: ???
- ___  ___ 
-|## | |Q  |
-|###| | ♣ |
-|_##| |__Q|
+ ___ 
+|## |
+|###|
+|_##|
+ ___ 
+|J  |
+| ♦ |
+|__J|
 
-Player: 23
- ___  ___  ___ 
-|6  ||7  ||Q  |
-| ♣ || ♣ || ♥ |
-|__6||__7||__Q|
+Player: 22
+ ___ 
+|K  |
+| ♥ |
+|__K|
+ ___ 
+|2  |
+| ♥ |
+|__2|
+ ___ 
+|10 |
+| ♠ |
+|_10|
 
-Dealer: 17
- ___  ___ 
-|7  ||Q  |
-| ♠ || ♣ |
-|__7||__Q|
+Player busts! You lose.
 
-Player: 23
- ___  ___  ___ 
-|6  ||7  ||Q  |
-| ♣ || ♣ || ♥ |
-|__6||__7||__Q|
+------ Final Hands ------
 
-You lost.
-Press Enter to Continue...
+Dealer: 16
+ ___ 
+|6  |
+| ♦ |
+|__6|
+ ___ 
+|J  |
+| ♦ |
+|__J|
 
+Player: 22
+ ___ 
+|K  |
+| ♥ |
+|__K|
+ ___ 
+|2  |
+| ♥ |
+|__2|
+ ___ 
+|10 |
+| ♠ |
+|_10|
+
+You lose!
+
+Player Wins: 1 | Dealer Wins: 1
+Your Total Funds: $0
+
+Do you want to play another round? (y/n)
+> y
 No funds to Continue Game.
 Bye!
 ```

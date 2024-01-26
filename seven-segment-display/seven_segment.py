@@ -1,9 +1,8 @@
 def main():
-    '''Main function for the Seven-Segment Number Display program.'''
+    '''Main function to display digits using seven-segments.'''
 
     print('\nSeven-Segment Number Display\n')
     
-    # Check to see if valid number entered.
     while True:
         response = input('Enter number to show:\n> ')
         if not response.isdecimal():
@@ -12,11 +11,10 @@ def main():
             response = int(response)
             break
 
-    print(generate_seven_segments(response))
+    print(display_seven_segments(response))
     print()
 
-
-def generate_seven_segments(number, minWidth=0):
+def display_seven_segments(number, minWidth=0):
     '''Generate a seven-segment display for a given number.'''
 
     # Convert number to a string and apply zero-padding if necessary
@@ -91,7 +89,6 @@ def generate_seven_segments(number, minWidth=0):
 
     # Combine the three rows to create the final display
     return '\n'.join(rows)
-
 
 if __name__ == '__main__':
     main()

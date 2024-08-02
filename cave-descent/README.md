@@ -16,6 +16,16 @@ The program creates an animated representation of a deep cave tunnel using the '
 
 -  If the user presses Ctrl-C during the animation, the program catches the `KeyboardInterrupt` exception and displays a message indicating that the program is exiting.
 
+## Running the Program
+
+```bash
+# Navigate to the project directory
+cd blackjack-game/
+
+# Run the main script
+python3 blackjack.py
+```
+
 ## Program Input & Output
 
 When you run `deep_cave.py`, the output will look like this:

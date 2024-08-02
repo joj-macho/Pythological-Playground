@@ -14,6 +14,16 @@ This program is a Python implementation of the Higher or Lower Card Game. In thi
 
 - The game continues for a specified number of rounds. The player's current score is displayed after each round.
 
+## Running the Program
+
+```bash
+# Navigate to the project directory
+cd pico-fermi-bagels
+
+# Run the main script
+python3 pico_fermi_bagels.py
+```
+
 ## Program Input & Output
 
 When you run `high_low.py`, the output will look like this:

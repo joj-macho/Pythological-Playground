@@ -37,6 +37,16 @@ This program generates an animation for visualizing the structure of DNA and how
 
 - Finally, the program waits for 0.15 seconds before proceeding to the next iteration of the loop. When the user terminates the program by pressing `Ctrl-C`, the program prints a goodbye message and exits.
 
+## Running the Program
+
+```bash
+# Navigate to the project directory
+cd pico-fermi-bagels
+
+# Run the main script
+python3 pico_fermi_bagels.py
+```
+
 ## Program Output
 
 When you run `dna_animation.py`, the output will look like this;

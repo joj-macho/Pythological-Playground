@@ -16,6 +16,16 @@ The program is a Dice Rolling Simulator that simulates rolling a dice or multipl
 
 - The `dice_face_rows` list is then populated by iterating over the rows of the dice faces. For each row, the program retrieves the corresponding row elements from each dice face in `dice_face` and joins them together with spaces. The resulting row text is added to `dice_face_rows`. The `show_dice_face` variable is created by joining the rows in `dice_face_rows` with newline characters.
 
+## Running the Program
+
+```bash
+# Navigate to the project directory
+cd pico-fermi-bagels
+
+# Run the main script
+python3 pico_fermi_bagels.py
+```
+
 ## Program Input & Output
 
 When you run `dice_roll_sim.py`, the output will look like this;

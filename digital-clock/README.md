@@ -14,6 +14,16 @@ This program is a digital timer that uses the `time` module to get the current t
 
 - The loop waits for one hundredth of a second using the `time.sleep()` function, and checks if the current second has changed, which signals that it's time to update the display. If a `KeyboardInterrupt` exception is raised (i.e. the user presses Ctrl-C), the program exits using the `sys.exit()` function.
 
+## Running the Program
+
+```bash
+# Navigate to the project directory
+cd pico-fermi-bagels
+
+# Run the main script
+python3 pico_fermi_bagels.py
+```
+
 ## Program Input & Output
 
 When you run the program `digital_clock.py`, the output will look like this;

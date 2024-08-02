@@ -20,6 +20,16 @@ This program simulates a progress bar for a download process using random values
 
 - The `generate_progress_bar()` function takes the `progress`, `total`, and `bar_width` as inputs and returns a string representing the progress bar. It calculates the number of filled bars based on the ratio of the `progress` to the `total` using integer division. The remaining empty spaces are filled with spaces. The percentage of completion and the current progress and total size are appended to the progress bar string.
 
+## Running the Program
+
+```bash
+# Navigate to the project directory
+cd pico-fermi-bagels
+
+# Run the main script
+python3 pico_fermi_bagels.py
+```
+
 ## Program Input & Output
 
 When you run the program `progress_bar.py`, the output will look like this;

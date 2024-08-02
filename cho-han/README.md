@@ -14,6 +14,16 @@ Cho-han is a dice game invented in Japan. Two six-sided dice are rolled and play
 
 - The player's funds are updated based on the result of the bet. If the player runs out of money, the program prints a message and exits.
 
+## Running the Program
+
+```bash
+# Navigate to the project directory
+cd pico-fermi-bagels
+
+# Run the main script
+python3 pico_fermi_bagels.py
+```
+
 ## Program Input & Output
 
 When you run `chohan.py`, the output will look like this:

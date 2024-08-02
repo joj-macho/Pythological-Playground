@@ -21,6 +21,16 @@ This program generates a text-based calendar for a given year and month. It prom
 
 - The `main()` function prompts the user to select an option for displaying the calendar. If the user chooses to display the yearly calendar, the program prints the yearly calendar for that year using the `calendar.calendar()` function. If the user chooses to display the year and month, the program prints the monthly calendar for that year and month using the `calendar.month()` function.
 
+## Running the Program
+
+```bash
+# Navigate to the project directory
+cd pico-fermi-bagels
+
+# Run the main script
+python3 pico_fermi_bagels.py
+```
+
 ## Program Input & Output
 
 When you run `calendar_display_1.py`, the output will look like this:

@@ -14,6 +14,16 @@ The Converter is a command-line program that allows users to convert lengths, ma
 
 - The program interacts with the user to collect input values for conversion, including the choice of conversion type and the units involved. It also validates user input to ensure everything works well.
 
+## Running the Program
+
+```bash
+# Navigate to the project directory
+cd pico-fermi-bagels
+
+# Run the main script
+python3 pico_fermi_bagels.py
+```
+
 ## Program Input & Output
 
 When you run `converter.py`, the output will look like this:

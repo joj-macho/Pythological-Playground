@@ -25,6 +25,16 @@ Fast Draw is a simple game where the user has to press the Enter key within 0.3 
 
 - The loop continues to the next round, and the game repeats until the round limit is reached or the user chooses to quit.
 
+## Running the Program
+
+```bash
+# Navigate to the project directory
+cd pico-fermi-bagels
+
+# Run the main script
+python3 pico_fermi_bagels.py
+```
+
 ## Program Input & Output
 
 When you run `fast_draw.py`, the output will look like this;

@@ -20,6 +20,16 @@ The Mad Libs Game is a Python program that allows users to create amusing and im
 
 - The program employs error handling to catch any `ValueError` exceptions raised during input validation, providing informative error messages to guide the user.
 
+## Running the Program
+
+```bash
+# Navigate to the project directory
+cd pico-fermi-bagels
+
+# Run the main script
+python3 pico_fermi_bagels.py
+```
+
 ## Program Input & Output
 
 When you run `mad_libs.py`, the output will look like this:

@@ -1,0 +1,106 @@
+{
+    "1234": {
+        "account_holder": "Alice",
+        "account_id": "1234",
+        "pin": "0000",
+        "balance": 6458.0,
+        "transactions": [
+            {
+                "transaction_type": "Account Created",
+                "amount": 500,
+                "date": "14-08-2024 09:16:37"
+            },
+            {
+                "transaction_type": "Deposit",
+                "amount": 250.0,
+                "date": "14-08-2024 14:06:46"
+            },
+            {
+                "transaction_type": "Withdrawal",
+                "amount": 100.0,
+                "date": "14-08-2024 14:12:58"
+            },
+            {
+                "transaction_type": "Transfer to account #5678",
+                "amount": -150.0,
+                "date": "14-08-2024 14:14:59"
+            },
+            {
+                "transaction_type": "Transfer from account #5678",
+                "amount": 5000.0,
+                "date": "14-08-2024 14:19:43"
+            },
+            {
+                "transaction_type": "Transfer from account #4321",
+                "amount": 1000.0,
+                "date": "14-08-2024 14:22:25"
+            },
+            {
+                "transaction_type": "Withdrawal",
+                "amount": 42.0,
+                "date": "14-08-2024 14:58:49"
+            }
+        ]
+    },
+    "5678": {
+        "account_holder": "Bob",
+        "account_id": "5678",
+        "pin": "1111",
+        "balance": 6192.0,
+        "transactions": [
+            {
+                "transaction_type": "Account Created",
+                "amount": 42,
+                "date": "14-08-2024 09:16:37"
+            },
+            {
+                "transaction_type": "Transfer from account #1234",
+                "amount": 150.0,
+                "date": "14-08-2024 14:14:59"
+            },
+            {
+                "transaction_type": "Deposit",
+                "amount": 10000.0,
+                "date": "14-08-2024 14:15:40"
+            },
+            {
+                "transaction_type": "Transfer to account #1234",
+                "amount": -5000.0,
+                "date": "14-08-2024 14:19:43"
+            },
+            {
+                "transaction_type": "Transfer from account #4321",
+                "amount": 1000.0,
+                "date": "14-08-2024 14:22:33"
+            }
+        ]
+    },
+    "4321": {
+        "account_holder": "Charlie",
+        "account_id": "4321",
+        "pin": "2222",
+        "balance": 93000.0,
+        "transactions": [
+            {
+                "transaction_type": "Account Created",
+                "amount": 100000.0,
+                "date": "14-08-2024 14:21:40"
+            },
+            {
+                "transaction_type": "Withdrawal",
+                "amount": 5000.0,
+                "date": "14-08-2024 14:22:12"
+            },
+            {
+                "transaction_type": "Transfer to account #1234",
+                "amount": -1000.0,
+                "date": "14-08-2024 14:22:25"
+            },
+            {
+                "transaction_type": "Transfer to account #5678",
+                "amount": -1000.0,
+                "date": "14-08-2024 14:22:33"
+            }
+        ]
+    }
+}

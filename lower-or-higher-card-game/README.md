@@ -1,161 +1,190 @@
-# Higher or Lower Card Game
+# Lower or Higher Card Game
 
 ## Description
 
-This program is a Python implementation of the Higher or Lower Card Game. In this game, the player guesses whether the next card in a set of cards will be higher or lower than the current card shown. The goal is to make correct guesses to maximize the score.
+The "Lower or Higher Card Game" program is a card guessing game where the player guesses whether the next card in a deck will be higher or lower than the current card shown. The goal is to make correct guesses to maximize the score.
 
-## How it works
+### How It Works
 
-- The main game logic is defined in the `main()` function. This function starts by displaying the game rules and instructions to the player. The game begins with a starting card displayed on the console. Players must decide whether the next card will be higher or lower.
-
-- Players input their prediction by pressing 'h' for higher or 'l' for lower.
-
-- The next card is drawn, and the game evaluates the guess. Players earn points for correct guess and lose points for incorrect ones.
-
-- The game continues for a specified number of rounds. The player's current score is displayed after each round.
+- The player starts with 100 points.
+- The game shows one card face-up.
+- Each round, the player guesses whether the next card will be higher or lower than the current card.
+- The player gains 15 points for a correct guess, and loses 10 points for an incorrect guess.
+- After each guess, the game reveals the next card and adjusts the points accordingly.
+- The new card becomes the current card for the next round.
+- The game ends when all cards in the deck are revealed.
 
 ## Running the Program
 
 ```bash
 # Navigate to the project directory
-cd pico-fermi-bagels
+cd lower-or-higher-card-game/
 
 # Run the main script
-python3 pico_fermi_bagels.py
+python3 main.py
 ```
 
 ## Program Input & Output
 
-When you run `high_low.py`, the output will look like this:
+When you run `main.py`, the output will look like this:
 
 ```
+Welcome to the Lower or Higher Card Game!
 
-Welcome to the Higher or Lower Card Game!
+You start with 100 points. Gain 15 points for a correct answer, lose 10
+points for an incorrect answer.
 
-Rules:
-    - Guess whether the next card will be higher or lower than the current card.
-    - Correct guesses earn 20 points, incorrect guesses result in a loss of 15 points.
-    - The game starts with a score of 50 points.
+Game Rules:
+    - You will be shown one card face up.
+    - Each round, you guess whether the next card will be higher or lower.
+    - Points are adjusted based on your guess.
+    - The game ends when all cards are revealed.
 
-Starting card:
- ___ 
-|7  |
-| ♥ |
-|__7|
+Let's begin!
 
-Will the next card be (h)igher or (l)ower than the current card (7 of ♥)?
-Press "h" for higher, "l" for lower
-> l
-Next card:
- ___ 
-|6  |
-| ♦ |
-|__6|
+----------------------------------ATTEMPT 1-----------------------------------
+Current card: 6 of Diamonds ♦
+ ___   ___   ___   ___   ___   ___   ___   ___  
+|6  | |## | |## | |## | |## | |## | |## | |## | 
+| ♦ | |###| |###| |###| |###| |###| |###| |###| 
+|__6| |_##| |_##| |_##| |_##| |_##| |_##| |_##| 
 
-Correct! 6 of ♦ is lower than 7 of ♥.
-You earned 20 points.
-Your current score: 70
-
-Will the next card be (h)igher or (l)ower than the current card (6 of ♦)?
-Press "h" for higher, "l" for lower
+Is the next card (l)ower or (h)igher? Enter (q)uit to exit.
 > h
-Next card:
- ___ 
-|9  |
-| ♥ |
-|__9|
 
-Correct! 9 of ♥ is higher than 6 of ♦.
-You earned 20 points.
-Your current score: 90
+Correct! +15 Points.
+The next card, 8 of Clubs ♣, is higher.
+Your points: 115
+Cards remaining: 6
 
-Will the next card be (h)igher or (l)ower than the current card (9 of ♥)?
-Press "h" for higher, "l" for lower
+----------------------------------ATTEMPT 2-----------------------------------
+Current card: 8 of Clubs ♣
+ ___   ___   ___   ___   ___   ___   ___   ___  
+|6  | |8  | |## | |## | |## | |## | |## | |## | 
+| ♦ | | ♣ | |###| |###| |###| |###| |###| |###| 
+|__6| |__8| |_##| |_##| |_##| |_##| |_##| |_##| 
+
+Is the next card (l)ower or (h)igher? Enter (q)uit to exit.
 > l
-Next card:
- ___ 
-|A  |
-| ♠ |
-|__A|
 
-Correct! A of ♠ is lower than 9 of ♥.
-You earned 20 points.
-Your current score: 110
+Incorrect! -10 Points.
+The next card, Q of Spades ♠, is higher
+Your points: 105
+Cards remaining: 5
 
-Will the next card be (h)igher or (l)ower than the current card (A of ♠)?
-Press "h" for higher, "l" for lower
-> o
-Invalid input. Please enter "h" for higher or "l" for lower.
+----------------------------------ATTEMPT 3-----------------------------------
+Current card: Q of Spades ♠
+ ___   ___   ___   ___   ___   ___   ___   ___  
+|6  | |8  | |Q  | |## | |## | |## | |## | |## | 
+| ♦ | | ♣ | | ♠ | |###| |###| |###| |###| |###| 
+|__6| |__8| |__Q| |_##| |_##| |_##| |_##| |_##| 
 
-Will the next card be (h)igher or (l)ower than the current card (A of ♠)?
-Press "h" for higher, "l" for lower
+Is the next card (l)ower or (h)igher? Enter (q)uit to exit.
 > l
-Next card:
- ___ 
-|5  |
-| ♥ |
-|__5|
 
-Wrong! 5 of ♥ is higher than A of ♠.
-You lost 15 points.
-Your current score: 95
+Correct! +15 Points.
+The next card, A of Diamonds ♦, is lower.
+Your points: 120
+Cards remaining: 4
 
-Will the next card be (h)igher or (l)ower than the current card (5 of ♥)?
-Press "h" for higher, "l" for lower
+----------------------------------ATTEMPT 4-----------------------------------
+Current card: A of Diamonds ♦
+ ___   ___   ___   ___   ___   ___   ___   ___  
+|6  | |8  | |Q  | |A  | |## | |## | |## | |## | 
+| ♦ | | ♣ | | ♠ | | ♦ | |###| |###| |###| |###| 
+|__6| |__8| |__Q| |__A| |_##| |_##| |_##| |_##| 
+
+Is the next card (l)ower or (h)igher? Enter (q)uit to exit.
 > h
-Next card:
- ___ 
-|A  |
-| ♦ |
-|__A|
 
-Wrong! A of ♦ is lower than 5 of ♥.
-You lost 15 points.
-Your current score: 80
+Correct! +15 Points.
+The next card, 3 of Clubs ♣, is higher.
+Your points: 135
+Cards remaining: 3
 
-Will the next card be (h)igher or (l)ower than the current card (A of ♦)?
-Press "h" for higher, "l" for lower
+----------------------------------ATTEMPT 5-----------------------------------
+Current card: 3 of Clubs ♣
+ ___   ___   ___   ___   ___   ___   ___   ___  
+|6  | |8  | |Q  | |A  | |3  | |## | |## | |## | 
+| ♦ | | ♣ | | ♠ | | ♦ | | ♣ | |###| |###| |###| 
+|__6| |__8| |__Q| |__A| |__3| |_##| |_##| |_##| 
+
+Is the next card (l)ower or (h)igher? Enter (q)uit to exit.
 > h
-Next card:
- ___ 
-|2  |
-| ♥ |
-|__2|
 
-Correct! 2 of ♥ is higher than A of ♦.
-You earned 20 points.
-Your current score: 100
+Correct! +15 Points.
+The next card, J of Clubs ♣, is higher.
+Your points: 150
+Cards remaining: 2
 
-Will the next card be (h)igher or (l)ower than the current card (2 of ♥)?
-Press "h" for higher, "l" for lower
-> h
-Next card:
- ___ 
-|8  |
-| ♦ |
-|__8|
+----------------------------------ATTEMPT 6-----------------------------------
+Current card: J of Clubs ♣
+ ___   ___   ___   ___   ___   ___   ___   ___  
+|6  | |8  | |Q  | |A  | |3  | |J  | |## | |## | 
+| ♦ | | ♣ | | ♠ | | ♦ | | ♣ | | ♣ | |###| |###| 
+|__6| |__8| |__Q| |__A| |__3| |__J| |_##| |_##| 
 
-Correct! 8 of ♦ is higher than 2 of ♥.
-You earned 20 points.
-Your current score: 120
-
-Will the next card be (h)igher or (l)ower than the current card (8 of ♦)?
-Press "h" for higher, "l" for lower
+Is the next card (l)ower or (h)igher? Enter (q)uit to exit.
 > l
-Next card:
- ___ 
-|Q  |
-| ♣ |
-|__Q|
 
-Wrong! Q of ♣ is higher than 8 of ♦.
-You lost 15 points.
-Your current score: 105
+Correct! +15 Points.
+The next card, A of Spades ♠, is lower.
+Your points: 165
+Cards remaining: 1
 
-Game Over!
-Your final score is 105.
+----------------------------------ATTEMPT 7-----------------------------------
+Current card: A of Spades ♠
+ ___   ___   ___   ___   ___   ___   ___   ___  
+|6  | |8  | |Q  | |A  | |3  | |J  | |A  | |## | 
+| ♦ | | ♣ | | ♠ | | ♦ | | ♣ | | ♣ | | ♠ | |###| 
+|__6| |__8| |__Q| |__A| |__3| |__J| |__A| |_##| 
 
-To play again, press ENTER, or "q" to quit:
+Is the next card (l)ower or (h)igher? Enter (q)uit to exit.
+> h
+
+Correct! +15 Points.
+The next card, 8 of Spades ♠, is higher.
+Your points: 180
+Cards remaining: 0
+
+Final card: 8 of Spades ♠
+ ___   ___   ___   ___   ___   ___   ___   ___  
+|6  | |8  | |Q  | |A  | |3  | |J  | |A  | |8  | 
+| ♦ | | ♣ | | ♠ | | ♦ | | ♣ | | ♣ | | ♠ | | ♠ | 
+|__6| |__8| |__Q| |__A| |__3| |__J| |__A| |__8| 
+
+GAME OVER!
+Final Points: 180 | Correct Guesses: 6 | Wrong Guesses: 1 | Ties: 0
+
+Play again? Enter (y)es or (n)o:
+> y
+
+Playing Another Round!
+----------------------------------ATTEMPT 1-----------------------------------
+Current card: 2 of Diamonds ♦
+ ___   ___   ___   ___   ___   ___   ___   ___  
+|2  | |## | |## | |## | |## | |## | |## | |## | 
+| ♦ | |###| |###| |###| |###| |###| |###| |###| 
+|__2| |_##| |_##| |_##| |_##| |_##| |_##| |_##| 
+
+Is the next card (l)ower or (h)igher? Enter (q)uit to exit.
+> h
+
+Correct! +15 Points.
+The next card, 9 of Clubs ♣, is higher.
+Your points: 115
+Cards remaining: 6
+
+----------------------------------ATTEMPT 2-----------------------------------
+Current card: 9 of Clubs ♣
+ ___   ___   ___   ___   ___   ___   ___   ___  
+|2  | |9  | |## | |## | |## | |## | |## | |## | 
+| ♦ | | ♣ | |###| |###| |###| |###| |###| |###| 
+|__2| |__9| |_##| |_##| |_##| |_##| |_##| |_##| 
+
+Is the next card (l)ower or (h)igher? Enter (q)uit to exit.
 > q
-Thank you for playing! Goodbye!
+
+Exiting game... Bye!
+
 ```

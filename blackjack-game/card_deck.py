@@ -1,78 +1,154 @@
 import random
 
-class Card:
-    '''Class to represent a playing card.'''
 
-    SUIT_SYMBOLS = {'Spades': chr(9824), 'Hearts': chr(9829), 'Clubs': chr(9827), 'Diamonds': chr(9830)}
-    RANK_TUPLE = ('A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K')
+class Card:
+    '''Represents a playing card with rank, suit, and value.'''
+
+    SUITS = {'Spades': chr(9824), 'Hearts': chr(9829), 'Clubs': chr(9827),
+             'Diamonds': chr(9830)}
+    RANKS = ('A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K')
 
     def __init__(self, rank, suit):
         '''
-        Initializes a Card object.
+        Initialize a new playing card with rank and suit.
 
         Parameters:
-        - rank (str): The rank of the card (e.g. 'Ace', '2', 'Jack').
-        - suit (str): The suit of the card (e.g. 'Hearts', 'Spades').
-        - value (int): The numerical value of the card.
-
-        Attributes:
-        - rank (str): The rank of the card.
-        - suit (str): The suit of the card.
-        - value (int): The numerical value of the card.
-        - card_name (str): A formatted string representing the card (e.g. 'Ace of Hearts').
+            rank (str): The rank of the card (e.g. 'A', 2, 'K', 'J')
+            suit (str): The suit of the card (e.g. 'Spades', 'Diamonds')
         '''
         self.rank = rank
         self.suit = suit
-        self.value = min(Card.RANK_TUPLE.index(rank) + 1, 10)  # Max value of 10 for face cards.
-        self.card_name = f'{rank} of {self.SUIT_SYMBOLS[suit]}'
+        self.symbol = Card.SUITS[suit]
+        self.value = self._get_value()
+        self.concealed = False  # Init card is facing up
 
-    def display_card(self, show_backside=False):
-        '''Display the ASCII art representation of the card.'''
-        if show_backside:
-            print(' ___ ')
-            print('|## |')
-            print('|###|')
-            print('|_##|')
+    def _get_value(self):
+        '''Determine the value of the card based on its rank.'''
+        if self.rank in ('J', 'Q', 'K'):
+            return 10
+        elif self.rank == 'A':
+            return 11  # Can be 11 or 1
         else:
-            print(' ___ ')
-            print(f'|{str(self.rank).ljust(2)} |')
-            print(f'| {self.SUIT_SYMBOLS[self.suit]} |')
-            print(f'|_{str(self.rank).rjust(2, "_")}|')
+            return int(self.rank)
 
-    def __str__(self):
-        '''Returns a string representation of the card.'''
-        return self.card_name
+    def get_name(self):
+        '''Get the name of the card.'''
+        return f'{self.rank} of {self.suit} {self.symbol}'
+
+    def get_rank(self):
+        '''Get the rank of the card.'''
+        return self.rank
+
+    def get_value(self):
+        '''Get the value of the card.'''
+        return self.value
+
+    def mark_concealed(self):
+        '''Mark the card as concealed (face down).'''
+        self.concealed = True
+
+    def mark_revealed(self):
+        '''Mark the card as revealed (face up).'''
+        self.concealed = False
+
+    def display_card(self):
+        '''Display the card.'''
+        if self.concealed:
+            # print('**********')
+            return '**********'
+        else:
+            # print(f'{self.rank} of {self.suit}')
+            return f'{self.rank} of {self.suit} {self.symbol}'
+
+    def __repr__(self):
+        '''String representation of the card.'''
+        return self.get_name()
+
+    @classmethod
+    def display_cards(cls, cards):
+        '''Display all the cards ASCII art in the given list of cards.'''
+        rows = ['', '', '', '', '']
+
+        for card in cards:
+            rows[0] += ' ___  '  # Top line of the card.
+            if card.concealed:
+                rows[1] += '|## | '
+                rows[2] += '|###| '
+                rows[3] += '|_##| '
+            else:
+                rank = card.get_rank()
+                suit = card.symbol
+                rows[1] += '|{} | '.format(rank.ljust(2))
+                rows[2] += '| {} | '.format(suit)
+                rows[3] += '|_{}| '.format(rank.rjust(2, '_'))
+
+        for row in rows:
+            print(row)
+
 
 class Deck:
-    '''Class to represent a deck of playing cards.'''
-
-    SUIT_TUPLE = ('Spades', 'Hearts', 'Clubs', 'Diamonds')
+    '''Represents a deck of 52 playing cards.'''
 
     def __init__(self):
-        '''
-        Initializes a Deck object.
+        '''Initialize a new deck with 52 cards.'''
+        self.cards = []
+        self.reset_cards()
 
-        Attributes:
-        - all_cards (list): List to store all the cards in the deck.
-        - remaining_cards (list): List to store the remaining cards to be played.
-        '''
-        self.all_cards = []
-        self.remaining_cards = []
+    def reset_cards(self):
+        '''Reset and shuffle the deck with 52 cards.'''
+        self.cards = []
+        for suit in Card.SUITS:
+            for rank in Card.RANKS:
+                self.cards.append(Card(rank, suit))
+        random.shuffle(self.cards)
 
-        self.generate_deck()
-        self.shuffle_deck()
+    def deal_card(self):
+        '''Deal a card from the deck.'''
+        if len(self.cards) == 0:
+            raise IndexError('Deck is empty, cannot deal card.')
+        return self.cards.pop()
 
-    def generate_deck(self):
-        '''Generates a standard deck of 52 playing cards.'''
-        for suit in self.SUIT_TUPLE:
-            for rank in Card.RANK_TUPLE:
-                self.all_cards.append(Card(rank, suit))
+    def cards_left(self):
+        '''Get the number of cards left in the deck.'''
+        return len(self.cards)
 
-    def shuffle_deck(self):
-        '''Shuffles the deck of cards.'''
-        random.shuffle(self.all_cards)
-        self.remaining_cards = self.all_cards.copy()
 
-    def draw_card(self):
-        '''Draw a card from the deck.'''
-        return self.remaining_cards.pop() if self.remaining_cards else None
+# Sanity Check
+if __name__ == '__main__':
+    # Creating cards
+    card1 = Card('A', 'Spades')
+    card2 = Card('10', 'Hearts')
+    card3 = Card('K', 'Diamonds')
+    card4 = Card('5', 'Clubs')
+    card5 = Card('Q', 'Spades')
+
+    # Initial card states
+    print('Initial card state:')
+    print('Card 1:', card1.display_card())
+    print('Card 2:', card2.display_card())
+    print('Card 3:', card3.display_card())
+    print('Card 4:', card4.display_card())
+    print('Card 5:', card5.display_card())
+
+    # Test getter methods
+    print('\nTesting getter methods:')
+    print('Card 1 name:', card1.get_name())
+    print('Card 1 rank:', card1.get_rank())
+    print('Card 1 value:', card1.get_value())
+
+    print('Card 5 name:', card5.get_name())
+    print('Card 5 rank:', card5.get_rank())
+    print('Card 5 value:', card5.get_value())
+
+    # Concealing and revealing cards
+    card3.mark_concealed()
+    print('\nConceal card 3:', card3.display_card())
+    card3.mark_revealed()
+    print('Reveal card 3:', card3.display_card())
+    card4.mark_concealed()
+    print('Conceal card 4:', card4.display_card())
+
+    # Display cards ASCII art
+    cards = [card1, card2, card3, card4, card5]
+    print('\nDisplay all card ASCII art:')
+    Card.display_cards(cards)

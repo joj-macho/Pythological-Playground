@@ -18,10 +18,10 @@ The Converter is a command-line program that allows users to convert lengths, ma
 
 ```bash
 # Navigate to the project directory
-cd pico-fermi-bagels
+cd unit-converter/
 
 # Run the main script
-python3 pico_fermi_bagels.py
+python3 converter.py
 ```
 
 ## Program Input & Output

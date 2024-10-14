@@ -42,6 +42,7 @@ def main():
             break
 
 def get_unit_list(category):
+    '''Gets the unit measurements.'''
     if category == 'length':
         return ['mm', 'cm', 'm', 'km', 'inch', 'foot', 'yard', 'mile']
     elif category == 'mass':

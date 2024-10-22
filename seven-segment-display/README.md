@@ -2,60 +2,72 @@
 
 ## Description
 
-The seven segment displays are the output display device that provide a way to display information in the form of image or text or decimal numbers. It is widely used in digital clocks, basic calculators, electronic meters, and other electronic devices that display numerical information. It consists of seven segments of light emitting diodes (LEDs) which is assembled like numerical 8.
+The "Seven-Segment Display" program is designed to visually represent numbers and some letters (0-9, A-F) using a text-based format that mimics a real seven-segment display.
 
-A labeled seven-segment display, with each segment labeled A to G:
-```
- __A__
-|     |    Each digit in a seven-segment display:
-F     B     __       __   __        __   __  __   __   __
-|__G__|    |  |   |  __|  __| |__| |__  |__    | |__| |__|
-|     |    |__|   | |__   __|    |  __| |__|   | |__|  __|
-E     C
-|__D__|
-```
+The seven-segment displays are the output display device that provide a way to display information in the form of image or text or decimal numbers. It is widely used in digital clocks, basic calculators, electronic meters, and other electronic devices that display numerical information. Each segment of the display is made up of an LED, LCD, or other display technologies, which can be turned on or off to form numbers and letters.
+
+See the [Countdown Timer](https://github.com/joj-macho/Pythological-Playground/tree/main/count-down-timer) program and the [Digital Clock](https://github.com/joj-macho/Pythological-Playground/tree/main/digital-clock), both of which use the seven-segment display to format and display time.
 
 ## How it Works
 
-- The `main()` function of the program starts by prompting the user to enter a number to display. It checks whether the user input is a valid integer or not. If the input is not a valid integer, the program continues to prompt the user until a valid integer is entered. Once a valid integer is entered, the program calls the `generate_seven_segments()` function to generate the string representation of the seven-segment display for the entered integer.
+- A seven-segment display consists of seven individual segments arranged in a rectangular fashion, as follows:
 
-- The `generate_seven_segments()` function first converts the input integer to a string and pads it with leading zeros to meet a minimum width. Then, it initializes a list of three empty strings to store the rows of the seven-segment display.
+```
+ __1__
+|     |    Each digit in a seven-segment display:
+2     4     __       __   __        __   __  __   __   __
+|__3__|    |  |   |  __|  __| |__| |__  |__    | |__| |__|
+|     |    |__|   | |__   __|    |  __| |__|   | |__|  __|
+5     7
+|__6__|
+```
 
-- The function iterates through each digit of the input integer and determines which segments to light up based on the value of the digit. For example, if the digit is '0', the function lights up the top, middle, and bottom segments of the first row, the left and right segments of the second row, and the top, middle, and bottom segments of the third row.
+- Use a dictionary, `segment_map`, to map each string representation of a digit (0-9) to its corresponding seven-sgement display representation.
 
-- The function appends the segments for each digit to the corresponding row in the list of rows. If the next digit is not a decimal point, the function adds a space to separate the digits.
+## Running the Program
 
-- Finally, the function joins the rows with newline characters and returns the resulting string representation of the seven-segment display.
+```bash
+# Navigate to the project directory
+cd seven-segment-display/
+
+# Run the main script
+python3 seven_segment_display.py
+```
 
 ## Program Input & Output
 
-When you run the program, `seven-segment-display.py`, the output will look like this;
+When you run the program, `seven_segment_display.py`, the output will look like this;
 
 ```
-Seven-Segment Number Display
+The Seven-Segment Display Simulator!
 
-Enter number to show:
-> 123456789
-      __   __        __   __   __   __   __ 
-   |  __|  __| |__| |__  |__     | |__| |__|
-   | |__   __|    |  __| |__|    | |__|  __|
+Enter digit(s) (0-9) to display, or (q)uit to exit.
+> 4
+    
+|_| 
+  | 
 
+> 2
+ _  
+ _| 
+|_  
 
-Seven-Segment Number Display
-
-Enter number to show:
 > 42
-      __ 
-|__|  __|
-   | |__ 
+     _  
+|_|  _| 
+  | |_  
 
+> 0123456789
+ _       _   _       _   _   _   _   _  
+| |   |  _|  _| |_| |_  |_    | |_| |_| 
+|_|   | |_   _|   |  _| |_|   | |_|  _| 
 
-Seven-Segment Number Display
+> 42!
+Enter a valid positive integer (0-9)!
 
-Enter number to show:
-> 0
- __ 
-|  |
-|__|
+> 3.14
+Enter a valid positive integer (0-9)!
 
+> q
+Bye!
 ```

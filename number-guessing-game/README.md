@@ -2,19 +2,29 @@
 
 ## Description
 
-The Number Guessing Game is a simple Python program that challenges you to guess a secret number within a specified range.
+The "Number Guessing Game" is a simple game where the player tries to guess a randomly selected secret number within a specified range. The player receives clues after each guess to help them adjust their next guess and narrow down the possibilities.
 
-## How it Works
+## How It Works
 
-- The program uses the `random` module to generate the random number.
+In the Number Guessing Game:
+- Start by entering the lower and upper bounds for the range of the secret number.
+- The game randomly selects a secret number within this specified range (inclusive).
+- Guess the secret number
+- After each guess, the following clues will be provided:
+   - "Too low!" if the guess is less than the secret number.
+   - "Too high!" if the guess is greater than the secret number.
+   - "Correct!" if the guess matches the secret number.
+- Continue guessing until you correctly guess the secret number.
 
-- The `main()` function enters a loop, prompting the user to input the lower and upper bounds for the range of numbers. This loop ensures a valid range is provided, with the program guiding the user to correct any input errors. Once the range is set, the program utilizes the `random` module to generate a random secret number within that specified range.
+## Running the Program
 
-- The program initiates a loop, offering the user 5 attempts to guess the secret number. The loop variable `attempts` keeps track of the number of guesses made, providing the user with feedback on the remaining attempts.
+```bash
+# Navigate to the project directory
+cd number-guessing-game/
 
-- The user inputs their guess, and the program evaluates the guess, providing immediate feedback. If the guess is incorrect, the program guides the user to adjust their guess based on whether it's too low or too high. If the guess is correct, the loop is exited using the `break` statement.
-
-- After the loop, the program checks if the guess is equal to the secret number. If correct, the user is congratulated on their success, and the number of attempts is displayed. If incorrect, the user is informed of their loss, and the secret number is revealed.
+# Run the main script
+python3 number_guessing.py
+```
 
 ## Program Input & Output
 
@@ -24,52 +34,87 @@ When you run the program `number_guessing.py`, the output will look like this;
 
 Welcome to the Number Guessing Game!
 
-Enter the range of numbers:
-   Lower bound: 0
-   Upper bound: 100
+Here's how to play:
 
-I'm thinking of a number between 0 and 100. Can you guess it?
+- Enter the lower and upper bounds for the range of the secret number.
+- Guess the secret number.
+- After each guess, you will receive clues:
+   - "Too low!" if your guess is less than the secret number.
+   - "Too high!" if your guess is greater than the secret number.
+   - "Correct!" if your guess matches the secret number.
 
-Enter your guess: 10
-Your Guess is Too Low! Try Again.
+Press Enter to start guessing...
 
-Enter your guess: 100
-Your Guess is Too High! Try Again.
+Enter the integer range of numbers (inclusive):
+  Lower Bound: 0
+  Upper Bound: 50
 
-Enter your guess: 43
-Your Guess is Too Low! Try Again.
+I am thinking of a number between [0, 50].
+Can you guess it?
+You have 5 attempts to guess it.
 
-Enter your guess: 45
-Your Guess is Too High! Try Again.
+Attempt #1
+Enter your guess:
+> 1
+Your guess is too low. Try Again.
 
-Enter your guess: 49
-Your Guess is Too High! Try Again.
+Attempt #2
+Enter your guess:
+> 50
+Your guess is too high. Try Again.
 
-Sorry, you've reached the maximum attempts. The correct number was 44.
+Attempt #3
+Enter your guess:
+> 2o
 
-.
-.
-.
+Invalid Input! Please enter a valid numeric value.
 
-Welcome to the Number Guessing Game!
+Attempt #3
+Enter your guess:
+> 55
+Your guess is out of bounds! Please enter a number between 0 and 50
 
-Enter the range of numbers:
-   Lower bound: 0.5
-Invalid input. Please enter valid numeric values!
+Attempt #3
+Enter your guess:
+> 37
+Your guess is too high. Try Again.
 
-Enter the range of numbers:
-   Lower bound: 1
-   Upper bound: 20
+Attempt #4
+Enter your guess:
+> 15
+Your guess is too high. Try Again.
 
-I'm thinking of a number between 1 and 20. Can you guess it?
+Attempt #5
+Enter your guess:
+> 20
+Your guess is too high. Try Again.
 
-Enter your guess: 4
-Your Guess is Too Low! Try Again.
+Sorry, you have reached the maximum number of attempts.
+The correct number was 6.
 
-Enter your guess: 6
-Your Guess is Too High! Try Again.
+Do you want to play again? Enter (y)es or (n)o:
+> y
 
-Enter your guess: 5
+Enter the integer range of numbers (inclusive):
+  Lower Bound: 0
+  Upper Bound: 20
 
-Congratulations! You guessed the correct number 5 in 3 attempts.
+I am thinking of a number between [0, 20].
+Can you guess it?
+You have 5 attempts to guess it.
+
+Attempt #1
+Enter your guess:
+> 10
+Your guess is too low. Try Again.
+
+Attempt #2
+Enter your guess:
+> 16
+
+Congratulations! You guessed the correct number, 16, in 2 attempts
+
+Do you want to play again? Enter (y)es or (n)o:
+> n
+Bye!
 ```

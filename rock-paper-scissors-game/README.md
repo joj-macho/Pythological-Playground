@@ -2,29 +2,138 @@
 
 ## Description
 
-This is a classic game of Rock Paper Scissors (also known as jan-ken-pon)! Rock Paper Scissors is a hand game played by two or more players. In this game, participants verbally count "rock, paper, scissors" and simultaneously shape their hands to represent one of three options. The options include a rock (formed by making a fist with your hand), paper (represented by holding your hand with the palm facing downward), or scissors (formed by extending two fingers).
+The Rock-Paper-Scissors game is a classic hand game played by two or more players. Players verbally count "rock, paper, scissors" and simultaneously shape their hands to represent one of three options, rock, paper, or scissors.
 
-The objective of the game is to anticipate and counter your opponent's move with the appropriate hand shape. Rock beats scissors, scissors beat paper, and paper beats rock. The game is played in rounds, and the winner of each round is determined based on the combination of hand shapes formed by the players.
+The objective of the game is to anticipate and counter your opponent's move with the appropriate hand shape. Rock beats scissors, scissors beat paper, and paper beats rock.
 
 ## How it works
 
-- The program uses the `random`, `time`, and `sys` modules for generating random numbers, introducing delays, and exiting the program, respectively.
+- Enter rock, paper, or scissors.
+- Program will randomly make a move.
 
-- `ROCK`, `PAPER`, `SCISSORS` each store the ASCII art representations of rock, paper, and scissors. The available options for the game (rock, paper, scissors) are stored in a dictionary called `OPTIONS`. Each option is associated with a key ('r' for rock, 'p' for paper, 's' for scissors) and a tuple value containing the name of the option and its corresponding ASCII art.
+## Running the Program
 
-- The `main()` function is has an outer `while` loop that runs indefinitely until the user chooses to quit the game. Inside the outer loop, there is an inner `while` loop that prompts the user to enter their move (rock, paper, scissors) or to quit the game.
+```bash
+# Navigate to the project directory
+cd rock-paper-scissors-game/
 
-- The program checks the user's input.
-
-- The computer's move is randomly selected from the `OPTIONS` dictionary using `ranom.choice()` function. It assigns the move as a string to the `computer_move` variable. The computer's move is displayed similarly to the player's move.
-    - The program introduces a delay of 1 second using `time.sleep()` and then displays the computer's move. Another delay of 0.5 seconds is introduced using `time.sleep()`.
-
-- The program compares the player's move and the computer's move to determine the game result. If the moves are the same, it is a tie. The program prints "A tie!" and increments the ties variable. If the player wins according to the game rules, the program prints "You Win!" and increments the wins variable. If the player loses according to the game rules, the program prints "You Lose" and increments the losses variable. After each round, the updated scores are displayed.
-
-- After displaying the game results, the program goes back to the outer loop and repeats the process until the user chooses to quit.
+# Run the main script
+python3 rock_paper_scissors.py
+```
 
 ## Program Input & Output
 
 When you run `rock_paper_scissors.py`, the output will look like this;
 
-![Rock Paper Scissors Results](output/rps-results.gif)
+```
+Rock Paper Scissors Game.
+
+Game Rules;
+    - Rock smashes Scissors
+    - Paper covers Rock
+    - Scissors cut Paper
+
+Enter (r)ock, (p)aper, or (s)cissors. Enter (q)uit to exit.
+> r
+
+Player Move: Rock 
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+ 
+VS.
+
+Computer Move: Paper 
+     _______
+---'    ____)____
+           ______)
+          _______)
+         _______)
+---.__________)
+
+You Lose!
+
+0 Wins | 1 Losses | 0 Ties
+
+Enter (r)ock, (p)aper, or (s)cissors. Enter (q)uit to exit.
+> p
+
+Player Move: Paper 
+     _______
+---'    ____)____
+           ______)
+          _______)
+         _______)
+---.__________)
+ 
+VS.
+
+Computer Move: Scissors 
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+
+You Lose!
+
+0 Wins | 2 Losses | 0 Ties
+
+Enter (r)ock, (p)aper, or (s)cissors. Enter (q)uit to exit.
+> s
+
+Player Move: Scissors 
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+ 
+VS.
+
+Computer Move: Scissors 
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+
+A tie!
+
+0 Wins | 2 Losses | 1 Ties
+
+Enter (r)ock, (p)aper, or (s)cissors. Enter (q)uit to exit.
+> r
+
+Player Move: Rock 
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+ 
+VS.
+
+Computer Move: Scissors 
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+
+You Win!
+
+1 Wins | 2 Losses | 1 Ties
+
+Enter (r)ock, (p)aper, or (s)cissors. Enter (q)uit to exit.
+> q
+Exiting game...Bye!
+```

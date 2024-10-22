@@ -1,6 +1,6 @@
 import random
 
-# A dictionary containing the ASCII characters of each dice face
+# ASCII art for dice faces
 DICE_FACES = {
     1: (
         '+-------+',
@@ -46,53 +46,54 @@ DICE_FACES = {
     )
 }
 
-DICE_HEIGHT = len(DICE_FACES[1])  # The height of each dice face in rows
-MAX_DICE = 6  # Maximum allowed dice
+MAX_DICE = 7  # Fits 79 columns screen
+
 
 def main():
-    '''Main function to run the dice rolling simulator.'''
-    print('\nDice Rolling Simulator\n')
-
+    '''Do the roll thingy.'''
+    print('Dice rolling simulator.\n')
     while True:
-        num_of_dice = get_num_of_dice()
-        dice_roll_results = roll_dice(num_of_dice)
-
-        print('RESULTS:')
-        show_dice_face = generate_dice_face(dice_roll_results)
-        print(show_dice_face)
-
-        play_again = input('Do you want to roll again? (y/n)\n> ').lower()
-        if play_again != 'y':
-            print('Bye!')
+        num_of_dice = get_num_of_dice('Enter number of dice to roll or '
+                                      '(q)uit to exit:\n> ')
+        if num_of_dice is None:
             break
 
-def get_num_of_dice():
-    '''Prompt the user to choose the number of dice to roll.'''
+        # Roll the dice and display results
+        roll_results = [random.randint(1, 6) for _ in range(num_of_dice)]
+        print('\nRolling the dice...\n')
+        display_dice_ascii(roll_results)
+        print(f'\nDice face result: {roll_results}')
+        print(f'Sum of dice faces: {sum(roll_results)}\n')
+
+
+def get_num_of_dice(prompt):
+    '''Prompts for number of dice to roll.'''
     while True:
+        response = input(prompt).strip().lower()
+        if response in ('q', 'quit'):
+            print('Exiting program...Bye!')
+            return None
         try:
-            response = int(input(f'How many dice do you want to roll (max {MAX_DICE} dice)?\n> '))
-            if 0 < response <= MAX_DICE:
-                return response
-            print(f'Enter a valid number of dice to roll (1-{MAX_DICE})!')
-        except ValueError:
-            print('Enter a valid number!')
+            num_of_dice = int(response)
+            if not 0 < num_of_dice <= MAX_DICE:
+                raise ValueError(f'Enter # dice 1-{MAX_DICE}.')
+            return num_of_dice
+        except ValueError as e:
+            print(f'Invalid Input: {e}\n')
 
-def roll_dice(num_of_dice):
-    '''Simulate rolling the dice and return the results as a list.'''
-    return [random.randint(1, 6) for _ in range(num_of_dice)]
 
-def generate_dice_face(dice_roll_results):
-    '''Generate the ASCII representation of the rolled dice faces.'''
-    try:
-        dice_face = [DICE_FACES[face] for face in dice_roll_results]
-    except KeyError:
-        return 'Invalid dice face encountered.'
+def display_dice_ascii(roll_results):
+    '''Displays ASCII art for the dice results.'''
+    dice_lines = ['' for _ in range(5)]
 
-    # Transpose the rows to display the dice faces side by side
-    dice_face_rows = [' '.join(die_row) for die_row in zip(*dice_face)]
-    show_dice_face = '\n'.join(dice_face_rows)
+    for result in roll_results:
+        dice_face = DICE_FACES[result]
+        for i, line in enumerate(dice_face):
+            dice_lines[i] += line + ' '  # Add space between dice faces
 
-    return show_dice_face
+    for line in dice_lines:
+        print(line)
+
 
 if __name__ == '__main__':
     main()

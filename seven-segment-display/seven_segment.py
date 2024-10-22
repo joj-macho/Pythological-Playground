@@ -1,94 +1,62 @@
 def main():
-    '''Main function to display digits using seven-segments.'''
+    '''Display digits using seven-segments.'''
+    print('The Seven-Segment Display Simulator!\n')
+    print('Enter digit(s) (0-9) to display, or (q)uit to exit.')
 
-    print('\nSeven-Segment Number Display\n')
-    
     while True:
-        response = input('Enter number to show:\n> ')
-        if not response.isdecimal():
-            continue
-        else:
-            response = int(response)
+        response = input('> ').lower()
+        if response.startswith('q'):
+            print('Bye!')
             break
 
-    print(display_seven_segments(response))
-    print()
+        try:
+            number = response
+            if not number.isnumeric():
+                raise ValueError
+            print(seven_segment_display(number))
+            print()
+        except ValueError:
+            print('Enter a valid positive integer (0-9)!\n')
 
-def display_seven_segments(number, minWidth=0):
-    '''Generate a seven-segment display for a given number.'''
 
-    # Convert number to a string and apply zero-padding if necessary
-    number = str(number).zfill(minWidth)
+def seven_segment_display(number):
+    '''
+    Generates a seven-segment display for a given number.
 
-    # Initialize the three rows of the seven-segment display
-    rows = ['', '', '']
+    Parameters:
+        number (str): The number to display as a string.
 
-    # Iterate through each numeral in the input number
-    for i, numeral in enumerate(number):
-        # Handle decimal points
-        if numeral == '.':
-            rows[0] += ' '
-            rows[1] += ' '
-            rows[2] += '.'
-            continue
+    Returns:
+        str: A string representation of the seven-segment display.
+    '''
+    segment_map = {
+        '0': ' _ \n| |\n|_|\n',
+        '1': '   \n  |\n  |\n',
+        '2': ' _ \n _|\n|_ \n',
+        '3': ' _ \n _|\n _|\n',
+        '4': '   \n|_|\n  |\n',
+        '5': ' _ \n|_ \n _|\n',
+        '6': ' _ \n|_ \n|_|\n',
+        '7': ' _ \n  |\n  |\n',
+        '8': ' _ \n|_|\n|_|\n',
+        '9': ' _ \n|_|\n _|\n'
+    }
 
-        # Define the seven-segment patterns for each numeral
-        # For simplicity, we represent the segments with spaces, underscores, and vertical bars
-        # 0, 2, 3, 5, 6, 7, 8, and 9 use different segments, while 1 and 4 use fewer segments
-        # Adjusted individual segments to create the appropriate numeral
-        elif numeral == '-':
-            rows[0] += '    '
-            rows[1] += ' __ '
-            rows[2] += '    '
-        elif numeral == '0':
-            rows[0] += ' __ '
-            rows[1] += '|  |'
-            rows[2] += '|__|'
-        elif numeral == '1':
-            rows[0] += '    '
-            rows[1] += '   |'
-            rows[2] += '   |'
-        elif numeral == '2':
-            rows[0] += ' __ '
-            rows[1] += ' __|'
-            rows[2] += '|__ '
-        elif numeral == '3':
-            rows[0] += ' __ '
-            rows[1] += ' __|'
-            rows[2] += ' __|'
-        elif numeral == '4':
-            rows[0] += '    '
-            rows[1] += '|__|'
-            rows[2] += '   |'
-        elif numeral == '5':
-            rows[0] += ' __ '
-            rows[1] += '|__ '
-            rows[2] += ' __|'
-        elif numeral == '6':
-            rows[0] += ' __ '
-            rows[1] += '|__ '
-            rows[2] += '|__|'
-        elif numeral == '7':
-            rows[0] += ' __ '
-            rows[1] += '   |'
-            rows[2] += '   |'
-        elif numeral == '8':
-            rows[0] += ' __ '
-            rows[1] += '|__|'
-            rows[2] += '|__|'
-        elif numeral == '9':
-            rows[0] += ' __ '
-            rows[1] += '|__|'
-            rows[2] += ' __|'
+    lines = ['', '', '']
+    for char in number:
+        display = segment_map.get(char, 'Invalid')
+        if display == 'Invalid':
+            lines[0] += 'Invalid '
+            lines[1] += 'Invalid '
+            lines[2] += 'Invalid '
+        else:
+            segments = display.split('\n')
+            lines[0] += segments[0] + ' '
+            lines[1] += segments[1] + ' '
+            lines[2] += segments[2] + ' '
 
-        # Add space between numerals unless the next numeral has a decimal point
-        if i != len(number) - 1 and number[i + 1] != '.':
-            rows[0] += ' '
-            rows[1] += ' '
-            rows[2] += ' '
+    return '\n'.join(lines)
 
-    # Combine the three rows to create the final display
-    return '\n'.join(rows)
 
 if __name__ == '__main__':
     main()

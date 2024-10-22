@@ -2,33 +2,37 @@
 
 ## Description
 
-This program implements a two-player Carrot in the Box game where players can bluff and try to guess which box contains a carrot. That is, player A has to bluff as best as possible, so that B ultimately selects the wrong (empty) box. B on the other hands needs to call the bluff of A. B has the "easier" task, as he has the ultimate decision; on the other hand, he has much less information than A (who actually knows which box contains the carrot).
+THe Carrot in the Box program is a two-player Carrot in the Box game where players can bluff and try to guess which box contains a carrot.
 
 ## How it Works
 
-- The program uses the `random` module to randomly determine the location of the carrot in the boxes.
+- The program randomly assigns the carrot to box A or box B.
+- Player 1 has to bluf so that player 2 selects the empty box. Player 1 knows which box contains the carrrot.
+- Player 2 needs to call the bluff of player 1, and ultimately decides whether to switch boxes or keep current boxes.
 
-- The `main()` function uses a loop that allows multiple rounds of the game to be played. Inside the loop, the `play_game()` function is called to play a single round.
+## Running the Program
 
-- In the `play_game()` function, the boxes (Box A and Box B) are displayed using ASCII art. The first player (`player_1`) is instructed to look into their box while the second player (`player_2`) closes their eyes. The program waits for the second player to close their eyes by prompting the first player to press Enter. Randomly, either Box A or Box B is selected to contain the carrot.
+```bash
+# Navigate to the project directory
+cd carrot-in-a-box/
 
-- The contents of the first player's box are displayed based on whether the carrot is in Box A or not. The program waits for the first player to press Enter, and then clears the screen. The first player is instructed to tell the second player to open their eyes, and the program waits for the first player to press Enter. The program prompts the second player to decide whether they want to swap boxes with the first player or not. The input is validated to ensure it's either 'y' or 'n'.
-
-- If the second player chooses to swap boxes (responds with 'y'), the boxes (Box A and Box B) are swapped. The program displays the final state of the boxes based on the location of the carrot.
-
-- Finally, the program declares the winner based on the location of the carrot and prints their name.
+# Run the main script
+python3 carrot_in_box.py
+```
 
 ## Program Input & Output
 
 When you run `carrot_in_box.py`, the output will look like this:
 
 ```
-Carrot in the Box Game. The rules are simple; To win, bluff until you have a box with a carrot in it.
-    
-Enter the name of player 1:
-> John
-Enter the name of player 2:
-> Harold
+Carrot in the Box Game.
+
+Bluff until you have a box with a carrot in it.
+
+Enter the name of Player 1:
+> Alice
+Enter the name of Player 2:
+> Bob
 
 HERE ARE TWO BOXES:
   __________     __________
@@ -37,47 +41,44 @@ HERE ARE TWO BOXES:
 |   BOX   | |  |   BOX   | |
 |    A    | /  |    B    | /
 +---------+/   +---------+/
-    John          Harold  
+   Alice             Bob    
 
-John you have BOX A in front of you.
-Harold you have BOX B in front of you.
+Alice, you have BOX A in front of you.
+Bob, you have BOX B in front of you.
 READY...?
 
-John look into your BOX.
-Harold close your eyes.
-Press Enter when Harold closes their eyes.
+Alice, look into your BOX.
+Bob, close your eyes.
+Press Enter when Bob closes their eyes.
 
+Inside the BOX of Alice:
 
-Inside the BOX of John:
-
-   ___VV____
-  |   VV    |
-  |   VV    |
-  |___||____|    __________
+   ___VV____      _________
+  |   VV    |    |         |
+  |   VV    |    |         |
+  |___||____|    |_________|
  /    ||   /|   /         /|
 +---------+ |  +---------+ |
 |   BOX   | |  |   BOX   | |
 |    A    | /  |    B    | /
 +---------+/   +---------+/
  (carrot!)
-    John          Harold  
+   Alice             Bob    
 Press Enter to Continue...
 
---Blank Screen--
-
-John tell Harold to open their eyes.
+Alice, tell Bob to open their eyes.
 Press Enter to Continue...
 
-Harold do you want to swap boxes with John, (y)es or (n)o?
+Bob, do you want to swap boxes with Alice? (y)es or (n)o
 > y
 HERE ARE THE TWO BOXES:
   __________     __________
  /         /|   /         /|
 +---------+ |  +---------+ |
 |   BOX   | |  |   BOX   | |
-|    B    | /  |  A     | /
+|    B    | /  |    A    | /
 +---------+/   +---------+/
-    John          Harold  
+   Alice             Bob    
 Press Enter to Show the Winner.
 
 
@@ -88,8 +89,14 @@ Press Enter to Show the Winner.
  /         /|   /    ||   /|
 +---------+ |  +---------+ |
 |   BOX   | |  |   BOX   | |
-|   B     | /  |  A       | /
+|    B    | /  |    A    | /
 +---------+/   +---------+/
-    John          Harold  
-Harold is the winner.
+(no carrot!)
+   Alice             Bob    
+
+Bob is the winner.
+
+Do you want to play again? (y)es or (n)o
+> n
+Bye!
 ```

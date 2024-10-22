@@ -21,7 +21,7 @@ def main():
 
 def seven_segment_display(number):
     '''
-    Generate a seven-segment display for a given number.
+    Generates a seven-segment display for a given number.
 
     Parameters:
         number (str): The number to display as a string.

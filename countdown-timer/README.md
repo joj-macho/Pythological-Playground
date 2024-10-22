@@ -11,13 +11,13 @@ Refer to the [Seven-Segment Display](https://github.com/joj-macho/Pythological-P
 - Enter the number of seconds to start program.
 - The program converts and formats the number of seconds into a time string (`HH:MM:SS`).
 - The time string (`HH:MM:SS`) is converted into a seven-segment display format.
-- Countdown starts and ends at `00:00:00` (in seven-segment format).
+- Prints the countdown time in the seven-segment display format every second decrement.
 
 ## Running the Program
 
 ```bash
 # Navigate to the project directory
-cd count-down-timer
+cd countdown-timer/
 
 # Run the main script
 python3 countdown.py
@@ -77,5 +77,10 @@ Enter the numbr of seconds for the countdown. Enter (q)uit to exit:
  _   _       _   _       _   _  
 | | |_   *  |_  |_|  *  |_    | 
 |_| |_|  *   _|  _|  *   _|   | 
-^CCountdown Terminated!
+^C
+Countdown interrupted!
+
+Enter the numbr of seconds for the countdown. Enter (q)uit to exit:
+> q
+Bye!
 ```

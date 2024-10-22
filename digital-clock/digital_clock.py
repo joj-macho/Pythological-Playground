@@ -1,47 +1,40 @@
-import sys
 import time
-import seven_segment
+import os
+from seven_segment import seven_segment_display
+
 
 def main():
-    '''Main function to display current time using the seven-segments display.'''
-    print('\nDigital Timer.\n')
-
+    '''Run the digital clock with a seven-segment display.'''
+    print('Digital Clock using Seven-Segment Display!\n')
     try:
         while True:
-            # Get time from computer
-            current_time = time.localtime()
-            hours = str(current_time.tm_hour % 24)
-            minutes = str(current_time.tm_min)
-            seconds = str(current_time.tm_sec)
-
-            # Get digit strings from seven_segments
-            hour_digit = seven_segment.display_seven_segments(hours, 2)
-            hour_top_row, hour_middle_row, hour_bottom_row = hour_digit.splitlines()
-
-            minute_digit = seven_segment.display_seven_segments(minutes, 2)
-            minute_top_row, minute_middle_row, minute_bottom_row = minute_digit.splitlines()
-
-            sec_digit = seven_segment.display_seven_segments(seconds, 2)
-            sec_top_row, sec_middle_row, sec_bottom_row = sec_digit.splitlines()
-
-            # Display the digits:
-            print(hour_top_row + '     ' + minute_top_row + '     ' + sec_top_row)
-            print(hour_middle_row + '  *  ' +
-                  minute_middle_row + '  *  ' + sec_middle_row)
-            print(hour_bottom_row + '  *  ' +
-                  minute_bottom_row + '  *  ' + sec_bottom_row)
-
-            print()
-            print('Press Ctrl-C to quit.')
-
-            # Loop through seconds
-            while True:
-                time.sleep(0.01)
-                if time.localtime().tm_sec != current_time.tm_sec:
-                    break
-
+            os.system('clear')  # (Un)comment to clear screen
+            display_time(format_time(time.localtime()))
+            time.sleep(1)
     except KeyboardInterrupt:
-        sys.exit()
+        print('\nClock interrupted... Bye!')
+
+
+def format_time(current_time):
+    '''Converts the current time to HH:MM:SS format.'''
+    # Extract the hour, minute, and second from the current time structure
+    hours = current_time.tm_hour
+    minutes = current_time.tm_min
+    seconds = current_time.tm_sec
+    return f'{hours:02}:{minutes:02}:{seconds:02}'
+
+
+def display_time(time_str):
+    '''Displays the given time string in seven-segment format.'''
+    rows = ['', '', '']
+    for char in time_str:
+        segment = seven_segment_display(char).split('\n')
+        for i in range(3):
+            rows[i] += segment[i]
+
+    for row in rows:
+        print(row)
+
 
 if __name__ == '__main__':
     main()

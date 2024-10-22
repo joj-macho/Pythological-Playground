@@ -1,59 +1,79 @@
 import json
+from pathlib import Path
+from contact import Contact
+
+# Directory where this script is located
+BASE_PATH = Path(__file__).resolve().parent
+
 
 class ContactManager:
-    def __init__(self):
-        '''Initialize the ContactManager with an empty contacts dictionary.'''
-        self.contacts = {}
+    def __init__(self, file_name='contacts.json'):
+        '''Initialize the Contact Manager.'''
+        self.file_path = BASE_PATH / file_name  # Full path to json file
+        self.contacts = self.load_contacts()
 
-    def add_contact(self, name, phone, email):
-        '''Add a new contact to the contacts dictionary.'''
-        self.contacts[name] = {'phone': phone, 'email': email}
+    def load_contacts(self):
+        '''Loads contacts from JSON data file.'''
+        try:
+            with open(self.file_path, 'r') as file:
+                content = file.read().strip()
+                if not content:
+                    return {}
+                data = json.loads(content)
+                return {contact_id: Contact.from_dict(
+                    contact_data) for contact_id, contact_data in data.items()}
+        except FileNotFoundError:
+            return {}
 
-    def display_contact(self, name):
-        '''Display contact information for a given name.'''
-        contact = self.contacts.get(name)
-        if contact:
-            print(f'Name: {name}\nPhone: {contact["phone"]}\nEmail: {contact["email"]}\n')
-        else:
-            print(f'Contact with name {name} not found.\n')
+    def save_contacts(self):
+        '''Saves contacts to the JSON file.'''
+        with open(self.file_path, 'w') as file:
+            data = {contact_id: contact.to_dict()
+                    for contact_id, contact in self.contacts.items()}
+            json.dump(data, file, indent=4)
 
-    def update_contact(self, name, new_phone, new_email):
-        '''Update contact information for a given name.'''
-        if name in self.contacts:
-            self.contacts[name]['phone']= new_phone
-            self.contacts[name]['email']= new_email
-            print(f'Contact information of {name} has been updated!\n')
-        else:
-            print(f'The name {name} is not in your contacts!\n')
+    def create_contact(self, contact_id, name, phone, email, address=None):
+        '''Creates a new contact.'''
+        if contact_id in self.contacts:
+            print('\nContact ID already exists.')
+            return None
 
-    def search_contact(self, name):
-        '''Search for a contact by name.'''
-        return self.contacts.get(name)
+        new_contact = Contact(contact_id, name, phone, email, address)
+        self.contacts[contact_id] = new_contact
+        self.save_contacts()
+        return new_contact
 
-    def delete_contact(self, name):
-        '''Delete a contact by name.'''
-        if name in self.contacts:
-            del self.contacts[name]
-            print(f'Contact {name} has been deleted\n')
-        else:
-            print(f'The name {name} is not in your contacts!\n')
+    def get_contacts(self):
+        '''Gets all contacts.'''
+        return self.contacts
 
-    def display_all_contacts(self):
-        '''Display information for all contacts.'''
-        if len(self.contacts) == 0:
-            print('Address Book is Empty!\n')
-        else:
-            for name, contact_info in self.contacts.items():
-                print(f'Name: {name}\nPhone: {contact_info["phone"]}\nEmail: {contact_info["email"]}\n')
+    def read_contact(self, contact_id):
+        '''Reads a new contact by ID.'''
+        if contact_id in self.contacts:
+            return self.contacts.get(contact_id)
+        return None
 
-    def save_to_file(self, filename):
-        '''Save contacts to a JSON file.'''
-        with open(filename, 'w') as file:
-            json.dump(self.contacts, file)
-        print(f'Your Contacts have been saved to {filename}')
+    def update_contact(self, contact_id, name=None,
+                       phone=None, email=None, address=None):
+        '''Updates an existing contact.'''
+        if contact_id in self.contacts:
+            contact = self.contacts.get(contact_id)
+            if name:
+                contact.name = name
+            if phone:
+                contact.phone = phone
+            if email:
+                contact.email = email
+            if address:
+                contact.address = address
+            self.save_contacts()
+            return True
+        return False
 
-    def load_from_file(self, filename):
-        '''Load contacts from a JSON file.'''
-        with open(filename, 'r') as file:
-            self.contacts = json.load(file)
-        print(f'Contacts have been loaded from {filename}')
+    def delete_contact(self, contact_id):
+        '''Deletes a contact from contacts.'''
+        if contact_id in self.contacts:
+            del self.contacts[contact_id]
+            self.save_contacts()
+            return True
+        return False

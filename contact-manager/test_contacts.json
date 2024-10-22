@@ -1,0 +1,16 @@
+{
+    "001": {
+        "contact_id": "001",
+        "name": "Alison",
+        "phone": "123456789",
+        "email": "alice@email.com",
+        "address": "220 Alice Street"
+    },
+    "002": {
+        "contact_id": "002",
+        "name": "Carol",
+        "phone": "89654125",
+        "email": "carol@email.com",
+        "address": "220 Bob Lane"
+    }
+}

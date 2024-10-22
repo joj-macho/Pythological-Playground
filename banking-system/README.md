@@ -6,9 +6,8 @@ The "Banking System" program simulates a banking system where users can manage m
 
 ## How It Works
 
-- **Creating an Account**:
-   - Create multiple bank accounts using a unique account nunmber and PIN code.
-   - Each account is managed with a unique account number/ID for access. Access accounts by entering the account number and the corresponding PIN code.
+- Create multiple bank accounts using a unique account nunmber and PIN code.
+- Each account is managed with a unique account number/ID for access. Access accounts by entering the account number and the corresponding PIN code.
 
 - After creating an account and logging in to your account, you can:
    - Check the current balance.
@@ -23,7 +22,7 @@ Account data can be loaded and saved to JSON file.
 
 ```bash
 # Navigate to the project directory
-cd banking-system
+cd banking-system/
 
 # Run the main script
 python3 main.py

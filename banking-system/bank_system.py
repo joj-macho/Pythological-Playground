@@ -1,26 +1,27 @@
 import json
+from pathlib import Path
 from bank_account import BankAccount
+
+# Directory where this script is located
+BASE_PATH = Path(__file__).resolve().parent
 
 
 class BankSystem:
-    '''Represents a Banking System'''
-
-    def __init__(self, data_file='bank_accounts.json'):
+    def __init__(self, file_name='bank_accounts.json'):
         '''
         Initialize the banking system.
-
-        Paramters:
-            data_file (str): Path to JSON file for storing accounts data.
+        
+        Parameters:
+            file_name (str): File name for storing banking data.
         '''
-        self.data_file = data_file
-
+        self.file_path = BASE_PATH / file_name  # Full path to json file
         self.accounts = self.load_accounts()
         self.logged_in_account = None
 
     def load_accounts(self):
         '''Load accounts from json data file file.'''
         try:
-            with open(self.data_file, 'r') as file:
+            with open(self.file_path, 'r') as file:
                 data = json.load(file)
                 return {acc_id: BankAccount.from_dict(acc_data)
                         for acc_id, acc_data in data.items()}
@@ -29,7 +30,7 @@ class BankSystem:
 
     def save_accounts(self):
         '''Save accounts json data file.'''
-        with open(self.data_file, 'w') as file:
+        with open(self.file_path, 'w') as file:
             data = {acc_id: acc.to_dict() for acc_id, acc
                     in self.accounts.items()}
             json.dump(data, file, indent=4)

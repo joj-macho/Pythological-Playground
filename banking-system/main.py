@@ -3,7 +3,7 @@ from bank_system import BankSystem
 
 def main():
     '''Run the Banking System Simulator.'''
-    bank = BankSystem('test_accounts.json')  # Usign test json file
+    bank = BankSystem('test_accounts.json')  # Test banking program
 
     while True:
         choice = main_menu()
@@ -24,7 +24,7 @@ def main():
                 print('Failed to create account!')
             input('\nPress Enter to continue...')
 
-        elif choice == '2':
+        elif choice == '2':  # Login to account
             account_id = input('Enter your account number: ')
             pin = input('Enter your PIN code: ')
             if bank.login(account_id, pin):
@@ -43,7 +43,7 @@ def main():
 
 
 def main_menu():
-    '''Display the main menu options.'''
+    '''Displays the main menu options.'''
     print()
     print(' Welcome to X Bank '.center(79, '-'))
     print()
@@ -61,11 +61,10 @@ def main_menu():
 
 
 def get_user_choice(prompt, options):
-    '''Prompt the user to select option from options.'''
+    '''Prompts the user to select option from options.'''
     while True:
         choice = input(prompt)
         if choice == '0':
-            # print('Exiting Bank X... Bye!')
             return None
         if choice in options:
             return choice
@@ -73,7 +72,7 @@ def get_user_choice(prompt, options):
 
 
 def handle_transactions(bank):
-    '''Handle bank transactions.'''
+    '''Handles bank transactions.'''
     while bank.logged_in_account:
         choice = account_menu(bank.logged_in_account.account_holder)
         if choice is None:
@@ -126,7 +125,7 @@ def handle_transactions(bank):
 
 
 def account_menu(account_holder):
-    '''Display current account menu screen.'''
+    '''Displays current account menu screen.'''
     print()
     print(f' Welcome, {account_holder} '.center(79, '-'))
     print('\nAccount Menu:\n')

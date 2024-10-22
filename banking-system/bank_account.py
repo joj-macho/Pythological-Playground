@@ -2,11 +2,8 @@ from datetime import datetime
 
 
 class BankAccount:
-    '''Represents a Bank Account.'''
-
     def __init__(self, account_holder, account_id, pin, initial_balance=500.0):
-        '''
-        Initialize a new bank account
+        '''Initialize a new bank account
 
         Parameters:
             account_holder (str): Name of the account holder.

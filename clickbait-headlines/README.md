@@ -2,44 +2,62 @@
 
 ## Description
 
-This program, Clickbait Headline Generator, is a simple demonstration of how to generate clickbait headlines using Python. It uses random number generation and string manipulation to create headlines that are designed to pique the reader's curiosity and encourage them to click on a link.
+The Clickbait Headline Generator program generates random clickbait headlines.
 
 ## How it works
 
-- The program starts by defining several lists of words and phrases, including personal pronouns, possessive pronouns, states, nouns, adjectives, verbs, places, and time phrases. It also defines a dictionary of clickbait types, each with a pre-defined headline format that includes one or more of the lists.
+- Enter the number of click bait headlines to generate.
+- The program uses string manipulation and lists to randomly create headlines.
 
-- The `main()` function prompts the user to enter a number of clickbait headlines to generate. If the user enters a valid integer, the program enters a loop that runs the specified number of times. Inside the loop, the program generates a random integer to select one of the pre-defined clickbait types. It then generates a number of random selections from the various lists, and uses string formatting to insert those selections into the selected clickbait type to create a complete headline.
+## Running the Program
+
+```bash
+# Navigate to the project directory
+cd clickbait-headlines/
+
+# Run the main script
+python3 click_bait_generator.py
+```
 
 ## Program Input & Output
 
 When you run the program `click_bait_generator.py`, the output will look like this;
 
 ```
+Clickbait Headline Generator
 
-Clickbait Headline Generator!
+Enter number of headlines or (q)uit to exit: 2
 
-This program will trick people into looking at ads.
-    
-Enter a number of clickbaits headlines to generate:
-> 10
+Generating 2 clickbait headlines:
 
-You Won't Believe What This Texas Video Game Found in His Donut Shop
+The Secret To Making Money Experts Are Raving About
+How Being Happy Experts Are Raving About
 
-15 Gift Ideas to Give Your Avocado From New York
+Enter number of headlines or (q)uit to exit: 5
 
-Big Companies Hate It! See How This Michigan Avocado Invented a Cheaper Serial Killer
+Generating 5 clickbait headlines:
 
-9 Reasons Why Chickens Are More Interesting Than You Think (Number 5 Will Surprise You!)
+This Simple Trick For Saving Money You Shouldn't Miss This
+How The Latest Technology You Need To Try
+The Secret To This Common Mistake Experts Are Raving About
+The Shocking Truth About Losing Weight Is The Key To Success
+This Simple Trick For Improving Your Health And How It Affects You
 
-9 Gift Ideas to Give Your Telephone Psychic From North Carolina
+Enter number of headlines or (q)uit to exit: 10
 
-What Plastic Straws Don't Want You To Know About Athletes
+Generating 10 clickbait headlines:
 
-You Won't Believe What This Illinois Parent Found in Her School
+Why The Latest Technology You Shouldn't Miss This
+The Secret To Your Health Will Amaze You
+The Shocking Truth About Boosting Your Career Experts Are Raving About
+The Secret To Saving Money You Need To Try
+How Your Health Will Amaze You
+Why Saving Money Is More Important Than You Think
+You Won't Believe Finding Love Is The Best Decision You'll Make
+Why Being Happy Celebrities Use
+This Simple Trick For Making Money You Need To Try
+10 Reasons Why Becoming Smarter Experts Are Raving About
 
-Big Companies Hate Them! See How This Pennsylvania Avocado Invented a Cheaper Clown
-
-Without This Clown, Shovels Could Kill You Next Week
-
-This North Carolina Doctor Didn't Think Robots Would Take His Job. I Was Wrong.
+Enter number of headlines or (q)uit to exit: q
+Bye!
 ```

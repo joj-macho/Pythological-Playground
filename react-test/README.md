@@ -15,12 +15,12 @@ The Fast Draw program is a reaction time test that measures how quickly a user c
 cd react-test/
 
 # Run the main script
-python3 fast_draw.py
+python3 react_test.py
 ```
 
 ## Program Input & Output
 
-When you run `fast_draw.py`, the output will look like this;
+When you run `react_test.py`, the output will look like this;
 
 ```
 Fast Draw Game!

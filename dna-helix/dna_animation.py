@@ -1,10 +1,8 @@
 import random
-import sys
 import time
 
-# DNA Strand
+# DNA Strand template
 STRAND = [
-
     '         ##',
     '        #{}-{}#',
     '       #{}---{}#',
@@ -22,38 +20,53 @@ STRAND = [
     '     #{}------{}#',
     '      #{}-----{}#',
     '       #{}---{}#',
-    '        #{}-{}#']
+    '        #{}-{}#'
+]
+
+# DNA Base pairs
+BASE_PAIRS = [('A', 'T'), ('T', 'A'), ('C', 'G'), ('G', 'C')]
+
+# ANSI color codes
+COLOR_MAP = {
+    'A': '\033[91m',  # Red
+    'T': '\033[92m',  # Green
+    'C': '\033[94m',  # Blue
+    'G': '\033[93m',  # Yellow
+    'RESET': '\033[0m'  # Reset color
+}
 
 
 def main():
-    '''Main function to run the DNA animation.'''
-    print('\nDNA Animation\n')
-
+    '''Animate the DNA double-helix.'''
+    print('DNA Double-Helix Animation.\n')
+    strand_length = len(STRAND)
     try:
-        input('Press Enter To Continue...')
-
-        strand_i = 0
+        # Increment row by row
+        strand_row = 0
         while True:
-            # Row increment
-            strand_i += 1
-            if strand_i == len(STRAND):
-                strand_i = 0
-            # Indexes 0 and 9 have no nucleotides
-            if strand_i == 0 or strand_i == 9:
-                print(STRAND[strand_i])
-                continue
+            strand_row += 1
+            if strand_row == strand_length:
+                strand_row = 0
 
-            # Random Nucleotide pairs
-            nucleotide_pairs = [('A', 'T'), ('T', 'A'), ('C', 'G'), ('G', 'C')]
-            left_nucleotide, right_nucleotide = random.choice(nucleotide_pairs)
-
-            # Rows
-            print(STRAND[strand_i].format(left_nucleotide, right_nucleotide))
-            time.sleep(0.15)
-
+            if '{}' in STRAND[strand_row]:
+                # Generate random nucleotide base pairs
+                pair = random.choice(BASE_PAIRS)
+                colored_pair = (colorize_base(pair[0]), colorize_base(pair[1]))
+                print(STRAND[strand_row].format(
+                    colored_pair[0],
+                    colored_pair[1])
+                )
+            else:
+                print(STRAND[strand_row])
+            time.sleep(0.1)
     except KeyboardInterrupt:
-        print('Goodbye')
-        sys.exit()
+        print('\nAnimation interrupted... Bye!')
+
+
+def colorize_base(base):
+    '''Returns the colored string for a nucleotide base.'''
+    return f"{COLOR_MAP[base]}{base}{COLOR_MAP['RESET']}"
+
 
 if __name__ == '__main__':
     main()

@@ -2,145 +2,112 @@
 
 ## Description
 
-This program is a Python implementation of a Lottery Simulator where players can choose 5 numbers from 1 to 69 and a Powerball number from 1 to 26. The program allows users to specify how many times they want to play and see the results of the lottery simulation.
+The Lottery Simulator program simulates multiple rounds of lottery drawings, where a user selects a set of lottery numbers and a Powerball number, and the program generates random lottery results to see how often the user's selections match the drawn numbers and Powerball.
 
 ## How it Works
 
-- The program uses the `random` module to create a realistic simulation of the lottery draw by introducing randomness in the selection of winning numbers and the powerball number.
+- Enter 5 unique numbers between 1 and 69 and a separate Powerball number between 1 and 26.
+- The program simulates a specified number of lottery drawings. In each simulation:
+    - Five unique numbers between 1 and 69 are randomly selected to represent the drawn lottery numbers.
+    - A single Powerball number between 1 and 26 is randomly selected.
+- The program compares the drawn numbers and Powerball with the picked numbers.
+- The program checks how many of the picked numbers match the drawn numbers. It also checks if the picekd Powerball number matches the drawn Powerball.
 
-- The `main()` function uses a `while` loop that allows the user to play the game multiple times. The user is prompted to enter 5 different numbers from 1 to 69 and a Powerball number from 1 to 26. The user can also specify how many times they want to play the lottery.
+## Running the Program
 
-- The `get_user_numbers()`, `get_user_powerball()`, and `get_user_num_plays()` functions handle user inputs for numbers selection and the number of plays.
+```bash
+# Navigate to the project directory
+cd lottery-simulator/
 
-- The `simulate_lottery()` function simulates the lottery draw based on user inputs. It shuffles a range of possible numbers and randomly selects winning numbers and a Powerball number for each simulation. The function then checks for matching numbers and calculates hits.
-
-- The `print_results()` function displays the simulation results, including the user's chosen numbers, the number of hits, and the maximum hits.
-
-- Players can choose whether or not to play the lottery again.
+# Run the main script
+python3 lottery_sim.py
+```
 
 ## Program Input & Output
 
 When you run the program `lottery_sim.py`, the output will look like this;
 
 ```
+The Lottery Simulator.
 
-Welcome to the Lottery Simulator!
-This program simulates a lottery draw where you choose 5 numbers from 1 to 69 and a Powerball number from 1 to 26.
-You can specify how many times you want to play and see the results.
-    
-Enter 5 different numbers from 1 to 69, separated by spaces:
-> 12 16 20 18 25
-Enter the Powerball number from 1 to 26:
-> 23
-How many times do you want to play? (Max: 1000000)
-> 100000
-If the cost of the lotto ticket is $2. It would cost $200000 to play 100000 times...
-Now then let' get our gambling freak on!
-Press Enter to start...
+Test your luck by choosing 5 unique numbers between 1 and 69,
+along with a Powerball number between 1 and 26.
 
-0 Simulations Completed...
-10000 Simulations Completed...
-20000 Simulations Completed...
-30000 Simulations Completed...
-40000 Simulations Completed...
-50000 Simulations Completed...
-60000 Simulations Completed...
-70000 Simulations Completed...
-80000 Simulations Completed...
-90000 Simulations Completed...
+This simulator will run multiple simulations to see how often
+your chosen numbers match the randomly drawn numbers and Powerball.
+Will you hit the jackpot or waste your time and money?
 
-100000 Simulations Completed...
+Let's find out!
 
-Your numbers: 12, 16, 20, 18, 25, (23-Powerball Number)
-Out of 100000 Simulations...
-
-1 Simulations matched 4 numbers:
-    Attempt 19738: 16 67 12 18 25
-
-208 Simulations matched 3 numbers:
-
-3643 Simulations matched 2 numbers:
-
-28183 Simulations matched 1 numbers:
-
-67965 Simulations matched 0 numbers.
-
-Maximum Hits: 4 numbers
-
-Do you want to play again? Enter (y)es or (n)o: y
-Enter 5 different numbers from 1 to 69, separated by spaces:
+Enter 5 unique numbers from 1 to 69, separated by spaces. Enter (q)uit to exit.
 > 1 2 3 4 5
-Enter the Powerball number from 1 to 26:
+Enter the Powerball number from 1 to 26. Enter (q)uit to exit.
 > 6
-How many times do you want to play? (Max: 1000000)
-> 25
-If the cost of the lotto ticket is $2. It would cost $50 to play 25 times...
-Now then let' get our gambling freak on!
-Press Enter to start...
+Enter the number of simulations < 1,000,000. Enter (q)uit to exit.
+> 1000000
 
-25 Simulations Completed...
+Press Enter to Start Simulation...
+Progress: 10%
+Progress: 20%
+Progress: 30%
+Progress: 40%
+Progress: 50%
+Progress: 60%
+Progress: 70%
+Progress: 80%
+Progress: 90%
+Progress: 100%
 
-Your numbers: 1, 2, 3, 4, 5, (6-Powerball Number)
-Out of 25 Simulations...
+--------------- Simulation Results ---------------
+Your Lottery Numbers + Powerball: 1, 2, 3, 4, 5 + 6
+Number of simulations: 1,000,000
 
-2 Simulations matched 2 numbers:
-    Attempt 18: 62 4 68 3 35
-    Attempt 25: 37 1 12 64 5
+23 Simulations matched 4 numbers.
+1806 Simulations matched 3 numbers.
+37303 Simulations matched 2 numbers.
+282640 Simulations matched 1 number and the Powerball.
+678228 Simulations matched 0 numbers.
 
-9 Simulations matched 1 numbers:
-    Attempt 2: 5 65 7 45 30
-    Attempt 3: 19 3 33 13 10
-    Attempt 5: 22 25 1 56 51
-    Attempt 8: 12 31 29 15 4
-    Attempt 11: 30 41 51 4 47
-    Attempt 14: 57 39 13 19 5
-    Attempt 15: 28 42 3 41 15
-    Attempt 22: 5 16 34 40 30
-    Attempt 23: 36 2 47 57 53
+Max number of matches: 4 numbers.
+Simulation #161879 numbers: 4, 3, 22, 1, 2 + 6 and 22 other simulation(s) matched 4 numbers.
 
-14 Simulations matched 0 numbers.
+--------------------------------------------------
 
-Maximum Hits: 2 numbers
+Enter 5 unique numbers from 1 to 69, separated by spaces. Enter (q)uit to exit.
+> 12 15 42 5 1
+Enter the Powerball number from 1 to 26. Enter (q)uit to exit.
+> 22
+Enter the number of simulations < 1,000,000. Enter (q)uit to exit.
+> 500000
 
-Do you want to play again? Enter (y)es or (n)o: y
-Enter 5 different numbers from 1 to 69, separated by spaces:
-> 1 2 3 4 5
-Enter the Powerball number from 1 to 26:
-> 6
-How many times do you want to play? (Max: 1000000)
-> 800000
-If the cost of the lotto ticket is $2. It would cost $1600000 to play 800000 times...
-Now then let' get our gambling freak on!
-Press Enter to start...
+Press Enter to Start Simulation...
+Progress: 10%
+Progress: 20%
+Progress: 30%
+Progress: 40%
+Progress: 50%
+Progress: 60%
+Progress: 70%
+Progress: 80%
+Progress: 90%
+Progress: 100%
 
-0 Simulations Completed...
-100000 Simulations Completed...
-200000 Simulations Completed...
-300000 Simulations Completed...
-400000 Simulations Completed...
-You won the Powerball Lottery on attempt 450281!
-500000 Simulations Completed...
-600000 Simulations Completed...
-700000 Simulations Completed...
+--------------- Simulation Results ---------------
+Your Lottery Numbers + Powerball: 1, 5, 12, 15, 42 + 22
+Number of simulations: 500,000
 
-Your numbers: 1, 2, 3, 4, 5, (6-Powerball Number)
-Out of 800000 Simulations...
+11 Simulations matched 4 numbers.
+922 Simulations matched 3 numbers.
+18660 Simulations matched 2 numbers.
+141000 Simulations matched 1 number and the Powerball.
+339407 Simulations matched 0 numbers.
 
-1 Simulations matched 5 numbers:
-    Attempt 450281: 2 3 4 5 1
+Max number of matches: 4 numbers.
+Simulation #390156 numbers: 5, 42, 26, 15, 1 + 22 and 10 other simulation(s) matched 4 numbers.
 
-24 Simulations matched 4 numbers:
+--------------------------------------------------
 
-1466 Simulations matched 3 numbers:
-
-29776 Simulations matched 2 numbers:
-
-225744 Simulations matched 1 numbers:
-
-542989 Simulations matched 0 numbers.
-
-Maximum Hits: 5 numbers
-
-Do you want to play again? Enter (y)es or (n)o: n
-Thanks for playing!
+Enter 5 unique numbers from 1 to 69, separated by spaces. Enter (q)uit to exit.
+> q
+Exiting program... Bye!
 ```

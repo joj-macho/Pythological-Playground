@@ -1,178 +1,206 @@
 import random
+from collections import defaultdict
+
 
 def main():
-    '''Main function to run the lottery simulation.'''
-    print('''
-Welcome to the Lottery Simulator!
-This program simulates a lottery draw where you choose 5 numbers from 1 to 69 and a Powerball number from 1 to 26.
-You can specify how many times you want to play and see the results.
-    ''')
+    '''Run the lottery simulator.'''
+    print('''The Lottery Simulator.
+
+Test your luck by choosing 5 unique numbers between 1 and 69,
+along with a Powerball number between 1 and 26.
+
+The program will run multiple simulations to see how often your chosen numbers
+match the randomly drawn numbers and Powerball.
+
+Will you hit the jackpot or waste your time and money? Let's find out...
+''')
 
     while True:
-        numbers = get_user_numbers()
-        powerball = get_user_powerball()
-        num_plays = get_user_num_plays()
-
-        simulate_lottery(numbers, powerball, num_plays)
-
-        play_again = input('Do you want to play again? Enter (y)es or (n)o: ').lower()
-        if play_again.startswith('y'):
-            continue
-        else:
-            print('Thanks for playing!')
+        # Get user input
+        numbers = get_lottery_numbers()
+        if numbers is None:
+            break
+        powerball = get_powerball()
+        if powerball is None:
+            break
+        num_of_simulations = get_num_simulations()
+        if num_of_simulations is None:
             break
 
-def get_user_numbers():
-    '''Prompt the user to enter 5 different numbers from 1 to 69.'''
+        input('\nPress Enter to Start Simulation...')
+        # Generate lottery numbers
+        results = simulate_lottery(numbers, powerball, num_of_simulations)
+
+        # Print simulation results
+        print()
+        match_counts = defaultdict(int)
+        powerball_matches = 0
+        best_match = {'matched numbers': 0, 'matched powerball': False,
+                      'drawn numbers': [], 'drawn powerball': 0}
+        best_match_simulation = None
+        picked_numbers = ', '.join(map(str, sorted(numbers)))
+
+        for i, result in enumerate(results):
+            matched_numbers = result[1]['matched numbers']
+            matched_powerball = result[1]['matched powerball']
+            match_counts[matched_numbers] += 1
+
+            if matched_powerball:
+                powerball_matches += 1
+
+            if (matched_numbers > best_match['matched numbers'] or
+                    (matched_numbers == best_match['matched numbers'] and
+                        matched_powerball)):
+                best_match = result[1]
+                best_match_simulation = i + 1
+
+        print(' Simulation Results '.center(50, '-'))
+        print(f'Your Lottery Numbers + Powerball: {picked_numbers} + '
+              f'{powerball}')
+        print(f'Number of simulations: {num_of_simulations:,}\n')
+
+        for match, count in sorted(match_counts.items(), reverse=True):
+            if match == 1 and powerball_matches > 0:
+                print(f'{count} Simulations matched {match} number and the '
+                      'Powerball.')
+            else:
+                print(f'{count} Simulations matched {match} numbers.')
+
+        if best_match_simulation is not None:
+            print(f'\nMax number of matches: {best_match["matched numbers"]} '
+                  'numbers.')
+
+            print(f'Simulation #{best_match_simulation} numbers: '
+                  f'{", ".join(map(str, best_match["drawn numbers"]))} + '
+                  f'{best_match["drawn powerball"]} and '
+                  f'{match_counts[best_match["matched numbers"]] - 1} other '
+                  f'simulation(s) matched {best_match["matched numbers"]} '
+                  'numbers.')
+        print('\n' + '-'*50)
+        print()
+
+
+def get_lottery_numbers():
+    '''Prompts for 5 unique numbers between 1 and 69.'''
     while True:
-        print('Enter 5 different numbers from 1 to 69, separated by spaces:')
-        response = input('> ')
+        print('Enter 5 unique numbers from 1 to 69, separated by spaces. '
+              'Enter (q)uit to exit.')
+        response = input('> ').strip().lower()
+        if response in ('q', 'quit'):
+            print('Exiting program... Bye!')
+            return None
 
-        # Check that the player entered 5 items:
         numbers = response.split()
+        # Check for 5 numbers
         if len(numbers) != 5:
-            print('Please enter 5 numbers, separated by spaces.')
+            print('Enter 5 numbers (separated by spaces)!\n')
             continue
 
-        # Convert the strings into integers:
         try:
-            for i in range(5):
-                numbers[i] = int(numbers[i])
+            numbers = [int(num) for num in numbers]
         except ValueError:
-            print('Please enter numbers, like 27, 35, or 62.')
+            print('Enter valid integer numbers!\n')
             continue
 
-        # Check that the numbers are between 1 and 69:
-        for i in range(5):
-            if not (1 <= numbers[i] <= 69):
-                print('The numbers must all be between 1 and 69.')
-                continue
+        # Check if numbers between 1 and 69
+        if any(num < 1 or num > 69 for num in numbers):
+            print('The numbers must be between 1 and 69!\n')
+            continue
 
-        # Check that the numbers are unique:
+        # CHeck if numbrs are unique
         if len(set(numbers)) != 5:
-            print('You must enter 5 different numbers.')
+            print('Enter 5 unique numbers!\n')
             continue
 
         return numbers
 
-def get_user_powerball():
-    '''Prompt the user to enter a Powerball number from 1 to 26.'''
+
+def get_powerball():
+    '''Prompts for a powerball number between 1 and 26.'''
     while True:
-        print('Enter the Powerball number from 1 to 26:')
-        response = input('> ')
+        print('Enter the Powerball number from 1 to 26. '
+              'Enter (q)uit to exit.')
+        response = input('> ').strip().lower()
+        if response in ('q', 'quit'):
+            print('Exiting program...Bye!')
+            return None
 
         try:
             powerball = int(response)
         except ValueError:
-            print('Please enter a number, like 3, 15, or 22.')
+            print('Enter a valid integer powerball number!\n')
             continue
 
-        # Check that the number is between 1 and 26:
+        # Check if number between 1 and 26
         if not (1 <= powerball <= 26):
-            print('The Powerball number must be between 1 and 26.')
+            print('Enter powerball number between 1 and 26!\n')
             continue
 
         return powerball
 
-def get_user_num_plays():
-    '''Prompt the user to enter the number of times they want to play.'''
+
+def get_num_simulations():
+    '''Promts for valid number of simulations.'''
     while True:
-        print('How many times do you want to play? (Max: 1000000)')
-        response = input('> ')
+        print('Enter the number of simulations < 1,000,000. '
+              'Enter (q)uit to exit.')
+        response = input('> ').strip().lower()
+        if response in ('q', 'quit'):
+            print('Exiting program...Bye!')
+            return None
 
         try:
-            num_plays = int(response)
+            num_simulations = int(response)
         except ValueError:
-            print('Please enter a number, like 3, 15, or 22000.')
+            print('Enter a valid integer number of simulations!\n')
             continue
 
-        # Check that the number is between 1 and 1_000_000:
-        if not (1 <= num_plays <= 1_000_000):
-            print('You can play between 1 and 1_000_000 times.')
+        # Check for num_sim between 1 and 1,000,000
+        if not (1 <= num_simulations <= 1000000):
+            print('Enter number of simulations between 1 and 1,000,000!\n')
             continue
 
-        return num_plays
+        return num_simulations
 
-def simulate_lottery(numbers, powerball, num_plays):
-    '''Simulate the lottery draw and display results.'''
 
-    # Calculate the total cost for the specified number of plays
-    price = f'${2 * num_plays}'
-    print(f'If the cost of the lotto ticket is $2. It would cost {price} to play {num_plays} times...\nNow then let\' get our gambling freak on!')
-    input('Press Enter to start...')
-    print()
+def simulate_lottery(numbers, powerball, num_simulations):
+    '''Simulates the lottery draw.'''
+    simulation_results = []
+    # Show progress creen
+    progress_interval = num_simulations // 10
+    if progress_interval == 0:
+        progress_interval = 1
 
-    hits = {}
-    max_hits = 0
+    for i in range(num_simulations):
+        drawn_numbers, drawn_powerball = generate_lottery_numbers()
+        matches = check_matches(numbers, powerball,
+                                drawn_numbers, drawn_powerball)
+        matches['drawn numbers'] = drawn_numbers
+        matches['drawn powerball'] = drawn_powerball
+        simulation_results.append((i, matches))
 
-    possible_numbers = list(range(1, 70))
+        if (i + 1) % progress_interval == 0:
+            progress_perc = (i + 1) * 100 / num_simulations
+            print(f'Progress: {progress_perc:.0f}%')
 
-    # Simulate each play
-    for i in range(num_plays):
-        # Generate winning lottery numbers
-        random.shuffle(possible_numbers)
-        winning_numbers = possible_numbers[0:5]
-        winning_powerball = random.randint(1, 26)
+    return simulation_results
 
-        # Check for matching numbers and powerball
-        matching_numbers = set(numbers).intersection(set(winning_numbers))
-        num_matching_numbers = len(matching_numbers)
-        hit_powerball = powerball == winning_powerball
 
-        # Check if the player won the lottery
-        if num_matching_numbers == 5 and hit_powerball:
-            print(f'You won the Powerball Lottery on attempt {i + 1}!')
+def generate_lottery_numbers():
+    '''Generates a set of random lottery numbers.'''
+    numbers = random.sample(range(1, 70), 5)
+    powerball = random.randint(1, 26)
+    return numbers, powerball
 
-        # Update hit records
-        if num_matching_numbers in hits:
-            hits[num_matching_numbers].append((winning_numbers, i + 1, hit_powerball))
-        else:
-            hits[num_matching_numbers] = [(winning_numbers, i + 1, hit_powerball)]
 
-        # Update maximum hits
-        max_hits = max(max_hits, num_matching_numbers)
+def check_matches(numbers, powerball, drawn_numbers, drawn_powerball):
+    '''Checks how many numbers match between the picked and drawn numbers.'''
+    num_matched_numbers = len(set(numbers) & set(drawn_numbers))
+    matched_powerball = powerball == drawn_powerball
+    matches = {'matched numbers': num_matched_numbers,
+               'matched powerball': matched_powerball}
+    return matches
 
-        # Print progress for long simulations
-        if 1 <= num_plays <= 10_000 and i % num_plays == 0:
-            print(f'{num_plays} Simulations Completed...')
-        if 10_000 < num_plays <= 100_000 and i % 10_000 == 0:
-            print(f'{i} Simulations Completed...')
-        if 100_000 < num_plays <= 1_000_000 and i % 100_000 == 0:
-            print(f'{i} Simulations Completed...')
-
-    print()
-    print_results(price, hits, max_hits, num_plays, numbers, powerball)
-
-def print_results(price, hits, max_hits, num_plays, numbers, powerball):
-    '''Print the simulation results.'''
-    # Print a message indicating simulation completion for long simulations
-    if 10_000 < num_plays <= 100_000:
-        print(f'{num_plays} Simulations Completed...\n')
-
-    # Generate a string representation of the chosen numbers
-    your_numbers = ', '.join(map(str, numbers)) + f', ({powerball}-Powerball Number)'
-
-    # Print the player's chosen numbers and the total number of simulations
-    print(f'Your numbers: {your_numbers}')
-    print(f'Out of {num_plays} Simulations...')
-
-    # Iterate through hits and print details for each hit
-    for num_matching_numbers, matches in sorted(hits.items(), reverse=True):
-        num_hits = len(matches)
-
-        # Generate a string representation of matching numbers and attempts
-        match_str = '\n    '.join([f'Attempt {match[1]}: {" ".join(map(str, match[0]))}' for match in matches])
-
-        # Print the number of hits and the matching numbers for up to 20 hits
-        if num_matching_numbers == 0:
-            print(f'\n{num_hits} Simulations matched {num_matching_numbers} numbers.')
-        if num_matching_numbers > 0 and num_hits <= 20:
-            print(f'\n{num_hits} Simulations matched {num_matching_numbers} numbers:')
-            print(f'    {match_str}')
-        if num_matching_numbers > 0 and num_hits > 20:
-            print(f'\n{num_hits} Simulations matched {num_matching_numbers} numbers:')
-
-    print(f'\nMaximum Hits: {max_hits} numbers\n')
 
 if __name__ == '__main__':
     main()

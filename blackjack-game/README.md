@@ -7,11 +7,11 @@ The Blackjack game allows a single player to play against a dealer, following tr
 ## How It Works
 
 - **Initial Bet and Deal**:
-    - The player places a bet at the start of each round. Bets are adjusted based on the final outcome.
+    - Place a bet at the start of each round. Bets are adjusted based on the final outcome.
     - The game deals two cards each to the player and the dealer. The dealer's first card is concealed, while the second card is shown.
 
 - **Player and Dealer Actions**:
-    - The player can choose to "Hit" (receive another card), "Stand" (keep their current hand), or "Double-Down" (double their bet and receive one more card).
+    - Choose to "Hit" (receive another card), "Stand" (keep their current hand), or "Double-Down" (double their bet and receive one more card).
     - The player makes decisions until they choose to stand or their hand exceeds 21.
     - After the player stands, the dealer continues hitting until reaching a hand value of 17 or higher.
 

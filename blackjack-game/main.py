@@ -118,7 +118,7 @@ Now, let's get our gambling freak on!
 
 
 def get_bet(player_funds):
-    '''Get a valid bet from the player.'''
+    '''Gets a valid bet from the player.'''
     while True:
         bet = input('\nEnter your bet or enter (q)uit to exit:\n> ')
         if bet in ('q', 'quit'):
@@ -136,7 +136,7 @@ def get_bet(player_funds):
 
 
 def display_hands(player_hand, dealer_hand, reveal_dealer=False):
-    '''Display the player and dealer hands'''
+    '''Displays the player and dealer hands'''
     print(f'\nPlayer\'s Hand: {calculate_hand_value(player_hand)}')
     Card.display_cards(player_hand)
 
@@ -149,7 +149,7 @@ def display_hands(player_hand, dealer_hand, reveal_dealer=False):
 
 
 def calculate_hand_value(hand):
-    '''Calculate the total hand value.'''
+    '''Calculates the total hand value.'''
     value = sum(card.get_value() for card in hand)
     num_of_aces = sum(1 for card in hand if card.get_rank() == 'A')
 
@@ -160,7 +160,7 @@ def calculate_hand_value(hand):
 
 
 def get_player_move(player_hand, remaining_funds):
-    '''Prompt player for valid move.'''
+    '''Prompts for for valid move.'''
     while True:
         moves = ['(h)it', '(s)tand']
         if len(player_hand) == 2 and remaining_funds > 0:

@@ -2,8 +2,6 @@ import random
 
 
 class Card:
-    '''Represents a playing card with rank, suit, and value.'''
-
     SUITS = {'Spades': chr(9824), 'Hearts': chr(9829), 'Clubs': chr(9827),
              'Diamonds': chr(9830)}
     RANKS = ('A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K')
@@ -13,8 +11,8 @@ class Card:
         Initialize a new playing card with rank and suit.
 
         Parameters:
-            rank (str): The rank of the card (e.g. 'A', 2, 'K', 'J')
-            suit (str): The suit of the card (e.g. 'Spades', 'Diamonds')
+            rank (str): The rank of the card
+            suit (str): The suit of the card
         '''
         self.rank = rank
         self.suit = suit
@@ -27,7 +25,7 @@ class Card:
         if self.rank in ('J', 'Q', 'K'):
             return 10
         elif self.rank == 'A':
-            return 11  # Can be 11 or 1
+            return 11  # 11 or 1
         else:
             return int(self.rank)
 

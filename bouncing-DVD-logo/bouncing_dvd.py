@@ -1,138 +1,135 @@
-import sys
-import random
+import os
 import time
-import bext
+import random
 
-# Animation Constants
-WIDTH, HEIGHT = bext.size()  # Get the console size
-WIDTH -= 1  # Reduce width by 1 to fit within screen boundaries
+# Constants
+HEIGHT = 20
+WIDTH = 40
+NUM_OF_LOGOS = 5
+FRAME_DELAY = 0.2
 
-# DVD logo set-up
-NUMBER_OF_LOGOS = 5
-PAUSE_AMOUNT = 0.2
-COLORS = ['red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white']
-UP_RIGHT = 'ur'
-UP_LEFT = 'ul'
-DOWN_RIGHT = 'dr'
-DOWN_LEFT = 'dl'
-DIRECTIONS = (UP_RIGHT, UP_LEFT, DOWN_RIGHT, DOWN_LEFT)
+# ANSI Color Codes
+COLOR_RESET = '\033[0m'
 
-# Key names for logo dictionaries
-COLOR = 'color'
-X_POSITION = 'x'
-Y_POSITION = 'y'
-DIRECTION = 'direction'
+LOGO_COLORS = [
+    '\033[90m',  # Gray
+    '\033[91m',  # Red
+    '\033[92m',  # Green
+    '\033[93m',  # Yellow
+    '\033[94m',  # Blue
+    '\033[95m',  # Magenta
+    '\033[96m',  # Cyan
+    '\033[97m'   # White
+    ]
+
+# Screen Items ANSI Characters
+LOGO = 'DVD'
+LOGO_LEN = len(LOGO)
+HORIZONTAL_BORDER = '\u2550'  # ═ char
+VERTICAL_BORDER = '\u2551'  # ║ char
+TOP_LEFT_CORNER = '\u2554'  # ╔ char
+TOP_RIGHT_CORNER = '\u2557'  # ╗
+BOTTOM_LEFT_CORNER = '\u255A'  # ╚ char
+BOTTOM_RIGHT_CORNER = '\u255D'  # ╝ char
+
 
 def main():
-    '''Main function to run the bouncing DVD logos animation.'''
-    # Start by clearing the console
-    bext.clear()
+    '''Animate bouncing logos.'''
+    try:
+        # Initialize logos with random positions, velocities, and colors
+        logos = []
+        for i in range(NUM_OF_LOGOS):
+            x = random.randint(1, WIDTH - LOGO_LEN - 1)
+            y = random.randint(1, HEIGHT - 2)
+            dx = random.choice([-1, 1])
+            dy = random.choice([-1, 1])
+            color = LOGO_COLORS[i % len(LOGO_COLORS)]
+            logos.append({'x': x, 'y': y, 'dx': dx, 'dy': dy, 'color': color,
+                          'bounces': 0, 'corner_bounces': 0})
 
-    logos = generate_logos(NUMBER_OF_LOGOS)
-    corner_bounces = 0
+        while True:
+            # Create screen with borders
+            screen = [[' ' for _ in range(WIDTH + 2)]
+                      for _ in range(HEIGHT + 2)]
+            create_border(screen)
 
-    while True:
-        # Animate each logo object
-        for logo in logos:
-            bext.goto(logo[X_POSITION], logo[Y_POSITION])
-            print('   ', end='')
+            # Draw logos on screen
+            positions = {}
+            for logo in logos:
+                # Prevent overwriting of logos by checking their positions
+                if (logo['x'], logo['y']) not in positions:
+                    draw_logo(screen, logo['x'], logo['y'], logo['color'])
+                    positions[(logo['x'], logo['y'])] = True
 
-            bounce_direction = logo[DIRECTION]
+            os.system('clear' if os.name == 'posix' else 'cls')
+            print('Bouncing DVD LOGO Animation')
+            for row in screen:
+                print(''.join(row))
 
-            if handle_bounce(logo):
-                corner_bounces += 1
+            for i, logo in enumerate(logos):
+                print(f'Logo {i+1} Position: ({logo["x"]}, {logo["y"]})')
+                print(f'Bounces: {logo["bounces"]}', end=' | ')
+                print(f'Corner Bounces: {logo["corner_bounces"]}')
+                print('-' * (WIDTH + 2))
 
-            # Change logo color on direction change
-            if logo[DIRECTION] != bounce_direction:
-                logo[COLOR] = random.choice(COLORS)
+            for logo in logos:
+                update_position(logo)
 
-            # Move the logo's position based on direction
-            if logo[DIRECTION] == UP_RIGHT:
-                logo[X_POSITION] += 2
-                logo[Y_POSITION] -= 1
-            elif logo[DIRECTION] == UP_LEFT:
-                logo[X_POSITION] -= 2
-                logo[Y_POSITION] -= 1
-            elif logo[DIRECTION] == DOWN_RIGHT:
-                logo[X_POSITION] += 2
-                logo[Y_POSITION] += 1
-            elif logo[DIRECTION] == DOWN_LEFT:
-                logo[X_POSITION] -= 2
-                logo[Y_POSITION] += 1
+            time.sleep(FRAME_DELAY)
+    except KeyboardInterrupt:
+        print('\nAnimation stopped. Exiting...')
 
-        # Display corner bounce count and logos
-        bext.goto(5, 0)
-        bext.fg('white')
-        print('Corner bounces:', corner_bounces, end='')
 
-        for logo in logos:
-            bext.goto(logo[X_POSITION], logo[Y_POSITION])
-            bext.fg(logo[COLOR])
-            print('DVD', end='')
+def create_border(screen):
+    '''Create a border around the screen.'''
+    for row in range(HEIGHT + 2):
+        for col in range(WIDTH + 2):
+            # Draw corners first
+            if row == 0 and col == 0:
+                screen[row][col] = TOP_LEFT_CORNER
+            elif row == 0 and col == WIDTH + 1:
+                screen[row][col] = TOP_RIGHT_CORNER
+            elif row == HEIGHT + 1 and col == 0:
+                screen[row][col] = BOTTOM_LEFT_CORNER
+            elif row == HEIGHT + 1 and col == WIDTH + 1:
+                screen[row][col] = BOTTOM_RIGHT_CORNER
+            # Draw edges
+            elif row == 0 or row == HEIGHT + 1:
+                screen[row][col] = HORIZONTAL_BORDER
+            elif col == 0 or col == WIDTH + 1:
+                screen[row][col] = VERTICAL_BORDER
 
-        bext.goto(0, 0)
 
-        sys.stdout.flush()
-        time.sleep(PAUSE_AMOUNT)
+def draw_logo(screen, x, y, color):
+    '''Draw logo at its current position on screen.'''
+    for i, char in enumerate(LOGO):
+        screen[y + 1][x + 1 + i] = f'{color}{char}{COLOR_RESET}'
 
-def generate_logos(number_of_logos):
-    '''Generate a list of logo dictionaries with random positions and directions.'''
-    logos = []
-    for _ in range(number_of_logos):
-        logo = {
-            COLOR: random.choice(COLORS),
-            X_POSITION: random.randint(1, WIDTH - 4),
-            Y_POSITION: random.randint(1, HEIGHT - 4),
-            DIRECTION: random.choice(DIRECTIONS)
-        }
-        if logo[X_POSITION] % 2 == 1:
-            # Make sure X_POSITION is even so it can hit the corner.
-            logo[X_POSITION] -= 1
-        logos.append(logo)
-    return logos
 
-def handle_bounce(logo):
-    '''Handles logo bouncing logic.'''
-    # Check if logo hits the corners and update direction accordingly
-    if logo[X_POSITION] == 0 and logo[Y_POSITION] == 0:
-        logo[DIRECTION] = DOWN_RIGHT
-        return True
-    elif logo[X_POSITION] == 0 and logo[Y_POSITION] == HEIGHT - 1:
-        logo[DIRECTION] = UP_RIGHT
-        return True
-    elif logo[X_POSITION] == WIDTH - 3 and logo[Y_POSITION] == 0:
-        logo[DIRECTION] = DOWN_LEFT
-        return True
-    elif logo[X_POSITION] == WIDTH - 3 and logo[Y_POSITION] == HEIGHT - 1:
-        logo[DIRECTION] = UP_LEFT
-        return True
+def update_position(logo):
+    '''Update the logo's position based on its velocity.'''
+    x, y, dx, dy = logo['x'], logo['y'], logo['dx'], logo['dy']
 
-    # Handle other edge cases and direction changes
-    elif logo[X_POSITION] == 0 and logo[DIRECTION] == UP_LEFT:
-        logo[DIRECTION] = UP_RIGHT
-    elif logo[X_POSITION] == 0 and logo[DIRECTION] == DOWN_LEFT:
-        logo[DIRECTION] = DOWN_RIGHT
+    # Update position
+    x += dx
+    y += dy
 
-    elif logo[X_POSITION] == WIDTH - 3 and logo[DIRECTION] == UP_RIGHT:
-        logo[DIRECTION] = UP_LEFT
-    elif logo[X_POSITION] == WIDTH - 3 and logo[DIRECTION] == DOWN_RIGHT:
-        logo[DIRECTION] = DOWN_LEFT
+    # Check for boundary collisions and update color if collision occurs
+    if x <= 0 or x + LOGO_LEN >= WIDTH:
+        dx *= -1
+        logo['bounces'] += 1
+        logo['color'] = random.choice(LOGO_COLORS)
+    if y <= 0 or y >= HEIGHT - 1:
+        dy *= -1
+        logo['bounces'] += 1
+        logo['color'] = random.choice(LOGO_COLORS)
 
-    elif logo[Y_POSITION] == 0 and logo[DIRECTION] == UP_LEFT:
-        logo[DIRECTION] = DOWN_LEFT
-    elif logo[Y_POSITION] == 0 and logo[DIRECTION] == UP_RIGHT:
-        logo[DIRECTION] = DOWN_RIGHT
+    # Check for corner bounces
+    if (x == 0 or x + LOGO_LEN == WIDTH) and (y == 0 or y == HEIGHT - 1):
+        logo['corner_bounces'] += 1
 
-    elif logo[Y_POSITION] == HEIGHT - 1 and logo[DIRECTION] == DOWN_LEFT:
-        logo[DIRECTION] = UP_LEFT
-    elif logo[Y_POSITION] == HEIGHT - 1 and logo[DIRECTION] == DOWN_RIGHT:
-        logo[DIRECTION] = UP_RIGHT
+    logo['x'], logo['y'], logo['dx'], logo['dy'] = x, y, dx, dy
 
-    return False
 
 if __name__ == '__main__':
-    try:
-        main()
-    except KeyboardInterrupt:
-        print('Bye!')
-        sys.exit()
+    main()

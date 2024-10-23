@@ -1,109 +1,109 @@
-import random
+import os
 import time
-import bext
+import random
+import copy
 
 # Constants
-# Adjust screen size
-WIDTH = 80
+WIDTH = 70
 HEIGHT = 30
-
-TREE = 'A'
-FIRE = 'W'
+TREE = 'T'
+FIRE = '#'
 EMPTY = ' '
+DENSITY = 0.2  # Initial tree density
+FIRE_SPREAD_PROB = 0.31415  # Probability of fire spreading to adjacent trees
+GROWTH_CHANCE = 0.042  # Probability of trees growing in empty spaces
+FIRE_CHANCE = 0.01  # Probability of spontaneous fire starting
 
-# Initial parameters
-TREE_DENSITY = 0.01  # Density of trees in the forest
-GROWTH_CHANCE = 0.05  # Probability of a tree growing in an empty space
-FIRE_CHANCE = 0.26  # Probability of a tree catching fire
-PAUSE = 0.5  # Time interval between each simulation step
+# ANSI escape codes for colors
+TREE_COLOR = '\033[32m'  # Green for trees
+FIRE_COLOR = '\033[31m'  # Red for fire
+RESET_COLOR = '\033[0m'  # Reset to default color
+
 
 def main():
-    '''Main function of the program.'''
-
-    print('\nWelcome to the Forest Fire Simulation.\n')
-
-    # Create an initial forest
-    forest = create_forest()
-    bext.clear()
+    '''Run the forest fire simulation.'''
+    grid = initialize_grid(WIDTH, HEIGHT, DENSITY)
+    generation = 0
 
     try:
         while True:
-            display_forest(forest)
-            # Perform a single simulation step
-            forest = simulate_fire(forest)
-            time.sleep(PAUSE)
+            os.system('clear' if os.name == 'posix' else 'cls')
+            print(f'Forst Fire Simulation - Generation {generation}\n')
+            display_grid(grid)
+            grid = update_grid(grid)
+            print(f'Fire Spread Chance: {FIRE_SPREAD_PROB*100}%', end=' | ')
+            print(f'Tree Growth Chance: {GROWTH_CHANCE*100}%', end=' | ')
+            print(f'Lightning Chance: {FIRE_CHANCE*100}%')
+            generation += 1
+            time.sleep(0.5)
     except KeyboardInterrupt:
-        print('\n\nSimulation stopped by user.')
+        print('\nProgram interrupted... Bye!')
 
-def create_forest():
-    '''Create a new forest data structure.'''
 
-    forest = {'width': WIDTH, 'height': HEIGHT}
-    for i in range(WIDTH):
-        for k in range(HEIGHT):
-            # Randomly determine if a cell should contain a tree or be empty
-            if (random.random() * 100) <= TREE_DENSITY:
-                forest[(i, k)] = TREE  # Cell contains a tree
+def initialize_grid(width, height, density):
+    '''Initialize the grid with trees and a random fire.'''
+    grid = [[TREE if random.random() < density else EMPTY
+             for _ in range(WIDTH)] for _ in range(HEIGHT)]
+    # Set a single fire starting point
+    fire_x, fire_y = random.randint(
+        0, WIDTH - 1), random.randint(0, HEIGHT - 1)
+    grid[fire_y][fire_x] = FIRE
+    return grid
+
+
+def display_grid(grid):
+    '''Show the grid with colored trees and fire.'''
+    for row in grid:
+        for cell in row:
+            if cell == TREE:
+                print(f'{TREE_COLOR}{TREE}{RESET_COLOR}', end='')
+            elif cell == FIRE:
+                print(f'{FIRE_COLOR}{FIRE}{RESET_COLOR}', end='')
             else:
-                forest[(i, k)] = EMPTY  # Cell is empty
-
-    return forest
-
-def display_forest(forest):
-    '''Display the forest data structure on the screen.'''
-
-    bext.goto(0, 0)
-    for k in range(forest['height']):
-        for i in range(forest['width']):
-            if forest[(i, k)] == TREE:
-                # Display a tree in green
-                bext.fg('green')
-                print(TREE, end='')
-            elif forest[(i, k)] == FIRE:
-                # Display fire in red
-                bext.fg('red')
-                print(FIRE, end='')
-            elif forest[(i, k)] == EMPTY:
-                # Display empty space
                 print(EMPTY, end='')
         print()
+    print()
 
-    bext.fg('reset')
-    # Display growth chance
-    print('Grow chance: {}%  '.format(GROWTH_CHANCE * 100), end='')
-    # Display fire chance
-    print('Fire chance: {}%  '.format(FIRE_CHANCE * 100), end='')
-    print('Press Ctrl-C to quit.')
 
-def simulate_fire(forest):
-    '''Simulate the forest fire.'''
-
-    next_forest = {'width': forest['width'], 'height': forest['height']}
-
-    for i in range(forest['width']):
-        for k in range(forest['height']):
-            if (i, k) in next_forest:
+def get_neighbors(x, y):
+    '''Get the coordinates of the neighboring cells.'''
+    neighbors = []
+    for dx in (-1, 0, 1):
+        for dy in (-1, 0, 1):
+            if dx == 0 and dy == 0:
                 continue
-            
-            if (forest[(i, k)] == EMPTY) and (random.random() <= GROWTH_CHANCE):
-                # Empty space can grow a tree
-                next_forest[(i, k)] = TREE
-            elif (forest[(i, k)] == TREE) and (random.random() <= FIRE_CHANCE):
-                # A tree can catch fire
-                next_forest[(i, k)] = FIRE
-            elif forest[(i, k)] == FIRE:
-                # Spread fire to neighboring cells
-                for p in range(-1, 2):
-                    for q in range(-1, 2):
-                        if forest.get((i + p, k + q)) == TREE:
-                            next_forest[(i + p, k + q)] = FIRE
-                # The tree burns down
-                next_forest[(i, k)] = EMPTY
-            else:
-                # Copy existing state
-                next_forest[(i, k)] = forest[(i, k)]
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < WIDTH and 0 <= ny < HEIGHT:
+                neighbors.append((nx, ny))
+    return neighbors
 
-    return next_forest
+
+def update_grid(grid):
+    '''Update the grid based on the fire spreading and tree growth rules.'''
+    # new_grid = [row[:] for row in grid]
+    new_grid = copy.deepcopy(grid)
+
+    for y in range(HEIGHT):
+        for x in range(WIDTH):
+            if grid[y][x] == FIRE:
+                # Turn the burning tree into an empty space
+                new_grid[y][x] = EMPTY
+                # Spread fire to neighboring trees
+                for nx, ny in get_neighbors(x, y):
+                    if grid[ny][nx] == TREE and random.random(
+                    ) < FIRE_SPREAD_PROB:
+                        new_grid[ny][nx] = FIRE
+            elif grid[y][x] == TREE:
+                # Chance for tree to spontaneously catch fire
+                if random.random() < FIRE_CHANCE:
+                    new_grid[y][x] = FIRE
+            elif grid[y][x] == EMPTY:
+                # Chance for a new tree to grow
+                if random.random() < GROWTH_CHANCE:
+                    new_grid[y][x] = TREE
+
+    return new_grid
+
 
 if __name__ == '__main__':
     main()

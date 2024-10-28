@@ -1,55 +1,52 @@
-import random
+import sys
 import time
 
-# Constants
-BAR = chr(9608)  # Unicode character for a solid block
-DOWNLOAD_SIZE = 4096*6  # Total size of the download in arbitrary units
+# Animation constants
+PROGRESS_BAR_LENGTH = 50
+BAR = '\u2588'  # Block █ charcter
+EMPTY_BAR = ' '
+TOTAL_SIZE = 4096 * 8  # Total size of the download
+
+# Colors
+COLOR_GREEN = '\033[92m'
+COLOR_RESET = '\033[0m'
+
 
 def main():
-    '''Simulate a progress bar for a download process.'''
-    print('\nProgress Bar Simulation.')
+    '''Simulates a download with a progress bar.'''
+    print('Progress Bar Animation.\n')
+    start_time = time.time()
+    try:
+        # Simulate a donwload
+        for current_size in range(
+                0, TOTAL_SIZE + 1, max(512, TOTAL_SIZE // 50)):
+            display_progress_bar(current_size)
+            time.sleep(0.1)  # download delay
 
-    downloaded = 0
-    total_size = DOWNLOAD_SIZE
+        # Ensure the final display shows 100% completion
+        display_progress_bar(TOTAL_SIZE)
+        elapsed_time = time.time() - start_time
+        print(f'\nDownload completed in {elapsed_time:.2f} seconds.')
+    except KeyboardInterrupt:
+        elapsed_time = time.time() - start_time
+        print(f'\nDownload interrupted after {elapsed_time:.2f} seconds.')
+        sys.exit(1)
 
-    while downloaded < total_size:
-        # Simulate downloading by adding a random amount to 'downloaded'
-        downloaded += random.randint(10, 1000)
 
-        bar_string = generate_progress_bar(downloaded, total_size)
+def display_progress_bar(current_size, total_size=TOTAL_SIZE):
+    '''Displays a progress bar with the current progress and percentage.'''
+    progress_ratio = current_size / total_size
+    progress_percentage = progress_ratio * 100
+    filled_length = int(PROGRESS_BAR_LENGTH * progress_ratio)
 
-        # Display the progress bar without a newline (so it overwrites)
-        print(bar_string, end='', flush=True)
-        time.sleep(0.2)
-        # Use backspaces to clear the previous progress bar
-        print('\b' * len(bar_string), end='', flush=True)
+    progress_bar = (COLOR_GREEN + BAR * filled_length + COLOR_RESET +
+                    EMPTY_BAR * (PROGRESS_BAR_LENGTH - filled_length))
 
-    print('\nDownload completed.')
+    # Display the progress bar with percentage and sizes
+    sys.stdout.write(f'\r[{progress_bar}] {progress_percentage:5.1f}% '
+                     f'{current_size}/{total_size}')
+    sys.stdout.flush()
 
-def generate_progress_bar(progress, total, bar_width=40):
-    '''Return a string representing a progress bar.'''
-    progress_bar = '['
-
-    # Ensure that progress and total are within valid bounds
-    if progress > total:
-        progress = total
-    if progress < 0:
-        progress = 0
-
-    # Calculate the number of bars to represent the progress
-    number_of_bars = int((progress / total) * bar_width)
-    progress_bar += BAR * number_of_bars
-    # Fill the rest with spaces
-    progress_bar += ' ' * (bar_width - number_of_bars)
-    # Close the progress bar
-    progress_bar += ']'
-
-    # Calculate and add the percentage and the current progress/total size
-    completed = round(progress / total * 100, 1)
-    progress_bar += f' {completed}%'
-    progress_bar += f' {progress}/{total}'
-
-    return progress_bar
 
 if __name__ == '__main__':
     main()

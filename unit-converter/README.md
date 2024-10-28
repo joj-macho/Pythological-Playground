@@ -2,17 +2,12 @@
 
 ## Description
 
-The Converter is a command-line program that allows users to convert lengths, masses, or temperatures based on their input and selected units. The program supports three types of conversions: length, mass, and temperature.
+The Unit Converter program allows users to convert lengths, masses, or temperatures based on their input and selected units. The program supports three types of conversions: length, mass, and temperature.
 
 ## How it Works
 
-- The `main` function enters a loop to perform unit conversions based on the user's choice. Users are prompted to select the type of conversion (length, mass, or temperature) by entering the corresponding number. The menu interface allows users to select the type of conversion they want to perform.
-
-- The program contains three conversion functions: `convert_length`, `convert_weight`, and `convert_temperature`. Each of these functions accepts an input value, the unit to convert from, and the unit to convert to as arguments. They calculate the result using the appropriate conversion formula for the respective type and display the converted value.
-
-- The program provides a list of available units for each type of conversion. This list is obtained through the `get_unit_list` function, which returns the units for the chosen category (length, mass, or temperature).
-
-- The program interacts with the user to collect input values for conversion, including the choice of conversion type and the units involved. It also validates user input to ensure everything works well.
+- Select the type of conversion (length, mass, or temperature).
+- The input value is taken, and the program converts it to the desired unit using predefined conversion factors or formulas (for temperature).
 
 ## Running the Program
 
@@ -21,72 +16,63 @@ The Converter is a command-line program that allows users to convert lengths, ma
 cd unit-converter/
 
 # Run the main script
-python3 converter.py
+python3 unit_converter.py
 ```
 
 ## Program Input & Output
 
-When you run `converter.py`, the output will look like this:
+When you run `unit_converter.py`, the output will look like this:
 
 ```
+The Unit Converter Program.
 
-Welcome to the Unit Converter Program!
+Choose an option:
+1. Convert Length Units.
+2. Convert Mass Units.
+3. Convert Temperature Units.
+Or enter (q)uit to exit.
+> 1
 
-Choose a Conversion Option:
-1. Length
-2. Mass
-3. Temperature
+Converting length...
+Avaliable Units: mm, cm, m, km, inch, foot, yard, mile
+Enter the length value: 1
+Enter the unit to convert from: m
+Enter the unit to convert to: mile
+Result: 1.0 m = 0.0006 mile
 
-Enter choice: 1
+Choose an option:
+1. Convert Length Units.
+2. Convert Mass Units.
+3. Convert Temperature Units.
+Or enter (q)uit to exit.
+> 2
 
-Available units: mm, cm, m, km, inch, foot, yard, mile
-Enter the length value: 10
-Enter the unit to convert from: km
-Enter the unit to convert to: yard
-Results: 10.0 km = 10936.1 yard
-
-Do you want to perform another conversion? (y/n): y
-Choose a Conversion Option:
-1. Length
-2. Mass
-3. Temperature
-
-Enter choice: 2
-
-Available units: g, kg, mg, lb, oz, ton
-Enter the mass value: 10
-Enter the unit to convert from: lb
+Converting mass...
+Available Units: g, kg, mg, lb, oz, ton
+Enter the mass value: 1
+Enter the unit to convert from: kg
 Enter the unit to convert to: oz
-Result: 10.0 lb = 160.00036287432755 oz
+Result: 1.0 kg = 35.2740 oz
 
-Do you want to perform another conversion? (y/n): y
-Choose a Conversion Option:
-1. Length
-2. Mass
-3. Temperature
+Choose an option:
+1. Convert Length Units.
+2. Convert Mass Units.
+3. Convert Temperature Units.
+Or enter (q)uit to exit.
+> 3
 
-Enter choice: 3
+Conveting temperature...
+Available Units: Celsius, Fahrenheit, Kelvin
+Enter the temperature value: 42
+Enter the unit to convert from: Celsius
+Enter the unit to convert to: Fahrenheit
+Result: 42.0 Celsius = 107.60 Fahrenheit
 
-Available units: Celsius, Fahrenheit, Kelvin
-Enter the temperature value: 0      
-Enter the unit to convert from: celcius
-Enter the unit to convert to: kelvin
-Invalid units.
-
-Do you want to perform another conversion? (y/n): y
-Choose a Conversion Option:
-1. Length
-2. Mass
-3. Temperature
-
-Enter choice: 3
-
-Available units: Celsius, Fahrenheit, Kelvin
-Enter the temperature value: 0
-Enter the unit to convert from: celsius
-Enter the unit to convert to: kelvin
-Result: 0.0 Celsius = 273.15 Kelvin
-
-Do you want to perform another conversion? (y/n): n
+Choose an option:
+1. Convert Length Units.
+2. Convert Mass Units.
+3. Convert Temperature Units.
+Or enter (q)uit to exit.
+> q
 Bye!
 ```

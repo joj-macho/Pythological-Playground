@@ -1,57 +1,45 @@
 import time
-import bext
+import os
 
-INDENT_LIMIT = 60
+
+WIDTH = os.get_terminal_size().columns
+BASE_TEXT = 'RAINBOW'
+AMPLITUDE = 10  # Height of the wave
+
+# ANSI eRainbow colors
+RAINBOW_COLORS = [
+    '\033[91m',  # Red
+    '\033[93m',  # Orange
+    '\033[92m',  # Yellow
+    '\033[96m',  # Green
+    '\033[94m',  # Blue
+    '\033[95m',  # Indigo
+    '\033[35m'   # Violet
+]
+RESET_COLOR = '\033[0m'
+
 
 def main():
-    '''Simulate a colorful rainbow animation with increasing and decreasing indentation.'''
-
-    print('\nWelcome to The Rainbow Simulation.\n')
-    input('Press enter to Continue ...')
-
-    indent = 0
-    indent_increase = True
-
-    print("Press Ctrl+C to exit.")
-
+    '''Animate rainbow text.'''
     try:
         while True:
-            print(' ' * indent, end='')
-
-            # Print colored blocks to represent the rainbow
-            bext.fg('red')
-            print('##', end='')
-
-            bext.fg('yellow')
-            print('##', end='')
-
-            bext.fg('green')
-            print('##', end='')
-
-            bext.fg('blue')
-            print('##', end='')
-
-            bext.fg('cyan')
-            print('##', end='')
-
-            bext.fg('purple')
-            print('##')
-
-            # Increase/decrease the number of spaces
-            if indent_increase:
-                indent += 1
-                if indent == INDENT_LIMIT:
-                    indent_increase = False
-            else:
-                indent -= 1
-                if indent == 0:
-                    indent_increase = True
-
-            time.sleep(0.02)
-
+            for i in range(len(RAINBOW_COLORS)):
+                os.system('clear' if os.name == 'posix' else 'cls')
+                print('Rainbow Text Animation.\n')
+                for j in range(len(RAINBOW_COLORS)):
+                    # Create a wavy thingy by adjusting the number of spaces
+                    wave_offset = AMPLITUDE * j
+                    spaces_before = ' ' * (wave_offset % WIDTH)
+                    spaces_after = ' ' * \
+                        ((WIDTH - len(BASE_TEXT) - wave_offset) % WIDTH)
+                    rainbow_pattern = spaces_before + BASE_TEXT + spaces_after
+                    print(RAINBOW_COLORS[(i + j) % len(RAINBOW_COLORS)] +
+                          rainbow_pattern +
+                          RESET_COLOR)
+                time.sleep(0.2)
     except KeyboardInterrupt:
-        time.sleep(0.1)
-        print('\nExiting...')
+        print('\nAnimation interrupted! Exiting...')
+
 
 if __name__ == '__main__':
     main()

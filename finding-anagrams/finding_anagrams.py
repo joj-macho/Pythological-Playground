@@ -1,57 +1,60 @@
-import os
-import sys
+from pathlib import Path
 import json
+import sys
 
-# Set Working Directory
-path = os.path.dirname(os.path.realpath(__file__))
-os.chdir(path)
+BASE_PATH = Path(__file__).resolve().parent
+
 
 def main():
-    '''Main function for generating anagrams.'''
-    print('\nWelcome to Finding Anagrams.\n')
-    
-    words_dict = load_dictionary('words_dictionary.json')
+    print('Anagram Finder\n')
 
-    word = input('Enter a word or name to find its anagrams:\n> ')
+    dict_path = BASE_PATH / 'words_dictionary.json'
+    words_dict = load_dictionary(dict_path)
+    if words_dict is None:
+        sys.exit(1)
 
-    anagrams = get_anagrams(word, words_dict)
+    while True:
+        word = input(
+                'Enter a word to find its anagrams (or (q)uit to exit):\n> '
+                )
+        word = word.strip()
+        if word.lower() in ('q', 'quit'):
+            print('Bye!')
+            break
 
-    if len(anagrams) == 0:
-        print(f'No anagrams found for the word {word}')
-    else:
-        print(f'The anagrams for the word {word} are:')
-        for anagram in anagrams:
-            print(anagram)
+        anagrams = find_anagrams(word, words_dict)
+        if not anagrams:
+            print(f'No anagrams found for the word "{word}".\n')
+        else:
+            print(f'The anagrams for the word "{word}" are:')
+            for anagram in anagrams:
+                print(f'- {anagram}')
+            print()
 
-def load_dictionary(file_name):
-    '''Load a dictionary from a JSON file and return it.'''
-    with open(file_name) as file:
-        data = json.load(file)
-    return data
 
-def get_anagrams(word, words_dict):
-    '''Find single-word anagrams of a given word and return them as a list.'''
-    word_dict = {}
+def load_dictionary(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        print(f'Error: The file "{file_path}" does not exist.')
+    except json.JSONDecodeError:
+        print(f'Error: The file "{file_path}" is not a valid JSON file.')
+    return None
 
-    # Count the occurrences of each letter in the input word
-    for letter in word.lower():
-        word_dict[letter] = word_dict.get(letter, 0) + 1
 
+def find_anagrams(word, words_dict):
+    word = word.lower()
+    sorted_word = ''.join(sorted(word))
     anagrams = []
 
-    # Iterate through words in the loaded dictionary
     for dict_word in words_dict:
-        dict_word_dict = {}
-
-        # Count the occurrences of each letter in the dictionary word
-        for letter in dict_word.lower():
-            dict_word_dict[letter] = dict_word_dict.get(letter, 0) + 1
-
-        # Check if the dictionary word is an anagram of the input word
-        if dict_word_dict == word_dict and dict_word != word:
+        if (dict_word.lower() != word) and \
+                (''.join(sorted(dict_word.lower())) == sorted_word):
             anagrams.append(dict_word)
 
     return anagrams
+
 
 if __name__ == '__main__':
     main()

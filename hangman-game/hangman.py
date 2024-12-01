@@ -1,176 +1,178 @@
 import random
 
-class Hangman:
-    '''A class to represent the Hangman game.'''
-
-    # Constants for Hangman art
-    HANGMAN_ART = [
-        '''
-         +---+
-             |
-             |
-             |
-            ===''', '''
-         +---+
-         O   |
-             |
-             |
-            ===''', '''
-         +---+
-         O   |
-         |   |
-             |
-            ===''', '''
-         +---+
-         O   |
-        /|   |
-             |
-            ===''', '''
-         +---+
-         O   |
-        /|\  |
-             |
-            ===''', '''
-         +---+
-         O   |
-        /|\  |
-        /    |
-            ===''', '''
-         +---+
-         O   |
-        /|\  |
-        / \  |
-            ===''', '''
-         +---+
-        [O   |
-        /|\  |
-        / \  |
-            ===''', '''
-         +---+
-        [O]  |
-        /|\  |
-        / \  |
-            ==='''
-    ]
-
-    # Word categories and their corresponding word lists
-    WORDS = [
-    ('Colors', 'red orange yellow green blue indigo violet white black brown'.split()),
-    ('Animals', 'cat dog lion elephant giraffe monkey tiger bear panda kangaroo dolphin penguin owl snake turtle bee'.split()),
-    ('Shapes', 'circle square triangle rectangle oval diamond star heart crescent pentagon hexagon octagon'.split()),
-    ('Fruits', 'apple orange banana strawberry watermelon pineapple mango grape cherry lemon pear kiwi peach'.split()),
-    ('Vegetables', 'carrot broccoli cucumber spinach potato tomato onion garlic celery pumpkin zucchini eggplant radish cauliflower cabbage'.split()),
-    ('Sports', 'soccer basketball tennis baseball golf volleyball cricket rugby badminton swimming cycling boxing skiing gymnastics surfing'.split()),
-    ('Countries', 'afghanistan albania algeria argentina australia brazil canada china denmark egypt france germany india italy japan kenya mexico netherlands pakistan qatar russia spain turkey united states vietnam yemen zimbabwe'.split()),
-    ('Emotions/Feelings', 'happy sad angry excited surprised nervous proud confident calm curious jealous bored'.split()),
-    ('School Subjects', 'math science history geography English literature art music physical education chemistry biology physics'.split()),
-    ('Body Parts', 'head arm leg hand foot eye ear nose mouth hair face shoulder knee stomach chest back'.split()),
-    ('Weather', 'sunny rainy cloudy windy stormy snowy foggy hot cold humid dry'.split()),
-    ('Jobs/Occupations', 'doctor teacher engineer chef firefighter police musician actor artist lawyer nurse pilot scientist writer'.split())
+# Hangman ASCII Art
+HANGMAN_PICS = [
+    '''
+     +---+
+         |
+         |
+         |
+        ===
+    ''',
+    '''
+     +---+
+     O   |
+         |
+         |
+        ===
+    ''',
+    '''
+     +---+
+     O   |
+     |   |
+         |
+        ===
+    ''',
+    '''
+     +---+
+     O   |
+    /|   |
+         |
+        ===
+    ''',
+    '''
+     +---+
+     O   |
+    /|\\  |
+         |
+        ===
+    ''',
+    '''
+     +---+
+     O   |
+    /|\\  |
+    /    |
+        ===
+    ''',
+    '''
+     +---+
+     O   |
+    /|\\  |
+    / \\  |
+        ===
+    '''
 ]
 
-    def __init__(self):
-        '''Initialize the Hangman game.'''
+# List of words to choose from for the game
+WORDS = [
+    'attack',
+    'training',
+    'musical',
+    'retire',
+    'eliminate',
+    'rally',
+    'mainstream',
+    'climb',
+    'handicap',
+    'flag',
+    'unit',
+    'share',
+    'courtesy',
+    'continuation',
+    'litigation',
+    'suspect',
+    'observation',
+    'swallow',
+    'pleasure',
+    'supplementary',
+    'conglomerate',
+    'conviction',
+    'win',
+    'orgy',
+    'rugby']
 
-        # Strings to store missed letters and correct letters
-        self.missed_letters = ''
-        self.correct_letters = ''
-        # Generate a random word and set
-        self.secret_word, self.secret_set = self.generate_random_word()
-        # Flag to indicate if the game is over
-        self.is_game_over = False
 
-    def generate_random_word(self):
-        '''Generate a random word and its corresponding set from the WORDS list.'''
+def main():
+    print('Hangman Game\n')
+    missed_letters = ''
+    correct_letters = ''
+    secret_word = get_random_word(WORDS)
+    game_over = False
 
-        # Select a random word set and random word from the set
-        word_set = random.choice(self.WORDS)
-        word = random.choice(word_set[1])
-        return word, word_set[0]
+    while True:
+        display_game_state(
+            HANGMAN_PICS,
+            missed_letters,
+            correct_letters,
+            secret_word)
 
-    def display_board(self):
-        '''Display the hangman art, missed letters, and current word progress.'''
+        guess = get_guess(missed_letters + correct_letters)
 
-        # Display hangman art based on missed letters
-        print(self.HANGMAN_ART[len(self.missed_letters)])
-        print()
-        # Display missed letters separated by spaces
-        print(f'Missed letters: {" ".join(self.missed_letters)}')
-        print()
+        if guess in secret_word:
+            correct_letters += guess
 
-        # Create a string of underscores to represent unguessed letters
-        blanks = '_' * len(self.secret_word)
-        for i, letter in enumerate(self.secret_word):
-            if letter in self.correct_letters:
-                # Replace underscores with correctly guessed letters
-                blanks = blanks[:i] + letter + blanks[i+1:]
-
-        # Display the current word progress with underscores and guessed letter
-        for letter in blanks:
-            print(letter, end=' ')
-        print()
-
-    def generate_guess(self):
-        '''Prompt the player to enter a guess and validate the input.'''
-
-        while True:
-            guess = input('Guess a letter: ').lower()
-            if len(guess) != 1:
-                print('Please enter a single letter.')
-            elif guess in self.correct_letters or guess in self.missed_letters:
-                print('You have already guessed that letter. Choose again.')
-            elif not guess.isalpha():
-                print('Please enter a LETTER.')
-            else:
-                return guess
-
-    def play_again(self):
-        '''Prompt the player to play again.'''
-
-        response = input('Do you want to play again? Enter (y)es or (n)o: ').lower()
-        return response.startswith('y')
-
-    def main(self):
-        '''The main function that starts the Hangman game.'''
-
-        print('\nWelcome to Hangman.\n')
-
-        while True:
-            # Display the category of the secret word
-            print(f'The secret word is in the set: {self.secret_set}')
-            # Display the game board
-            self.display_board()
-
-            guess = self.generate_guess()
-
-            # Add the correctly guessed letter to the list
-            if guess in self.secret_word:
-                self.correct_letters += guess
-
-                if all(letter in self.correct_letters for letter in self.secret_word):
-                    print(f'Yes! The secret word is {self.secret_word}! You have won!')
-                    self.is_game_over = True
-            # Add the missed letter to the list
-            else:
-                self.missed_letters += guess
-
-                if len(self.missed_letters) == len(self.HANGMAN_ART) - 1:
-                    self.display_board()
-                    print(f'You have run out of guesses!\nAfter {len(self.missed_letters)} missed guesses and {len(self.correct_letters)} correct guesses, the word was {self.secret_word}')
-                    self.is_game_over = True
-
-            if self.is_game_over:
-                if self.play_again():
-                    # Reset game state
-                    self.missed_letters = ''
-                    self.correct_letters = ''
-                    self.is_game_over = False
-                    self.secret_word, self.secret_set = self.generate_random_word()
-                else:
+            found_all_letters = True
+            for i in range(len(secret_word)):
+                if secret_word[i] not in correct_letters:
+                    found_all_letters = False
                     break
+            if found_all_letters:
+                print(
+                    f'The secret word is \'{secret_word}\'! You won!')
+                game_over = True
+        else:
+            missed_letters += guess
 
-# Initialize the Hangman game and start playing the game
-hangman = Hangman()
+            if len(missed_letters) == len(HANGMAN_PICS) - 1:
+                display_game_state(
+                    HANGMAN_PICS,
+                    missed_letters,
+                    correct_letters,
+                    secret_word)
+                print(f'You have run out of guesses!\nAfter '
+                      f'{str(len(missed_letters))} missed guesses and '
+                      f'{str(len(correct_letters))} correct guesses, '
+                      f'the word was \'{secret_word}\'')
+                game_over = True
+
+        if game_over:
+            print('Do you want to play again? (yes or no)')
+            if input().lower().startswith('y'):
+                missed_letters = ''
+                correct_letters = ''
+                game_over = False
+                secret_word = get_random_word(WORDS)
+            else:
+                break
+
+
+def get_random_word(word_list):
+    return random.choice(word_list)
+
+
+def display_game_state(HANGMAN_PICS, missed_letters,
+                       correct_letters, secret_word):
+    print(HANGMAN_PICS[len(missed_letters)])
+
+    print('\nMissed letters: ', end='')
+    for letter in missed_letters:
+        print(letter, end=' ')
+    print('\n')
+
+    blanks = '_' * len(secret_word)
+    for i in range(len(secret_word)
+                   ):  # Replace blanks with correctly guessed letters
+        if secret_word[i] in correct_letters:
+            blanks = blanks[:i] + secret_word[i] + blanks[i + 1:]
+
+    for letter in blanks:
+        print(letter, end=' ')
+    print('\n')
+
+
+def get_guess(already_guessed):
+    while True:
+        print('Guess a letter:')
+        guess = input().lower()
+        if len(guess) != 1:
+            print('Please enter a single letter.')
+        elif guess in already_guessed:
+            print('You have already guessed that letter. Choose again.')
+        elif not guess.isalpha():
+            print('Please enter a letter.')
+        else:
+            return guess
+
 
 if __name__ == '__main__':
-    hangman.main()
+    main()

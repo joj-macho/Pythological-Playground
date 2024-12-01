@@ -2,27 +2,23 @@
 
 ## Description
 
-The Hangman Game program is a text-based implementation of the classic word-guessing game. In this game, players try to guess a secret word one letter at a time, with each incorrect guess resulting in the gradual drawing of a hangman figure. The objective is to guess the word before the hangman is fully drawn. This program provides an interactive interface for players to enjoy this challenging word puzzle game.
+The Hangman Game program is an implementation of the classic word-guessing game, where user tries to guess a secret word one letter at a time, with each incorrect guess resulting in the gradual drawing of a hangman figure.
 
 ## How it Works
 
-- The program first imports the `random` module which is used to choose random words and ASCII art for the hangman.
+- Following the Hangman game rules, enter the guess of the letter of a secret word.
+- The prgoram will display the current state of the game including the hangman picture, missed letters, and correctly guessed letters of the secret word.
+- Do this until win or until hanged-man fully drawn.
 
-- The program begins by defining a class called `Hangman`. Inside this class, it has several variables, including:
-    - `HANGMAN_ART`: A list containing ASCII art representations of the hangman figure in different stages. These figures visually depict the player's progress.
-    - `WORDS`: A list of tuples, where each tuple contains a category name and a list of words associated with that category.
+## Running the Program
 
-- The `Hangman` class has an `__init__` method that initializes the game state. It sets the initial values for variables like `missed_letters`, `correct_letters`, `secret_word`, `secret_set`, and `is_game_over`. These variables are crucial for tracking and controlling the game's flow.
+```bash
+# Navigate to the project directory
+cd hangman-game/
 
-- The class provides several methods to handle various aspects of the game:
-    - `generate_random_word`: Selects a random word from a random category in the `WORDS` list.
-    - `display_board:` Displays the hangman ASCII art, the missed letters, and the current state of the word with blanks for unguessed letters.
-    - `generate_guess`: Prompts the user to enter a single letter as their guess and performs input validation.
-    - `play_again`: Asks the user if they want to play again and returns True if the response starts with 'y'.
-
-- The `main` method is where the actual game loop is implemented. Inside the main game loop, it displays the current state of the hangman, prompts the user for a guess, and checks if the guess is correct. It updates the `correct_letters` or `missed_letters` accordingly. If the user has guessed all the letters in the `secret_word`, it declares the user as the winner. If the user has missed too many guesses, it declares the user as the loser.
-
-- After each game round, the program checks if the player wants to play another round. If the player chooses to continue, the game state is reset, and a new random word is chosen. If not, the game ends.
+# Run the main script
+python3 hangman.py
+```
 
 ## Program Input & Output
 

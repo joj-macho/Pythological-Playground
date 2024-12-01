@@ -2,28 +2,21 @@
 
 ## Description
 
-The "Four In A Row" program is an interactive console-based implementation of the classic game "Connect Four". In this two-player game, participants take turns dropping their tiles into one of seven columns with the objective of forming a sequence of four of their tiles either horizontally, vertically, or diagonally within the game grid.
+The "Four In A Row" program is an implementation of the classic game "Connect Four". In this two-player game, participants take turns dropping their tiles into one of seven columns with the objective of forming a sequence of four of their tiles either horizontally, vertically, or diagonally within the game grid.
 
 ## How it Works
 
-- The program starts by importing the `sys` module, which it uses to exit the program early if so desired. Then the game board is initialized as a nested list, representing the grid of columns and rows.
+- Play the game and see for yourself
 
-- The `main()` function controls the game flow and begins by printing a brief description of the game. Then the main game loop begins, where players take turns until a win or tie occurs. Here a new game board is created with the `get_new_board()`, and `player_turn` is set to be 'X'.
-    - The `get_new_board()` function creates a new game board as a nested list with empty spaces.
+## Running the Program
 
-- For each turn, the current game board is displayed with the `display_board()` function, and the current player is prompted to enter a column number to drop their tile into by the `ask_for_player_move()` function. The program validates the player's input and checks if the selected column is full. If the input is valid, the program updates the game board with the player's move.
-    - The `display_board()` function displays the current state of the game board on the console.
-    - The `ask_for_player_move()` function prompts the current player to enter a column number and validates their input.
-    - The `update_board()` function updates the game board with the player's move.
+```bash
+# Navigate to the project directory
+cd four-in-a-row-game
 
-- The program checks if the current player has won by checking for four consecutive tiles in a row, column, or diagonal. If a win is detected, the program displays the final game board and declares the current player as the winner. If there is no win but the game board is full, the program declares a tie. The program switches the turn to the other player and continues the loop.
-    - The `update_board()` function updates the game board with the player's move.
-    - The `is_full()` function checks if the game board is completely filled with tiles.
-    - The `is_winner()` function checks if the current player has won the game.
-
-- If the game loop is exited, the program terminates.
-
-
+# Run the main script
+python3 four_in_a_row.py
+```
 
 ## Program Input & Output
 

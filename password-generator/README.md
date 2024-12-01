@@ -2,75 +2,47 @@
 
 ## Description
 
-The Password Generator is a command-line program that assists users in generating, saving, and searching for passwords. It provides functionalities such as generating 'secure' passwords with various options, saving passwords to a database, and searching for saved passwords based on the website.
+The "Password Generator" allows you to generate a random password of a specified length using a mix of characters (uppercase, lowercase, digits, special characters).
 
 ## How it Works
+- Enter the length of the password (> 6).
+- Voilà.
 
-- The program uses the following modules:
-    - The `random` module to generate random choices for creating passwords.
-    - The `json` module for reading and writing JSON data.
-    - The `string` module provides a collection of string constants, including ASCII letters (both lowercase and uppercase), digits, and punctuation symbols.
-    - The `secrets` modulefor generating cryptographically secure random numbers.
-    - The `os` module to interact with the operating system.
-    - The `Path` class from the `pathlib` module for working with file system paths.
+## Running the Program
 
-- The `main` function displays a menu with options to generate a password, save a password, search for passwords, or exit the program. The user is prompted to enter their choice, and the corresponding action is performed.
+```bash
+# Navigate to the project directory
+cd password-generator/
 
-- The `generate_password` function generates a random password with the specified length and character types (lowercase letters, symbols, digits, uppercase letters). It utilizes the `secrets` module for secure random choices.
-
-- The `save_password` function allows the user to save a password to the password database. It prompts the user to enter the website, username/email, and password length. The actual password is then generated using the `generate_password` function, and the data is saved to the 'passwords.json' file.
-
-- The `search_password` function enables users to search for passwords in the database based on a website. It prompts the user to enter the website they want to search for, reads the 'passwords.json' file, and displays the matching passwords.
+# Run the main script
+python3 password_generator.py
+```
 
 ## Program Input & Output
 
 When you run `password_generator.py`, the output will look like this:
 
 ```
+Password Generator
 
-Welcome to Password Generator
+Enter the desired password length (minimum 6): 5
 
-1. Generate Password
-2. Save Password
-3. Search Password
-0. Exit program
-Enter your choice: 1
-Enter the password length: 12
-Generated Password: YMiW5^VF!Muv
+Error: Password length should be at least 6 characters. Please try again.
+Generate another password? (y)es or (n)o: y
 
-1. Generate Password
-2. Save Password
-3. Search Password
-0. Exit program
-Enter your choice: 2
-Enter the website: www.reddit.com
-Enter the username/email: jonathan
-Enter the password length: 10
-Password saved successfully.
+Enter the desired password length (minimum 6): 6
 
-1. Generate Password
-2. Save Password
-3. Search Password
-0. Exit program
-Enter your choice: 3
-Enter the website to search for passwords: www.redidit.com
-No passwords found for www.redidit.com.
+Your generated password is: >0oU7e
+Generate another password? (y)es or (n)o: y
 
-1. Generate Password
-2. Save Password
-3. Search Password
-0. Exit program
-Enter your choice: 3
-Enter the website to search for passwords: www.reddit.com
-Website: www.reddit.com 
-Username: jonathan 
-Password: J+H0Sm@+&J
+Enter the desired password length (minimum 6): 30
 
-1. Generate Password
-2. Save Password
-3. Search Password
-0. Exit program
-Enter your choice: 0
+Your generated password is: +AhrVn&Lnk4QUPVZsYZDof?v8UO1]5
+Generate another password? (y)es or (n)o: y
 
+Enter the desired password length (minimum 6): l2
+
+Error: invalid literal for int() with base 10: 'l2'. Please try again.
+Generate another password? (y)es or (n)o: n
 Bye!
 ```

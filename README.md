@@ -1,6 +1,6 @@
 # Pythological-Playground
 
-This repository contains a collection of Python mini-projects, including games, utilities, and animations, created for learning, experimentation, and fun.
+This repository contains a collection of Python mini-projects, including games, utilities, and animations, created for learning and experimentation.
 
 ## Programs
 

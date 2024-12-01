@@ -25,6 +25,16 @@ The Indentation Animation program is a simple console-based animation that creat
 
 - If the user interrupts the program by pressing Ctrl+C (`KeyboardInterrupt`), the program catches the exception and calls `sys.exit()` to terminate the program.
 
+## Running the Program
+
+```bash
+# Navigate to the project directory
+cd pico-fermi-bagels
+
+# Run the main script
+python3 pico_fermi_bagels.py
+```
+
 ## Program Input & Output
 
 When you run the program `indentation_animation.py`, the output will look like a visually appealing animation of a moving pattern that continuously oscillates between increasing and decreasing indentation, i.e.:
